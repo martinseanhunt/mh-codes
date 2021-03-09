@@ -31,12 +31,9 @@ collections:
   - name: 'pages'
     label: 'Pages'
     files:
-      - file: 'src/content/pages/index/index.md'
+      - file: 'src/content/pages/home.md'
         label: 'Home Page'
-        name: 'index'
-        media_folder: ''
-        public_folder: ''
-        create: true
+        name: 'home'
         editor:
           preview: false
         fields:
