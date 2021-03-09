@@ -39,6 +39,7 @@ export const PostDetail = graphql`
     frontmatter {
       date
       title
+      externalUrl
     }
     excerpt
   }

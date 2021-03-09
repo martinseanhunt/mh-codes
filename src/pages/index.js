@@ -2,6 +2,8 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
+import { BlogPostList } from '../components/BlogPostList'
+
 export default function Index({ data }) {
   const { site, markdownRemark: page } = data
 
@@ -14,6 +16,8 @@ export default function Index({ data }) {
       <h1>{page.frontmatter.title}</h1>
 
       <div dangerouslySetInnerHTML={{ __html: page.html }} />
+
+      <BlogPostList />
     </>
   )
 }
