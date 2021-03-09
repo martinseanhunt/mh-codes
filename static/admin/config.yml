@@ -37,5 +37,6 @@ collections:
         editor:
           preview: false
         fields:
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Intro Text', name: 'introText', widget: 'markdown' }
+          - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
+          - { label: 'Headline', name: 'heading', widget: 'string' }
+          - { label: 'Intro Text', name: 'body', widget: 'markdown' }

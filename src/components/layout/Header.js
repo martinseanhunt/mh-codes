@@ -9,7 +9,9 @@ import styled from 'styled-components'
 export function Header() {
   return (
     <StyledHeader>
-      <span>👋</span>
+      <span role="img" aria-label="wave emoji">
+        👋
+      </span>
       <ul>
         <li>
           <Link to="/">Home</Link>

@@ -3,7 +3,9 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 export default function Index({ data }) {
-  const { site } = data
+  console.log(data)
+
+  const { site, markdownRemark: page } = data
 
   return (
     <>
@@ -11,8 +13,9 @@ export default function Index({ data }) {
         title={`${site?.siteMetadata?.title} - Software Engineer & Technical Lead`}
         defer={false}
       />
-      <title>Home Page</title>
-      <h1>Welcome to my page</h1>
+      <h1>{page.frontmatter.title}</h1>
+
+      <div dangerouslySetInnerHTML={{ __html: page.html }} />
     </>
   )
 }
@@ -30,5 +33,11 @@ export const SiteMetaQuery = graphql`
 export const query = graphql`
   query {
     ...SiteMeta
+    markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
+      frontmatter {
+        title
+      }
+      html
+    }
   }
 `
