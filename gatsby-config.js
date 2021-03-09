@@ -1,6 +1,10 @@
 module.exports = {
   siteMetadata: {
-    title: "mh-codes",
+    title: `Martin Hunt`,
   },
-  plugins: ["gatsby-plugin-netlify-cms", "gatsby-plugin-styled-components"],
-};
+  plugins: [
+    `gatsby-plugin-netlify-cms`,
+    `gatsby-plugin-styled-components`,
+    `gatsby-plugin-react-helmet`,
+  ],
+}
