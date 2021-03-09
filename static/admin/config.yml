@@ -48,3 +48,44 @@ collections:
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       # TODO: Add tags to blog posts
+
+  - name: 'history'
+    label: 'History'
+    folder: 'src/content/history'
+    create: true
+    slug: 'index'
+    path: '{{title}}/index'
+    editor:
+      preview: false
+    fields:
+      - {
+          label: 'Template Key',
+          name: 'templateKey',
+          widget: 'hidden',
+          default: 'history-item',
+        }
+      - { label: 'Company', name: 'company', widget: 'string' }
+      - { label: 'Role', name: 'role', widget: 'string' }
+      - { label: 'From - To', name: 'dates', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+
+  - name: 'project'
+    label: 'Project'
+    folder: 'src/content/projects'
+    create: true
+    slug: 'index'
+    path: '{{title}}/index'
+    editor:
+      preview: false
+    fields:
+      - {
+          label: 'Template Key',
+          name: 'templateKey',
+          widget: 'hidden',
+          default: 'project',
+        }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }
+      - { label: 'Github Url', name: 'github', widget: 'string' }
+      - { label: 'Live Url', name: 'liveUrl', widget: 'string' }
+      # TODO: Add tags to blog posts

@@ -25,7 +25,7 @@ export function BlogPostList() {
           <li key={post.fields.slug}>
             <span>
               {post.frontmatter.externalUrl ? (
-                <a href={post.frontmatter.externalUrl} taget="__blank">
+                <a href={post.frontmatter.externalUrl} target="__blank">
                   {post.frontmatter.title}
                 </a>
               ) : (
