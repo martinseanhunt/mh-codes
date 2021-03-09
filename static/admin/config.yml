@@ -38,6 +38,12 @@ collections:
           default: 'blog-post',
         }
       - { label: 'Title', name: 'title', widget: 'string' }
-      - { label: 'External Post URL', name: 'externalUrl', widget: 'string' }
+      - {
+          label: 'External Post URL',
+          name: 'externalUrl',
+          widget: 'string',
+          required: false,
+          hint: 'Leave blank for an internal post',
+        }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
