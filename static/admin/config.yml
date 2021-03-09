@@ -40,3 +40,25 @@ collections:
           - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
           - { label: 'Headline', name: 'heading', widget: 'string' }
           - { label: 'Intro Text', name: 'body', widget: 'markdown' }
+
+  - name: 'blog'
+    label: 'Blog'
+    folder: 'src/content/blog'
+    create: true
+    slug: 'index'
+    media_folder: ''
+    public_folder: ''
+    path: '{{title}}/index'
+    editor:
+      preview: false
+    fields:
+      - {
+          label: 'Template Key',
+          name: 'templateKey',
+          widget: 'hidden',
+          default: 'blog-post',
+        }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'External Post URL', name: 'externalUrl', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }

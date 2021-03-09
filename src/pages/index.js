@@ -3,14 +3,12 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 export default function Index({ data }) {
-  console.log(data)
-
   const { site, markdownRemark: page } = data
 
   return (
     <>
       <Helmet
-        title={`${site?.siteMetadata?.title} - Software Engineer & Technical Lead`}
+        title={`${site?.siteMetadata?.title} - ${page.frontmatter.htmlTitle}`}
         defer={false}
       />
       <h1>{page.frontmatter.title}</h1>
@@ -36,6 +34,7 @@ export const query = graphql`
     markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
       frontmatter {
         title
+        htmlTitle
       }
       html
     }
