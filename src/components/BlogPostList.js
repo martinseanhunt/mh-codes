@@ -42,4 +42,5 @@ export function BlogPostList() {
 
 const Title = styled.h2`
   margin-top: 50px;
+  color: ${({ theme }) => theme.colors.highlight};
 `

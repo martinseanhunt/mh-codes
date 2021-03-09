@@ -1,5 +1,5 @@
 import React from 'react'
-import { createGlobalStyle } from 'styled-components'
+import { createGlobalStyle, ThemeProvider } from 'styled-components'
 
 import { Header } from './Header'
 
@@ -8,21 +8,29 @@ export function Layout({ children }) {
     <>
       <GlobalStyle />
       <div>
-        <Header />
-        <main>{children}</main>
+        <ThemeProvider theme={theme}>
+          <Header />
+          <main>{children}</main>
+        </ThemeProvider>
       </div>
     </>
   )
 }
 
-// TODO: set up theme for colours, font sizes etc
+const theme = {
+  colors: {
+    body: '#1c1b21',
+    highlight: '#32a852',
+  },
+}
+
 const GlobalStyle = createGlobalStyle`
   html,
   body {
     padding: 0;
     margin: 0;
     font-family: -apple-system, Roboto, sans-serif, serif;
-    color: #1c1b21;
+    color: ${theme.colors.body};
   }
 
   body {
