@@ -1,17 +1,24 @@
 import { createGlobalStyle } from 'styled-components'
+
 import { theme } from './theme'
+import { reset } from './reset'
 
 export const GlobalStyle = createGlobalStyle`
+  ${reset}
+
+  html { 
+    font-size: ${theme.fonts.sizes.htmlFontBase};
+  }
+
   html,
   body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, Roboto, sans-serif, serif;
+    font-family: ${theme.fonts.families.sans};
     color: ${theme.colors.body};
   }
 
   body {
-    padding: 50px;
+    padding: ${theme.layout.bodyPadding};
+    font-size: ${theme.fonts.sizes.m};
   }
 
   * {

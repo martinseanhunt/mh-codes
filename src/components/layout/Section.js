@@ -1,20 +1,22 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export function Section({ children }) {
+export function Section({ children, maxWidth, sectionPadding }) {
   return (
-    <Container>
-      <Inner>{children}</Inner>
+    <Container sectionPadding={sectionPadding}>
+      <Inner maxWidth={maxWidth}>{children}</Inner>
     </Container>
   )
 }
 
-const Container = styled.section`
+export const Container = styled.section`
   display: flex;
   justify-content: center;
+  padding: ${({ theme, sectionPadding }) =>
+    sectionPadding || theme.layout.sectionPadding};
 `
 
-const Inner = styled.div`
+export const Inner = styled.div`
   width: 100%;
-  max-width: ${({ theme: { layout } }) => layout.maxWidth};
+  max-width: ${({ theme, maxWidth }) => maxWidth || theme.layout.maxWidth};
 `

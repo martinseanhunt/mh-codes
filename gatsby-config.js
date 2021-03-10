@@ -1,3 +1,5 @@
+// TODO: delete gatsby-plugin-image gatsby-transformer-sharp if I don't end up using them
+
 module.exports = {
   siteMetadata: {
     title: `Martin Hunt`,
@@ -27,5 +29,7 @@ module.exports = {
     `gatsby-plugin-styled-components`,
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-image`,
+    `gatsby-transformer-sharp`,
   ],
 }

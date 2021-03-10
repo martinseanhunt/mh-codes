@@ -3,24 +3,31 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
 import { Section } from '../components/layout/Section'
+import { Terminal } from '../components/Terminal'
 import { BlogPostList } from '../components/BlogPostList'
 
 export default function Index({ data }) {
   const { site, markdownRemark: page } = data
 
   return (
-    <Section>
+    <>
       <Helmet
         title={`${site?.siteMetadata?.title} - ${page.frontmatter.htmlTitle}`}
         defer={false}
       />
 
-      <h1>{page.frontmatter.title}</h1>
+      <Terminal />
 
-      <div dangerouslySetInnerHTML={{ __html: page.html }} />
+      <Section>
+        <h1>{page.frontmatter.title}</h1>
 
-      <BlogPostList />
-    </Section>
+        <div dangerouslySetInnerHTML={{ __html: page.html }} />
+      </Section>
+
+      <Section>
+        <BlogPostList />
+      </Section>
+    </>
   )
 }
 
