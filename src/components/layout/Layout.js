@@ -1,5 +1,8 @@
 import React from 'react'
-import { createGlobalStyle, ThemeProvider } from 'styled-components'
+import { ThemeProvider } from 'styled-components'
+
+import { theme } from '../../styles/theme'
+import { GlobalStyle } from '../../styles/GlobalStyle'
 
 import { Header } from './Header'
 
@@ -16,28 +19,3 @@ export function Layout({ children }) {
     </>
   )
 }
-
-const theme = {
-  colors: {
-    body: '#1c1b21',
-    highlight: '#32a852',
-  },
-}
-
-const GlobalStyle = createGlobalStyle`
-  html,
-  body {
-    padding: 0;
-    margin: 0;
-    font-family: -apple-system, Roboto, sans-serif, serif;
-    color: ${theme.colors.body};
-  }
-
-  body {
-    padding: 50px;
-  }
-
-  * {
-    box-sizing: border-box;
-  }
-`
