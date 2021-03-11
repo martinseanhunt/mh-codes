@@ -1,6 +1,7 @@
 ---
 templateKey: history-item
 company: Adarga.ai
+order: 0
 role: Techical Lead & Development Manager
 dates: March 2020 - Present
 excerpt: ""
