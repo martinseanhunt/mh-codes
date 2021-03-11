@@ -101,6 +101,7 @@ const TerminalContainer = styled.div`
   `}
 `
 
+// TODO: Reduce padding on non-fullwidth
 const Header = styled.div`
   height: 48px;
   padding: 8px 0 0 38px;
@@ -157,7 +158,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   font-family: ${({ theme }) => theme.fonts.families.mono};
-  padding: 30px;
+  padding: 30px 30px 50px 30px;
   box-shadow: 0px 1px 15px ${({ theme }) => theme.colors.shadow};
   border-radius: 0px 0px
     ${({ theme }) => `${theme.layout.terminal.borderRadius} `.repeat(2)};
@@ -195,6 +196,10 @@ const Bio = styled.div`
 
 const InputLine = styled.div`
   display: flex;
+
+  div {
+    flex-shrink: 0;
+  }
 `
 
 const Input = styled.input`

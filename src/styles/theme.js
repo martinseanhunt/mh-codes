@@ -22,7 +22,7 @@ export const theme = {
       terminal: '2.34rem',
     },
     families: {
-      sans: `"Larsseit", -apple-system, Roboto, sans-serif`,
+      sans: `"Larsseit-Regular", -apple-system, Roboto, sans-serif`,
       mono: `'PT Mono', sans-serif`,
     },
   },
@@ -36,7 +36,7 @@ export const theme = {
     },
     terminal: {
       maxWidth: '1060px',
-      borderRadius: '2px',
+      borderRadius: '3px',
       sectionPadding: '0 10px 0 10px',
     },
   },
