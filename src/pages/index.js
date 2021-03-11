@@ -5,6 +5,7 @@ import { Helmet } from 'react-helmet'
 import { Section } from '../components/layout/Section'
 import { Terminal } from '../components/Terminal'
 import { BlogPostList } from '../components/BlogPostList'
+import { WorkHistory } from '../components/WorkHistory'
 
 export default function Index({ data }) {
   const { site, markdownRemark: page } = data
@@ -17,6 +18,8 @@ export default function Index({ data }) {
       />
 
       <Terminal />
+
+      <WorkHistory />
 
       <Section>
         <h1>{page.frontmatter.title}</h1>

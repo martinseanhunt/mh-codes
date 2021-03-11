@@ -15,7 +15,7 @@ export const GlobalStyle = createGlobalStyle`
   html,
   body {
     font-family: ${theme.fonts.families.sans};
-    color: ${theme.colors.body};
+    color: ${theme.colors.dark};
   }
 
   body {

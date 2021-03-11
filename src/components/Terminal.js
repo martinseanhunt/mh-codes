@@ -7,6 +7,7 @@ import PlusIcon from '../img/icon-plus.svg'
 import CloseTerminalIcon from '../img/icon-close-terminal.svg'
 import MinimiseTerminalIcon from '../img/icon-minimise-terminal.svg'
 import MaximiseTerminalIcon from '../img/icon-maximise-terminal.svg'
+import LinuxIcon from '../img/icon-linux.svg'
 
 import { Section, Inner } from './layout/Section'
 
@@ -20,6 +21,8 @@ import { Section, Inner } from './layout/Section'
 //   - close terminal
 //   - basic commands
 
+// TODO: Decided on section margin for each element
+
 export function Terminal() {
   const theme = useContext(ThemeContext)
   const inputRef = useRef()
@@ -28,16 +31,20 @@ export function Terminal() {
     document.activeElement !== inputRef.current && inputRef.current.focus()
 
   return (
-    <TerminalSection
+    <Section
       maxWidth={theme.layout.terminal.maxWidth}
       sectionPadding={theme.layout.terminal.sectionPadding}
+      sectionMargin="0 0 130px 0"
       onClick={focusInput}
     >
       <TerminalContainer>
         <Header>
           <Tab>
-            <span>marty@DESKTOP: ~/</span>
-            <img src={CloseIcon} alt="Close Tab Icon" />
+            <span>
+              <img src={LinuxIcon} alt="Linux Penguin Icon" />
+              marty@DESKTOP: ~/
+            </span>
+            <Close src={CloseIcon} alt="Close Tab Icon" />
           </Tab>
           <TabIcon>
             <img src={PlusIcon} alt="New Tab Icon" />
@@ -83,13 +90,9 @@ export function Terminal() {
           </Inner>
         </Content>
       </TerminalContainer>
-    </TerminalSection>
+    </Section>
   )
 }
-
-const TerminalSection = styled(Section)`
-  margin: ${({ theme }) => theme.layout.sectionMargin};
-`
 
 const TerminalContainer = styled.div`
   ${({ theme }) => `
@@ -104,7 +107,7 @@ const TerminalContainer = styled.div`
 // TODO: Reduce padding on non-fullwidth
 const Header = styled.div`
   height: 48px;
-  padding: 8px 0 0 38px;
+  padding: 8px 0 0 25px;
   background: ${({ theme }) => theme.colors.terminalGray};
   border-radius: ${({ theme }) =>
       `${theme.layout.terminal.borderRadius} `.repeat(2)}
@@ -120,18 +123,30 @@ const Tab = styled.div`
     padding: 0 9px 0 12px;
     display: flex;
     align-items: center;
-    font-size: ${theme.fonts.sizes.xs};
+    font-size: ${theme.fonts.sizes.xxs};
   `}
 
-  img {
-    margin-left: 12px;
-    padding: 3px;
+  span {
+    display: flex;
+    align-items: center;
 
-    &:hover {
-      cursor: pointer;
-      background: ${({ theme }) => theme.colors.terminalGray};
-      border-radius: 3px;
+    img {
+      height: 20px;
+      margin-right: 5px;
+      position: relative;
+      top: -1px;
     }
+  }
+`
+
+const Close = styled.img`
+  margin-left: 12px;
+  padding: 3px;
+
+  &:hover {
+    cursor: pointer;
+    background: ${({ theme }) => theme.colors.terminalGray};
+    border-radius: 3px;
   }
 `
 
@@ -174,12 +189,28 @@ const Content = styled.div`
     }
   }
 
+  // TODO: remove duplications for animation and rely on global for simple underline reveal
   a {
     color: ${({ theme }) => theme.colors.white};
     text-decoration: none;
+    position: relative;
 
-    &:hover {
-      text-decoration: underline;
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 2px;
+      left: 0;
+      width: 0;
+      height: 1px;
+      opacity: 0;
+      background: ${({ theme }) => theme.colors.white};
+      transition: opacity cubic-bezier(0.19, 1, 0.22, 1) 0.5s,
+        width cubic-bezier(0.19, 1, 0.22, 1) 1s;
+    }
+
+    &:hover:before {
+      opacity: 1;
+      width: 100%;
     }
   }
 `
