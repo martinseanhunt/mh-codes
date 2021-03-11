@@ -67,7 +67,28 @@ collections:
       - { label: 'Company', name: 'company', widget: 'string' }
       - { label: 'Role', name: 'role', widget: 'string' }
       - { label: 'From - To', name: 'dates', widget: 'string' }
+      - {
+          label: 'Excerpt',
+          name: 'excerpt',
+          widget: 'text',
+          hint: 'auto generated if blank',
+          required: false,
+        }
+      - {
+          label: 'Key Acheivements',
+          name: 'acheivements',
+          widget: 'list',
+          required: false,
+          field: { label: Acheivement, name: 'acheivement', widget: 'string' },
+        }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {
+          label: 'Link To Details Page',
+          name: 'linkToDetails',
+          widget: 'boolean',
+          default: false,
+          hint: 'If false, the history item will not link through to a details page',
+        }
 
   - name: 'project'
     label: 'Project'
@@ -88,4 +109,4 @@ collections:
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - { label: 'Github Url', name: 'github', widget: 'string' }
       - { label: 'Live Url', name: 'liveUrl', widget: 'string' }
-      # TODO: Add tags to blog posts
+      # TODO: Add tags to projects
