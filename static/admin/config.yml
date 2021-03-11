@@ -54,7 +54,7 @@ collections:
     folder: 'src/content/history'
     create: true
     slug: 'index'
-    path: '{{title}}/index'
+    path: '{{company}}/index'
     editor:
       preview: false
     fields:
@@ -65,6 +65,14 @@ collections:
           default: 'history-item',
         }
       - { label: 'Company', name: 'company', widget: 'string' }
+      - {
+          label: 'Order',
+          name: 'order',
+          widget: 'number',
+          required: false,
+          value_type: 'int',
+          hint: 'Leave blank for auto ordering',
+        }
       - { label: 'Role', name: 'role', widget: 'string' }
       - { label: 'From - To', name: 'dates', widget: 'string' }
       - {
