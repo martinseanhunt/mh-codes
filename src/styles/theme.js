@@ -14,16 +14,21 @@ export const theme = {
     sizes: {
       htmlFontBase: '10px',
       xs: '1.1rem',
-      s: '1.5rem',
-      m: '1.6rem',
+      s: '1.3rem',
+      m: '1.5rem',
+      l: '1.6rem',
+    },
+    lineHeight: {
+      terminal: '2.34rem',
     },
     families: {
-      sans: `"Larsseit", -apple-system, Roboto, sans-serif, serif`,
+      sans: `"Larsseit", -apple-system, Roboto, sans-serif`,
+      mono: `'PT Mono', sans-serif`,
     },
   },
   layout: {
     maxWidth: '960px',
-    bodyPadding: '70px 0 0 0',
+    bodyPadding: '35px 0 0 0',
     sectionPadding: '0 50px 0 50px',
     sectionMargin: '0 0 160px 0',
     header: {

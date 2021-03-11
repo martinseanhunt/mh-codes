@@ -8,7 +8,7 @@ import { Section } from './Section'
 
 // TODO: Build menu from pages in gql query
 // TODO: Style active links etc
-// TODO: Hover effects / animations if any
+// TODO: Hover effects / animations
 // TODO: Favicon
 
 export function Header() {
@@ -53,6 +53,6 @@ const Nav = styled.nav`
   a {
     text-decoration: none;
     text-transform: capitalize;
-    font-size: ${({ theme }) => theme.fonts.sizes.s};
+    font-size: ${({ theme }) => theme.fonts.sizes.l};
   }
 `

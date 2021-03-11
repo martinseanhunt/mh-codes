@@ -18,7 +18,7 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     padding: ${theme.layout.bodyPadding};
-    font-size: ${theme.fonts.sizes.m};
+    font-size: ${theme.fonts.sizes.l};
   }
 
   * {

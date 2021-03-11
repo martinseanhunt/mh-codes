@@ -1,9 +1,9 @@
 import React from 'react'
 import styled from 'styled-components'
 
-export function Section({ children, maxWidth, sectionPadding }) {
+export function Section({ children, maxWidth, sectionPadding, ...rest }) {
   return (
-    <Container sectionPadding={sectionPadding}>
+    <Container sectionPadding={sectionPadding} {...rest}>
       <Inner maxWidth={maxWidth}>{children}</Inner>
     </Container>
   )
