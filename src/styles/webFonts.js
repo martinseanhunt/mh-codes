@@ -21,9 +21,15 @@ export const webFonts = `
 
 /* @import must be at top of file, otherwise CSS will not work */
 @import url("//hello.myfonts.net/count/3d6d3d");
+@import url("//hello.myfonts.net/count/3d6fd7");
   
 @font-face {
   font-family: "Larsseit-Regular";
-  src: url('../webFonts/LarsseitRegular/font.woff2') format('woff2'), url('webFonts/LarsseitRegular/font.woff') format('woff');
+  src: url('webFonts/LarsseitRegular/font.woff2') format('woff2'), url('webFonts/LarsseitRegular/font.woff') format('woff');
+}
+
+@font-face {
+  font-family: "Larsseit-Light";
+  src: url('webFonts/LarsseitLight/font.woff2') format('woff2'), url('webFonts/LarsseitLight/font.woff') format('woff');
 }
 `

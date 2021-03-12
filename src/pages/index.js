@@ -2,7 +2,6 @@ import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-import { Section } from '../components/layout/Section'
 import { Terminal } from '../components/Terminal'
 import { BlogPostList } from '../components/BlogPostList'
 import { WorkHistory } from '../components/WorkHistory'
@@ -16,20 +15,9 @@ export default function Index({ data }) {
         title={`${site?.siteMetadata?.title} - ${page.frontmatter.htmlTitle}`}
         defer={false}
       />
-
       <Terminal />
-
       <WorkHistory />
-
-      <Section>
-        <h1>{page.frontmatter.title}</h1>
-
-        <div dangerouslySetInnerHTML={{ __html: page.html }} />
-      </Section>
-
-      <Section>
-        <BlogPostList />
-      </Section>
+      <BlogPostList />
     </>
   )
 }

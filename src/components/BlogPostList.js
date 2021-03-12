@@ -2,6 +2,10 @@ import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
+import { Section } from './layout/Section'
+
+// TODO: Semantic html
+
 export function BlogPostList() {
   const {
     allMarkdownRemark: { nodes: posts },
@@ -9,6 +13,7 @@ export function BlogPostList() {
     query BlogPosts {
       allMarkdownRemark(
         filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+        limit: 2
       ) {
         nodes {
           ...PostDetail
@@ -18,12 +23,15 @@ export function BlogPostList() {
   `)
 
   return (
-    <>
-      <Title>From the blog</Title>
-      <ul>
+    <Section
+      title="From The Blog"
+      sectionPadding="72px 50px 0 50px"
+      dottedBackground
+    >
+      <Posts>
         {posts?.map((post) => (
-          <li key={post.fields.slug}>
-            <span>
+          <Post key={post.fields.slug}>
+            <Content>
               {post.frontmatter.externalUrl ? (
                 <a href={post.frontmatter.externalUrl} target="__blank">
                   {post.frontmatter.title}
@@ -32,15 +40,35 @@ export function BlogPostList() {
                 <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
               )}
               <p>{post.excerpt}</p>
-            </span>
-          </li>
+            </Content>
+            <Meta></Meta>
+          </Post>
         ))}
-      </ul>
-    </>
+      </Posts>
+    </Section>
   )
 }
 
-const Title = styled.h2`
-  margin-top: 50px;
-  color: ${({ theme }) => theme.colors.highlight};
+// TODO: Store grid gap in theme ?
+const Posts = styled.ul`
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 38px;
+`
+
+const Post = styled.li`
+  border: 1px solid ${({ theme }) => theme.colors.faint};
+  border-radius: 3px;
+  background: ${({ theme }) => theme.colors.white};
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`
+const Content = styled.div`
+  padding: 30px;
+`
+
+const Meta = styled.div`
+  background: ${({ theme }) => theme.colors.terminalBlack};
+  padding: 20px;
 `

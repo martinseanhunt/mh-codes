@@ -20,10 +20,18 @@ export const GlobalStyle = createGlobalStyle`
 
   body {
     padding: ${theme.layout.bodyPadding};
-    font-size: ${theme.fonts.sizes.l};
+    font-size: ${theme.fonts.sizes.s};
   }
 
-  * {
+  html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
     box-sizing: border-box;
+  }
+
+  *, *:before, *:after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
   }
 `

@@ -32,8 +32,10 @@ export function WorkHistory() {
     }
   `)
 
+  // TODO: Remove secitonpadding and margin as props... Extend the styles in the component
+
   return (
-    <Section title="The journey so far">
+    <Section title="The journey so far" sectionMargin="0 0 89px 0">
       <ul>
         {history?.map(({ frontmatter, ...item }) => (
           <Item key={item.fields.slug}>
@@ -115,14 +117,15 @@ const Item = styled.div`
   h2 {
     font-size: ${({ theme }) => theme.fonts.sizes.xl};
     letter-spacing: 0.01em;
-    margin-bottom: 11px;
+    margin-bottom: 12px;
     // TODO: Use leading-trim when it becomes available
   }
 
   // TODO: This too
   h3 {
-    font-size: ${({ theme }) => theme.fonts.sizes.l};
+    font-size: ${({ theme }) => theme.fonts.sizes.m};
     color: ${({ theme }) => theme.colors.slate};
+    font-family: ${({ theme }) => theme.fonts.families.sansLight};
     letter-spacing: 0.03em;
   }
 
@@ -139,18 +142,19 @@ const Item = styled.div`
 const AnimatedLink = styled(Link)`
   text-decoration: none;
   color: ${({ theme }) => theme.colors.dark};
-  font-size: ${({ theme }) => theme.fonts.sizes.xs};
+  font-size: ${({ theme }) => theme.fonts.sizes.s};
   text-transform: uppercase;
   font-family: ${({ theme }) => theme.fonts.families.mono};
   font-weight: 700;
   position: relative;
-
   transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
+  display: flex;
+  align-items: center;
 
   &:before {
     content: '>';
     position: absolute;
-    top: 0;
+    bottom: 0;
     left: 0;
     opacity: 0;
     transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;

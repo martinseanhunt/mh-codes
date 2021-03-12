@@ -53,7 +53,7 @@ const Nav = styled.nav`
   a {
     text-decoration: none;
     text-transform: capitalize;
-    font-size: ${({ theme }) => theme.fonts.sizes.l};
+    font-size: ${({ theme }) => theme.fonts.sizes.m};
     color: ${({ theme }) => theme.colors.dark};
     position: relative;
 

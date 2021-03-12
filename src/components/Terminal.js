@@ -31,66 +31,75 @@ export function Terminal() {
     document.activeElement !== inputRef.current && inputRef.current.focus()
 
   return (
-    <Section
-      maxWidth={theme.layout.terminal.maxWidth}
-      sectionPadding={theme.layout.terminal.sectionPadding}
-      sectionMargin="0 0 130px 0"
-      onClick={focusInput}
-    >
-      <TerminalContainer>
-        <Header>
-          <Tab>
-            <span>
-              <img src={LinuxIcon} alt="Linux Penguin Icon" />
-              marty@DESKTOP: ~/
-            </span>
-            <Close src={CloseIcon} alt="Close Tab Icon" />
-          </Tab>
-          <TabIcon>
-            <img src={PlusIcon} alt="New Tab Icon" />
-          </TabIcon>
-          <Controls>
-            <img src={MinimiseTerminalIcon} alt="Minimise Terminal Icon" />
-            <img src={MaximiseTerminalIcon} alt="Maximise Terminal Icon" />
-            <img src={CloseTerminalIcon} alt="Close Terminal Icon" />
-          </Controls>
-        </Header>
-        <Content>
-          <Inner>
-            {/* TODO: Content from CMS */}
-            <User>marty@DESKTOP-COQ6V76</User>:<Path>~</Path>$ cd
-            sites/martinhunt
-            <br />
-            <User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
-            $ cat bio.md <br />
-            <Bio>
-              <p>Hi, I’m *Martin Hunt*</p>
-
+    <>
+      <Section
+        title="Martin Hunt - Software Engineer & Technical Lead"
+        sectionMargin="0"
+      />
+      <Section
+        maxWidth={theme.layout.terminal.maxWidth}
+        sectionPadding={theme.layout.terminal.sectionPadding}
+        sectionMargin="0 0 120px 0"
+        onClick={focusInput}
+      >
+        <TerminalContainer>
+          <Header>
+            <Tab>
+              <span>
+                <img src={LinuxIcon} alt="Linux Penguin Icon" />
+                marty@DESKTOP: ~/
+              </span>
+              <Close src={CloseIcon} alt="Close Tab Icon" />
+            </Tab>
+            <TabIcon>
+              <img src={PlusIcon} alt="New Tab Icon" />
+            </TabIcon>
+            <Controls>
+              <img src={MinimiseTerminalIcon} alt="Minimise Terminal Icon" />
+              <img src={MaximiseTerminalIcon} alt="Maximise Terminal Icon" />
+              <img src={CloseTerminalIcon} alt="Close Terminal Icon" />
+            </Controls>
+          </Header>
+          <Content>
+            <Inner>
+              {/* TODO: Content from CMS */}
+              <User>marty@DESKTOP-COQ6V76</User>:<Path>~</Path>$ cd
+              sites/martinhunt
+              <br />
+              <User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
+              $ node intro.js <br />
               <p>
-                I’m a **creative**, **passionate** software engineer and
-                technical lead\ <br />
-                with over a decades worth of experience building production
-                websites\ <br />
-                and applications...
+                Hi, I’m Martin Hunt - Software Engineer &amp; Technical Lead.
               </p>
+              <User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
+              $ cat bio.md <br />
+              <Bio>
+                <p>
+                  I’m a **creative**, **passionate** software engineer and
+                  technical lead\ <br />
+                  with over a decades worth of experience building production
+                  websites\ <br />
+                  and applications...
+                </p>
 
-              <p>
-                <Link to="/bio">
-                  [READ FULL BIO](/bio "Learn more about me")
-                </Link>{' '}
-              </p>
-            </Bio>
-            <InputLine>
-              <div>
-                <User>marty@DESKTOP-COQ6V76</User>:
-                <Path>~/sites/martinhunt</Path>$
-              </div>
-              <Input type="text" ref={inputRef}></Input>
-            </InputLine>
-          </Inner>
-        </Content>
-      </TerminalContainer>
-    </Section>
+                <p>
+                  <Link to="/bio">
+                    [READ FULL BIO](/bio "Learn more about me")
+                  </Link>{' '}
+                </p>
+              </Bio>
+              <InputLine>
+                <div>
+                  <User>marty@DESKTOP-COQ6V76</User>:
+                  <Path>~/sites/martinhunt</Path>$
+                </div>
+                <Input type="text" ref={inputRef}></Input>
+              </InputLine>
+            </Inner>
+          </Content>
+        </TerminalContainer>
+      </Section>
+    </>
   )
 }
 
@@ -245,3 +254,37 @@ const Input = styled.input`
   flex: 1;
   margin-left: 8px;
 `
+
+/*
+
+<User>marty@DESKTOP-COQ6V76</User>:<Path>~</Path>$ cd
+sites/martinhunt
+<br />
+<User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
+$ cat bio.md <br />
+<Bio>
+  <p>Hi, I’m *Martin Hunt*</p>
+
+  <p>
+    I’m a **creative**, **passionate** software engineer and
+    technical lead\ <br />
+    with over a decades worth of experience building production
+    websites\ <br />
+    and applications...
+  </p>
+
+  <p>
+    <Link to="/bio">
+      [READ FULL BIO](/bio "Learn more about me")
+    </Link>{' '}
+  </p>
+</Bio>
+<InputLine>
+  <div>
+    <User>marty@DESKTOP-COQ6V76</User>:
+    <Path>~/sites/martinhunt</Path>$
+  </div>
+  <Input type="text" ref={inputRef}></Input>
+</InputLine>
+
+*/

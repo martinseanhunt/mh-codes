@@ -1,5 +1,7 @@
 // TODO: Decide how granular to get in theme and whether to move some of this out in to components
 // TODO: Use color names from figma
+// TODO: Standardise theme and come up with a more comprehensive design system
+// TODO: Strip down font sizes
 
 export const theme = {
   colors: {
@@ -17,10 +19,8 @@ export const theme = {
     sizes: {
       htmlFontBase: '10px',
       xxs: '1.1rem',
-      xs: '1.2rem',
       s: '1.3rem',
       m: '1.5rem',
-      l: '1.6rem',
       xl: '2.2rem',
     },
     lineHeight: {
@@ -28,6 +28,7 @@ export const theme = {
     },
     families: {
       sans: `"Larsseit-Regular", -apple-system, Roboto, sans-serif`,
+      sansLight: `"Larsseit-Light", -apple-system, Roboto, sans-serif`,
       mono: `'PT Mono', sans-serif`,
     },
   },

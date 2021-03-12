@@ -1,6 +1,8 @@
 import React from 'react'
 import styled from 'styled-components'
 
+import BackgroundDot from '../../img/background-dot.svg'
+
 // TODO Accept bottom margin as prop or use default value from theme
 
 export function Section({
@@ -32,6 +34,16 @@ export const Container = styled.section`
     sectionPadding || theme.layout.sectionPadding};
   margin: ${({ theme, sectionMargin }) =>
     sectionMargin || theme.layout.sectionMargin};
+
+  // TODO: Delete min height
+  ${({ dottedBackground }) =>
+    dottedBackground &&
+    `
+    min-height: 500px;
+    background-image: url(${BackgroundDot});    
+    background-position: 0 -6px;
+    background-size: 15px 15px;
+  `}
 `
 
 export const Inner = styled.div`
