@@ -3,6 +3,7 @@ import { useStaticQuery, graphql, Link } from 'gatsby'
 import styled from 'styled-components'
 
 import { Section } from './layout/Section'
+import { AnimatedLink } from './AnimatedLink'
 
 // TODO: Use fragment for work history detail
 export function WorkHistory() {
@@ -135,36 +136,5 @@ const Item = styled.div`
     color: ${({ theme }) => theme.colors.slate};
     text-transform: uppercase;
     line-height: 2.8rem;
-  }
-`
-
-// TODO: Decide on transition, get values from theme and add to global styles
-const AnimatedLink = styled(Link)`
-  text-decoration: none;
-  color: ${({ theme }) => theme.colors.dark};
-  font-size: ${({ theme }) => theme.fonts.sizes.s};
-  text-transform: uppercase;
-  font-family: ${({ theme }) => theme.fonts.families.mono};
-  font-weight: 700;
-  position: relative;
-  transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
-  display: flex;
-  align-items: center;
-
-  &:before {
-    content: '>';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    opacity: 0;
-    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
-  }
-
-  &:hover:before {
-    opacity: 1;
-  }
-
-  &:hover {
-    padding-left: 8px;
   }
 `

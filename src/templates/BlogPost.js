@@ -37,7 +37,7 @@ export const PostDetail = graphql`
     timeToRead
     html
     frontmatter {
-      date
+      date(formatString: "Do MMMM, YYYY")
       title
       externalUrl
     }

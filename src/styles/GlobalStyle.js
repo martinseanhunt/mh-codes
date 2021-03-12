@@ -29,6 +29,11 @@ export const GlobalStyle = createGlobalStyle`
     box-sizing: border-box;
   }
 
+  a {
+    text-decoration: none;
+    color: ${theme.colors.dark};
+  }
+
   *, *:before, *:after {
     -webkit-box-sizing: inherit;
     -moz-box-sizing: inherit;
