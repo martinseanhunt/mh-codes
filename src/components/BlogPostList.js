@@ -26,7 +26,8 @@ export function BlogPostList() {
   return (
     <Section
       title="From The Blog"
-      sectionPadding="72px 50px 0 50px"
+      sectionPadding="72px 50px 120px 50px"
+      sectionMargin="0"
       dottedBackground
     >
       <Posts>
@@ -47,6 +48,7 @@ export function BlogPostList() {
               <AnimatedLink
                 href={post.frontmatter.externalUrl}
                 to={!post.frontmatter.externalUrl && post.fields.slug}
+                className="rm-animated"
               >
                 &gt; Read More
               </AnimatedLink>
@@ -74,7 +76,7 @@ const Post = styled.li`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: #fff;
+  background: ${({ theme }) => theme.colors.white};
   overflow: hidden;
 `
 const Content = styled.div`
@@ -82,7 +84,7 @@ const Content = styled.div`
 `
 
 const Meta = styled.div`
-  background: #000;
+  background: ${({ theme }) => theme.colors.terminalBlack};
   border-top: 1px solid ${({ theme }) => theme.colors.faint};
   padding: 0 30px;
   display: flex;

@@ -13,7 +13,7 @@ import { Section } from './Section'
 
 export function Header() {
   return (
-    <Section sectionMargin="0 0 180px 0">
+    <Section sectionMargin="0 0 179px 0">
       <StyledHeader>
         <Link to="/">
           <img src={Logo} alt="<MH>" />
@@ -41,6 +41,12 @@ export function Header() {
 const StyledHeader = styled.header`
   display: flex;
   justify-content: space-between;
+  align-items: center;
+
+  img {
+    position: relative;
+    top: 1px;
+  }
 `
 
 const Nav = styled.nav`

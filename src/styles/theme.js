@@ -14,6 +14,7 @@ export const theme = {
     shadow: 'rgba(0, 0, 0, 0.25)',
     slate: '#554E67',
     faint: '#E8E7EB',
+    slateLight: '#C1BEC8',
   },
   fonts: {
     sizes: {
@@ -34,7 +35,7 @@ export const theme = {
   },
   layout: {
     maxWidth: '960px',
-    bodyPadding: '35px 0 0 0',
+    bodyPadding: '32px 0 0 0',
     sectionPadding: '0 50px 0 50px',
     sectionMargin: '0 0 150px 0',
     header: {

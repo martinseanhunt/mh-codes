@@ -23,20 +23,8 @@ export const GlobalStyle = createGlobalStyle`
     font-size: ${theme.fonts.sizes.s};
   }
 
-  html {
-    -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
-  }
-
   a {
     text-decoration: none;
     color: ${theme.colors.dark};
-  }
-
-  *, *:before, *:after {
-    -webkit-box-sizing: inherit;
-    -moz-box-sizing: inherit;
-    box-sizing: inherit;
   }
 `

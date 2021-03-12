@@ -39,7 +39,6 @@ export const Container = styled.section`
   ${({ dottedBackground }) =>
     dottedBackground &&
     `
-    min-height: 500px;
     background-image: url(${BackgroundDot});    
     background-position: 0 -6px;
     background-size: 15px 15px;
@@ -60,4 +59,5 @@ const Title = styled.h3`
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 37px;
+  line-height: 1;
 `
