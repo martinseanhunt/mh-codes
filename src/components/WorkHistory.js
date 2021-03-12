@@ -137,7 +137,6 @@ const Item = styled.div`
 
 // TODO: Decide on transition, get values from theme and add to global styles
 const AnimatedLink = styled(Link)`
-  transition: color cubic-bezier(0.19, 1, 0.22, 1) 1.5s;
   text-decoration: none;
   color: ${({ theme }) => theme.colors.dark};
   font-size: ${({ theme }) => theme.fonts.sizes.xs};
@@ -146,32 +145,22 @@ const AnimatedLink = styled(Link)`
   font-weight: 700;
   position: relative;
 
-  &:before {
-    content: '';
-    position: absolute;
-    background: #18181d;
-    top: -5px;
-    left: -5px;
-    opacity: 0;
-    width: calc(100% + 10px);
-    height: calc(100% + 10px);
-    z-index: 1;
-    border-radius: 2px;
-    transform: translateY(6px);
-    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
-  }
+  transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
 
-  span {
-    position: relative;
-    z-index: 2;
+  &:before {
+    content: '>';
+    position: absolute;
+    top: 0;
+    left: 0;
+    opacity: 0;
+    transition: all cubic-bezier(0.19, 1, 0.22, 1) 1s;
   }
 
   &:hover:before {
     opacity: 1;
-    transform: translateY(0);
   }
 
   &:hover {
-    color: #86ff1e;
+    padding-left: 8px;
   }
 `
