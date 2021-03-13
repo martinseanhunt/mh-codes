@@ -23,6 +23,7 @@ import { Section, Inner } from './layout/Section'
 
 // TODO: Decided on section margin for each element
 // TODO: Get terminal lines from CMS
+// TODO: implement a more SEO friendly way of hiding bio by default
 
 export function Terminal() {
   const theme = useContext(ThemeContext)
@@ -35,7 +36,7 @@ export function Terminal() {
     'bio',
     'input',
   ]
-  const [terminalLines, setTerminalLines] = useState([])
+  const [terminalLines, setTerminalLines] = useState(['~', ''])
   const [showBio, setShowBio] = useState(false)
   const [showInput, setShowInput] = useState(false)
 
@@ -95,6 +96,9 @@ export function Terminal() {
   }
 
   useEffect(() => {
+    setTerminalLines([])
+    setShowBio(false)
+    setShowInput(false)
     addChars(lines)
   }, [])
 
