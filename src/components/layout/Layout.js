@@ -1,7 +1,6 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
-
-import '../../styles/webFonts.css'
+import Helmet from 'react-helmet'
 
 import { theme } from '../../styles/theme'
 import { GlobalStyle } from '../../styles/GlobalStyle'
@@ -11,13 +10,18 @@ import { Footer } from './Footer'
 
 export function Layout({ children }) {
   return (
-    <ThemeProvider theme={theme}>
-      <GlobalStyle />
-      <div>
-        <Header />
-        <main>{children}</main>
-        <Footer />
-      </div>
-    </ThemeProvider>
+    <>
+      <Helmet>
+        <link rel="stylesheet" href="/webFonts/webFonts.css" />
+      </Helmet>
+      <ThemeProvider theme={theme}>
+        <GlobalStyle />
+        <div>
+          <Header />
+          <main>{children}</main>
+          <Footer />
+        </div>
+      </ThemeProvider>
+    </>
   )
 }

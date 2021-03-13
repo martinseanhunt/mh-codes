@@ -44,6 +44,9 @@ export function WorkHistory() {
         {history?.map((item) => (
           <WorkHistoryItem item={item} key={item.fields.slug} />
         ))}
+        {history?.map((item) => (
+          <WorkHistoryItem item={item} key={item.fields.slug} />
+        ))}
       </ul>
       <AnimatedLink to="/projects">
         <span>&gt; View personal projects &amp; Code Samples</span>
