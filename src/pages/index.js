@@ -4,7 +4,6 @@ import { Helmet } from 'react-helmet'
 
 import { Terminal } from '../components/Terminal'
 import { BlogPostList } from '../components/BlogPostList'
-import { WorkHistory } from '../components/WorkHistory'
 
 export default function Index({ data }) {
   const { site, markdownRemark: page } = data
@@ -16,7 +15,6 @@ export default function Index({ data }) {
         defer={false}
       />
       <Terminal />
-      <WorkHistory />
       <BlogPostList />
     </>
   )
