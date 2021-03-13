@@ -53,9 +53,14 @@ const StyledHeader = styled.header`
 `
 
 const Nav = styled.nav`
+  order: ${({ footer }) => (footer ? -1 : 1)};
+
   li {
     display: inline-block;
-    margin-left: ${({ theme }) => theme.layout.header.navGap};
+    margin-left: ${({ footer, theme }) =>
+      footer ? 0 : theme.layout.header.navGap};
+    margin-right: ${({ footer, theme }) =>
+      footer ? theme.layout.header.navGap : 0};
   }
 
   // TODO: colors from theme and make animation global
