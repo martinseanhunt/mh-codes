@@ -59,7 +59,9 @@ export function Footer() {
             </li>
           </ul>
           <Emoji ref={emojiRef}>
-            <span>👋</span>
+            <span role="img" aria-label="waving emoji">
+              👋
+            </span>
           </Emoji>
         </ContactDetails>
       </FooterSection>

@@ -1,4 +1,4 @@
-import React, { useContext, useRef } from 'react'
+import React, { useContext, useRef, useEffect, useState } from 'react'
 import { Link } from 'gatsby'
 import styled, { ThemeContext } from 'styled-components'
 
@@ -12,7 +12,7 @@ import LinuxIcon from '../img/icon-linux.svg'
 import { Section, Inner } from './layout/Section'
 
 // TODO: compose this component
-// TODO: Animate component, typing etc
+// TODO: Add cursor animation to lines where typing
 // TODO: cat fullbio.md on bio click
 // STRETCH TODO: Make the terminal interactive
 //   - close / new tab
@@ -22,13 +22,89 @@ import { Section, Inner } from './layout/Section'
 //   - basic commands
 
 // TODO: Decided on section margin for each element
+// TODO: Get terminal lines from CMS
 
 export function Terminal() {
   const theme = useContext(ThemeContext)
   const inputRef = useRef()
+  const innerRef = useRef()
+
+  const lines = [
+    ['~', 'cd sites/martinhunt'],
+    ['~/sites/martinhunt', 'cat bio.md'],
+    'bio',
+    'input',
+  ]
+  const [terminalLines, setTerminalLines] = useState(lines)
+  const [showBio, setShowBio] = useState(true)
+  const [showInput, setShowInput] = useState(true)
 
   const focusInput = () =>
     document.activeElement !== inputRef.current && inputRef.current.focus()
+
+  // TODO: Refactor recursive solution in to helper
+
+  const addChars = (lines, lineIndex = 0, charIndex = 0, init = true) => {
+    if (lineIndex === lines.length) return
+
+    if (lines[lineIndex] === 'bio') {
+      setShowBio('true')
+      return addChars(lines, lineIndex + 1)
+    }
+
+    if (lines[lineIndex] === 'input') {
+      setShowInput('true')
+      return addChars(lines, lineIndex + 1)
+    }
+
+    const [path, command] = lines[lineIndex]
+
+    setTerminalLines((lines) => {
+      const line = lines[lineIndex]
+
+      if (!line)
+        return [...lines.filter((_, index) => index !== lineIndex), [path, '']]
+
+      return [
+        ...lines.filter((_, index) => index !== lineIndex),
+        [line[0], line[1] + command.charAt(charIndex)],
+      ]
+    })
+
+    let nextCharIndex = charIndex
+    let nextLineIndex = lineIndex
+    // TOTO: randRange helper function
+    let nextTimeout = Math.floor(Math.random() * (100 - 50 + 1) + 50)
+    let nextInit = false
+
+    if (init) {
+      nextTimeout = Math.floor(Math.random() * (2000 - 1000 + 1) + 1000)
+    } else if (charIndex === command.length - 1) {
+      nextCharIndex = 0
+      nextLineIndex++
+      nextInit = true
+      nextTimeout = Math.floor(Math.random() * (500 - 300 + 1) + 300)
+    } else {
+      nextCharIndex++
+    }
+
+    setTimeout(
+      () => addChars(lines, nextLineIndex, nextCharIndex, nextInit),
+      nextTimeout
+    )
+  }
+
+  useEffect(() => {
+    setShowInput(false)
+    setShowBio(false)
+    setTerminalLines([])
+
+    addChars(lines)
+  }, [])
+
+  useEffect(() => {
+    if (showInput) focusInput()
+  }, [showInput])
 
   return (
     <>
@@ -40,7 +116,7 @@ export function Terminal() {
         maxWidth={theme.layout.terminal.maxWidth}
         sectionPadding={theme.layout.terminal.sectionPadding}
         sectionMargin="0 0 120px 0"
-        onClick={focusInput}
+        onClick={() => inputRef.current && focusInput()}
       >
         <TerminalContainer>
           <Header>
@@ -61,37 +137,43 @@ export function Terminal() {
             </Controls>
           </Header>
           <Content>
-            <Inner>
-              {/* TODO: Content from CMS */}
-              <User>marty@DESKTOP-COQ6V76</User>:<Path>~</Path>$ cd
-              sites/martinhunt
-              <br />
-              <User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
-              $ cat bio.md <br />
-              <Bio>
-                <p>Hi, I’m *Martin Hunt*</p>
-
-                <p>
-                  I’m a **creative**, **passionate** software engineer and
-                  technical lead\ <br />
-                  with over a decades worth of experience building production
-                  websites\ <br />
-                  and applications...
-                </p>
-
-                <p>
-                  <Link to="/bio">
-                    [READ FULL BIO](/bio "Learn more about me")
-                  </Link>{' '}
-                </p>
-              </Bio>
-              <InputLine>
-                <div>
-                  <User>marty@DESKTOP-COQ6V76</User>:
-                  <Path>~/sites/martinhunt</Path>$
+            <Inner ref={innerRef}>
+              {terminalLines.map(([path, command], i) => (
+                <div key={i}>
+                  <User>marty@DESKTOP-COQ6V76</User>:<Path>{path}</Path>${' '}
+                  {command}
                 </div>
-                <Input type="text" ref={inputRef}></Input>
-              </InputLine>
+              ))}
+
+              {showBio && (
+                <Bio>
+                  <p>Hi, I’m *Martin Hunt*</p>
+
+                  <p>
+                    I’m a **creative**, **passionate** software engineer and
+                    technical lead\ <br />
+                    with over a decades worth of experience building production
+                    websites\ <br />
+                    and applications...
+                  </p>
+
+                  <p>
+                    <Link to="/bio">
+                      [READ FULL BIO](/bio "Learn more about me")
+                    </Link>{' '}
+                  </p>
+                </Bio>
+              )}
+
+              {showInput && (
+                <InputLine>
+                  <div>
+                    <User>marty@DESKTOP-COQ6V76</User>:
+                    <Path>~/sites/martinhunt</Path>$
+                  </div>
+                  <Input type="text" ref={inputRef}></Input>
+                </InputLine>
+              )}
             </Inner>
           </Content>
         </TerminalContainer>
@@ -179,7 +261,8 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   font-family: ${({ theme }) => theme.fonts.families.mono};
-  padding: 30px 30px 50px 30px;
+  padding: 30px 30px 0 30px;
+  height: 314px;
   box-shadow: 0px 1px 15px ${({ theme }) => theme.colors.shadow};
   border-radius: 0px 0px
     ${({ theme }) => `${theme.layout.terminal.borderRadius} `.repeat(2)};

@@ -54,7 +54,8 @@ export function BlogPostList() {
               </AnimatedLink>
             </Content>
             <Meta>
-              <span>~/tags</span>$ <a href="#">Tag1</a>,<a href="#">Todo</a>
+              <span>~/tags</span>$ <a href="/todo">Tag1</a>,
+              <a href="/todo">Todo</a>
             </Meta>
           </Post>
         ))}
@@ -80,7 +81,7 @@ const Post = styled.li`
   overflow: hidden;
 `
 const Content = styled.div`
-  padding: 23px 30px 34px 30px;
+  padding: 25px 30px 34px 30px;
 `
 
 const Meta = styled.div`
