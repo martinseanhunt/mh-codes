@@ -8,15 +8,13 @@ import { AnimatedButton } from '../AnimatedButton'
 
 // TODO: hook up sing up form
 // TODO: compose component
-// TODO: Animate wave on click
 
 export function Footer() {
   const emojiRef = useRef()
 
   useEffect(() => {
     let windowHeight
-    let timeOuts = []
-    let animating = false
+    let timeOut
     const setWindowHeight = () => (windowHeight = window.innerHeight)
 
     function checkPosition() {
@@ -26,17 +24,9 @@ export function Footer() {
       if (
         triggerPoint - windowHeight <= 0 &&
         !el.classList.contains('wave') &&
-        !animating
-      ) {
-        animating = true
-        timeOuts.push(setTimeout(() => el.classList.add('wave'), 1000))
-        timeOuts.push(
-          setTimeout(() => {
-            el.classList.remove('wave')
-            animating = false
-          }, 5500)
-        )
-      }
+        !timeOut
+      )
+        timeOut = setTimeout(() => el.classList.add('wave'), 1000)
     }
 
     window.addEventListener('scroll', checkPosition)
@@ -48,8 +38,7 @@ export function Footer() {
     return () => {
       window.removeEventListener('scroll', checkPosition)
       window.removeEventListener('resize', setWindowHeight)
-
-      for (let t of timeOuts) window.clearTimeout(t)
+      window.clearTimeout(timeOut)
     }
   }, [])
 
