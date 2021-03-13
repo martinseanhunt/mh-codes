@@ -1,4 +1,10 @@
-import React, { useContext, useRef, useEffect, useState } from 'react'
+import React, {
+  useContext,
+  useRef,
+  useLayoutEffect,
+  useEffect,
+  useState,
+} from 'react'
 import { Link } from 'gatsby'
 import styled, { ThemeContext } from 'styled-components'
 
@@ -94,7 +100,7 @@ export function Terminal() {
     )
   }
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     setShowInput(false)
     setShowBio(false)
     setTerminalLines([])
