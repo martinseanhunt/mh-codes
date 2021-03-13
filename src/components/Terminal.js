@@ -36,7 +36,7 @@ export function Terminal() {
     'bio',
     'input',
   ]
-  const [terminalLines, setTerminalLines] = useState(['~', ''])
+  const [terminalLines, setTerminalLines] = useState([])
   const [showBio, setShowBio] = useState(false)
   const [showInput, setShowInput] = useState(false)
 
@@ -96,7 +96,6 @@ export function Terminal() {
   }
 
   useEffect(() => {
-    setTerminalLines([])
     setShowBio(false)
     setShowInput(false)
     addChars(lines)
@@ -138,12 +137,18 @@ export function Terminal() {
           </Header>
           <Content>
             <Inner ref={innerRef}>
-              {terminalLines.map(([path, command], i) => (
-                <div key={i}>
-                  <User>marty@DESKTOP-COQ6V76</User>:<Path>{path}</Path>${' '}
-                  {command}
+              {terminalLines.length ? (
+                terminalLines.map(([path, command], i) => (
+                  <div key={i}>
+                    <User>marty@DESKTOP-COQ6V76</User>:<Path>{path}</Path>${' '}
+                    {command}
+                  </div>
+                ))
+              ) : (
+                <div>
+                  <User>marty@DESKTOP-COQ6V76</User>:<Path>~</Path>${' '}
                 </div>
-              ))}
+              )}
 
               {showBio && (
                 <Bio>
