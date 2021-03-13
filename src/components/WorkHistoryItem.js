@@ -17,7 +17,6 @@ export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
       : 0
   }, [expanded])
 
-  console.log(frontmatter)
   return (
     <Item
       role="button"

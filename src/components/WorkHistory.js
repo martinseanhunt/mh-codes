@@ -3,7 +3,7 @@ import { useStaticQuery, graphql } from 'gatsby'
 
 import { Section } from './layout/Section'
 import { AnimatedLink } from './AnimatedLink'
-import { WorkHistoryItem } from './WorkHistoryItem'
+// import { WorkHistoryItem } from './WorkHistoryItem'
 
 // TODO: Use fragment for work history detail
 export function WorkHistory() {
@@ -40,14 +40,7 @@ export function WorkHistory() {
 
   return (
     <Section title="The journey so far" sectionMargin="0 0 86px 0">
-      <ul>
-        {history?.map((item) => (
-          <WorkHistoryItem item={item} key={item.fields.slug} />
-        ))}
-        {history?.map((item) => (
-          <WorkHistoryItem item={item} key={item.fields.slug} />
-        ))}
-      </ul>
+      <ul></ul>
       <AnimatedLink to="/projects">
         <span>&gt; View personal projects &amp; Code Samples</span>
       </AnimatedLink>
