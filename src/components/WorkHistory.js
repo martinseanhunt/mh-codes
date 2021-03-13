@@ -1,9 +1,9 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-import styled from 'styled-components'
 
 import { Section } from './layout/Section'
 import { AnimatedLink } from './AnimatedLink'
+import { WorkHistoryItem } from './WorkHistoryItem'
 
 // TODO: Use fragment for work history detail
 export function WorkHistory() {
@@ -19,13 +19,16 @@ export function WorkHistory() {
             slug
           }
           id
-          rawMarkdownBody
           timeToRead
           html
+          autoExcerpt: excerpt(truncate: false, pruneLength: 300)
           frontmatter {
             company
             role
             dates
+            excerpt
+            acheivements
+            linkToDetails
           }
           excerpt
         }
@@ -38,23 +41,11 @@ export function WorkHistory() {
   return (
     <Section title="The journey so far" sectionMargin="0 0 86px 0">
       <ul>
-        {history?.map(({ frontmatter, ...item }) => (
-          <Item key={item.fields.slug}>
-            <div>
-              <h2>{frontmatter.company}</h2>
-              <h3>{frontmatter.role}</h3>
-            </div>
-            <span>{frontmatter.dates}</span>
-          </Item>
+        {history?.map((item) => (
+          <WorkHistoryItem item={item} key={item.fields.slug} />
         ))}
-        {history?.map(({ frontmatter, ...item }) => (
-          <Item key={item.fields.slug}>
-            <div>
-              <h2>{frontmatter.company}</h2>
-              <h3>{frontmatter.role}</h3>
-            </div>
-            <span>{frontmatter.dates}</span>
-          </Item>
+        {history?.map((item) => (
+          <WorkHistoryItem item={item} key={item.fields.slug} />
         ))}
       </ul>
       <AnimatedLink to="/projects">
@@ -63,79 +54,3 @@ export function WorkHistory() {
     </Section>
   )
 }
-
-// TODO: Theme
-// TODO: What titles etc can be pulle dout in to sensible defaults in global styles
-const Item = styled.li`
-  border-bottom: 1px solid ${({ theme }) => theme.colors.faint};
-  padding-bottom: 31px;
-  margin-bottom: 25px;
-  cursor: pointer;
-  display: flex;
-  justify-content: space-between;
-  position: relative;
-  line-height: 1;
-
-  // see what animation values can live in theme
-  &:before {
-    content: '^';
-    position: absolute;
-    top: -8px;
-    left: -25px;
-    font-size: 22px;
-    opacity: 0;
-    transform: rotate(90deg) translateY(10px);
-    transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.65s;
-  }
-
-  &:hover:before {
-    opacity: 1;
-    transform: rotate(180deg) translateY(0);
-  }
-
-  &:after {
-    content: '';
-    position: absolute;
-    bottom: -1px;
-    left: 0;
-    opacity: 0;
-    width: 0;
-    height: 1px;
-    background: #1d1335;
-    z-index: 2;
-    transition: all cubic-bezier(0.19, 1, 0.22, 1) 2s;
-  }
-
-  &:hover:after {
-    width: 100%;
-    opacity: 1;
-  }
-
-  &:last-of-type {
-    margin-bottom: 39px;
-  }
-
-  // TODO: This can probably go to global
-  h2 {
-    font-size: ${({ theme }) => theme.fonts.sizes.xl};
-    letter-spacing: 0.01em;
-    margin-bottom: 12px;
-    // TODO: Use leading-trim when it becomes available
-  }
-
-  // TODO: This too
-  h3 {
-    font-size: ${({ theme }) => theme.fonts.sizes.m};
-    color: ${({ theme }) => theme.colors.slate};
-    font-family: ${({ theme }) => theme.fonts.families.sansLight};
-    letter-spacing: 0.03em;
-  }
-
-  span {
-    font-size: ${({ theme }) => theme.fonts.sizes.xxs};
-    font-family: ${({ theme }) => theme.fonts.families.mono};
-    color: ${({ theme }) => theme.colors.slate};
-    text-transform: uppercase;
-    line-height: 3.2rem;
-  }
-`
