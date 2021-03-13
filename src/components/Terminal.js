@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useRef,
-  useLayoutEffect,
-  useEffect,
-  useState,
-} from 'react'
+import React, { useContext, useRef, useEffect, useState } from 'react'
 import { Link } from 'gatsby'
 import styled, { ThemeContext } from 'styled-components'
 
@@ -41,9 +35,9 @@ export function Terminal() {
     'bio',
     'input',
   ]
-  const [terminalLines, setTerminalLines] = useState(lines)
-  const [showBio, setShowBio] = useState(true)
-  const [showInput, setShowInput] = useState(true)
+  const [terminalLines, setTerminalLines] = useState([])
+  const [showBio, setShowBio] = useState(false)
+  const [showInput, setShowInput] = useState(false)
 
   const focusInput = () =>
     document.activeElement !== inputRef.current && inputRef.current.focus()
@@ -100,11 +94,7 @@ export function Terminal() {
     )
   }
 
-  useLayoutEffect(() => {
-    setShowInput(false)
-    setShowBio(false)
-    setTerminalLines([])
-
+  useEffect(() => {
     addChars(lines)
   }, [])
 
