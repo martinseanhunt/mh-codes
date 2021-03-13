@@ -47,7 +47,7 @@ export function BlogPostList() {
 
               <AnimatedLink
                 href={post.frontmatter.externalUrl}
-                to={!post.frontmatter.externalUrl && post.fields.slug}
+                to={post.fields.slug ? post.fields.slug : undefined}
                 className="rm-animated"
               >
                 &gt; Read More
@@ -80,7 +80,7 @@ const Post = styled.li`
   overflow: hidden;
 `
 const Content = styled.div`
-  padding: 30px;
+  padding: 23px 30px 34px 30px;
 `
 
 const Meta = styled.div`
@@ -117,5 +117,5 @@ const Title = styled.h2`
   font-size: ${({ theme }) => theme.fonts.sizes.xl};
   color: ${({ theme }) => theme.colors.slate};
   line-height: 3.1rem;
-  margin-bottom: 31px;
+  margin-bottom: 27px;
 `

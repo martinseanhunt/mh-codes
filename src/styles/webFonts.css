@@ -1,4 +1,3 @@
-export const webFonts = `
 /**
  * @license
  * MyFonts Webfont Build ID 4025661, 2021-03-11T02:21:00-0500
@@ -18,18 +17,18 @@ export const webFonts = `
  * © 2021 MyFonts Inc
 */
 
-
 /* @import must be at top of file, otherwise CSS will not work */
-@import url("//hello.myfonts.net/count/3d6d3d");
-@import url("//hello.myfonts.net/count/3d6fd7");
-  
+@import url('//hello.myfonts.net/count/3d6d3d');
+@import url('//hello.myfonts.net/count/3d6fd7');
+
 @font-face {
-  font-family: "Larsseit-Regular";
-  src: url('webFonts/LarsseitRegular/font.woff2') format('woff2'), url('webFonts/LarsseitRegular/font.woff') format('woff');
+  font-family: 'Larsseit-Regular';
+  src: url('../webFonts/LarsseitRegular/font.woff2') format('woff2'),
+    url('../webFonts/LarsseitRegular/font.woff') format('woff');
 }
 
 @font-face {
-  font-family: "Larsseit-Light";
-  src: url('webFonts/LarsseitLight/font.woff2') format('woff2'), url('webFonts/LarsseitLight/font.woff') format('woff');
+  font-family: 'Larsseit-Light';
+  src: url('../webFonts/LarsseitLight/font.woff2') format('woff2'),
+    url('../webFonts/LarsseitLight/font.woff') format('woff');
 }
-`

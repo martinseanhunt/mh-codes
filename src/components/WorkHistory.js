@@ -36,7 +36,7 @@ export function WorkHistory() {
   // TODO: Remove secitonpadding and margin as props... Extend the styles in the component
 
   return (
-    <Section title="The journey so far" sectionMargin="0 0 89px 0">
+    <Section title="The journey so far" sectionMargin="0 0 86px 0">
       <ul>
         {history?.map(({ frontmatter, ...item }) => (
           <Item key={item.fields.slug}>
@@ -66,7 +66,7 @@ export function WorkHistory() {
 
 // TODO: Theme
 // TODO: What titles etc can be pulle dout in to sensible defaults in global styles
-const Item = styled.div`
+const Item = styled.li`
   border-bottom: 1px solid ${({ theme }) => theme.colors.faint};
   padding-bottom: 31px;
   margin-bottom: 25px;
@@ -74,6 +74,7 @@ const Item = styled.div`
   display: flex;
   justify-content: space-between;
   position: relative;
+  line-height: 1;
 
   // see what animation values can live in theme
   &:before {
@@ -135,6 +136,6 @@ const Item = styled.div`
     font-family: ${({ theme }) => theme.fonts.families.mono};
     color: ${({ theme }) => theme.colors.slate};
     text-transform: uppercase;
-    line-height: 2.8rem;
+    line-height: 3.2rem;
   }
 `

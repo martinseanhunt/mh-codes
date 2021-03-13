@@ -15,6 +15,7 @@ export const theme = {
     slate: '#554E67',
     faint: '#E8E7EB',
     slateLight: '#C1BEC8',
+    opaqueWhite: 'rgba(255,255,255,0.35)',
   },
   fonts: {
     sizes: {
@@ -22,6 +23,7 @@ export const theme = {
       xxs: '1.1rem',
       s: '1.3rem',
       m: '1.5rem',
+      l: '1.8rem',
       xl: '2.2rem',
     },
     lineHeight: {

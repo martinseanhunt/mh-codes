@@ -3,6 +3,7 @@ import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import Logo from '../../img/logo.svg'
+import LogoClose from '../../img/logo-close.svg'
 
 import { Section } from './Section'
 
@@ -11,15 +12,17 @@ import { Section } from './Section'
 // TODO: Hover effects / animations
 // TODO: Favicon
 
-export function Header() {
+// TODO: Conditionally render footer element if in context of footer
+
+export function Header({ footer }) {
   return (
-    <Section sectionMargin="0 0 179px 0">
+    <Section sectionMargin={footer ? '0' : '0 0 179px 0'}>
       <StyledHeader>
         <Link to="/">
-          <img src={Logo} alt="<MH>" />
+          <img src={footer ? LogoClose : Logo} alt="<MH>" />
         </Link>
 
-        <Nav>
+        <Nav footer={footer}>
           <ul>
             <li>
               <Link to="/">Projects</Link>
@@ -60,7 +63,8 @@ const Nav = styled.nav`
     text-decoration: none;
     text-transform: capitalize;
     font-size: ${({ theme }) => theme.fonts.sizes.m};
-    color: ${({ theme }) => theme.colors.dark};
+    color: ${({ theme, footer }) =>
+      footer ? theme.colors.white : theme.colors.dark};
     position: relative;
 
     &:before {
@@ -71,7 +75,8 @@ const Nav = styled.nav`
       width: 0;
       height: 1px;
       opacity: 0;
-      background: ${({ theme }) => theme.colors.dark};
+      background: ${({ theme, footer }) =>
+        footer ? theme.colors.white : theme.colors.dark};
       transition: opacity cubic-bezier(0.19, 1, 0.22, 1) 0.5s,
         width cubic-bezier(0.19, 1, 0.22, 1) 1s;
     }

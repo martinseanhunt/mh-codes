@@ -67,13 +67,10 @@ export function Terminal() {
               sites/martinhunt
               <br />
               <User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
-              $ node intro.js <br />
-              <p>
-                Hi, I’m Martin Hunt - Software Engineer &amp; Technical Lead.
-              </p>
-              <User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
               $ cat bio.md <br />
               <Bio>
+                <p>Hi, I’m *Martin Hunt*</p>
+
                 <p>
                   I’m a **creative**, **passionate** software engineer and
                   technical lead\ <br />
@@ -254,37 +251,3 @@ const Input = styled.input`
   flex: 1;
   margin-left: 8px;
 `
-
-/*
-
-<User>marty@DESKTOP-COQ6V76</User>:<Path>~</Path>$ cd
-sites/martinhunt
-<br />
-<User>marty@DESKTOP-COQ6V76</User>:<Path>~/sites/martinhunt</Path>
-$ cat bio.md <br />
-<Bio>
-  <p>Hi, I’m *Martin Hunt*</p>
-
-  <p>
-    I’m a **creative**, **passionate** software engineer and
-    technical lead\ <br />
-    with over a decades worth of experience building production
-    websites\ <br />
-    and applications...
-  </p>
-
-  <p>
-    <Link to="/bio">
-      [READ FULL BIO](/bio "Learn more about me")
-    </Link>{' '}
-  </p>
-</Bio>
-<InputLine>
-  <div>
-    <User>marty@DESKTOP-COQ6V76</User>:
-    <Path>~/sites/martinhunt</Path>$
-  </div>
-  <Input type="text" ref={inputRef}></Input>
-</InputLine>
-
-*/
