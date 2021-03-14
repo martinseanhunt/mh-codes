@@ -121,7 +121,8 @@ export function Terminal() {
   }, [addChars])
 
   useEffect(() => {
-    if (showInput) focusInput()
+    // turning this off for now, casuses a ux issue where the page can jump
+    // if (showInput) focusInput()
   }, [showInput])
 
   const bp = theme.layout.breakPoints.small.replace('px', '')

@@ -79,6 +79,7 @@ const Item = styled.li`
   justify-content: space-between;
   position: relative;
   line-height: 1;
+  -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     padding-bottom: 25px;
@@ -104,7 +105,7 @@ const Item = styled.li`
       left: auto;
       opacity: 1;
       transform: rotate(180deg) translateY(0);
-      color: ${({ theme }) => theme.colors.faint};
+      color: ${({ theme }) => theme.colors.slate};
     }
   }
 
@@ -133,6 +134,10 @@ const Item = styled.li`
     background: #1d1335;
     z-index: 2;
     transition: all cubic-bezier(0.19, 1, 0.22, 1) 2s;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      display: none;
+    }
   }
 
   &:hover:after {
