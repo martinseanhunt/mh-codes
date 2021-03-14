@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 import BackgroundDot from '../../img/background-dot.svg'
 
-// TODO Accept bottom margin as prop or use default value from theme
+// TODO: add // on every line for title on mobile!
 
 export function Section({
   children,
@@ -20,7 +20,12 @@ export function Section({
       {...rest}
     >
       <Inner maxWidth={maxWidth}>
-        {title && <Title>&#47;&#47; {title}</Title>}
+        {title && (
+          <Title>
+            <span>&#47;&#47; </span>
+            {title}
+          </Title>
+        )}
         {children}
       </Inner>
     </Container>
@@ -34,6 +39,11 @@ export const Container = styled.section`
     sectionPadding || theme.layout.sectionPadding};
   margin: ${({ theme, sectionMargin }) =>
     sectionMargin || theme.layout.sectionMargin};
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding-left: ${({ theme }) => theme.layout.mobileSectionPadding};
+    padding-right: ${({ theme }) => theme.layout.mobileSectionPadding};
+  }
 
   // TODO: Delete min height
   ${({ dottedBackground }) =>
@@ -50,6 +60,7 @@ export const Inner = styled.div`
   max-width: ${({ theme, maxWidth }) => maxWidth || theme.layout.maxWidth};
 `
 
+// TODO: Title component
 const Title = styled.h3`
   font-family: ${({ theme }) => theme.fonts.families.mono};
   font-size: ${({ theme }) => theme.fonts.sizes.s};
@@ -60,4 +71,19 @@ const Title = styled.h3`
   text-transform: uppercase;
   margin-bottom: 37px;
   line-height: 1;
+  position: relative;
+  //24
+  padding-left: 27px;
+
+  span:first-of-type {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-weight: bold;
+  }
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    line-height: 2rem;
+    margin-bottom: 30px;
+  }
 `

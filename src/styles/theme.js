@@ -3,6 +3,26 @@
 // TODO: Standardise theme and come up with a more comprehensive design system
 // TODO: Strip down font sizes
 
+const breakPoints = {
+  full: '1080px',
+  medium: '800px',
+  small: '712px',
+}
+
+const mediaQueries = Object.entries(breakPoints).reduce(
+  (queries, [key, value]) => {
+    const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1)
+    return {
+      ...queries,
+      [`min${capitalizedKey}`]: `(min-width: ${value + 1})`,
+      [`max${capitalizedKey}`]: `(max-width: ${value})`,
+    }
+  },
+  {}
+)
+
+console.log(mediaQueries)
+
 export const theme = {
   colors: {
     dark: '#1D1335',
@@ -38,11 +58,15 @@ export const theme = {
   layout: {
     maxWidth: '960px',
     bodyPadding: '32px 0 0 0',
+    mobileBodyPadding: '160px 0 0 0',
     sectionPadding: '0 50px 0 50px',
+    mobileSectionPadding: '10px',
     sectionMargin: '0 0 150px 0',
     header: {
       navGap: '40px',
     },
+    breakPoints,
+    mediaQueries,
     terminal: {
       maxWidth: '1060px',
       borderRadius: '3px',

@@ -14,11 +14,18 @@ export const GlobalStyle = createGlobalStyle`
   body {
     font-family: ${theme.fonts.families.sans};
     color: ${theme.colors.dark};
+    width: 100vw;
+    max-width: 100vw;
+    overflow-x: hidden;
   }
 
   body {
     padding: ${theme.layout.bodyPadding};
     font-size: ${theme.fonts.sizes.s};
+    
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      padding: ${({ theme }) => theme.layout.mobileBodyPadding};
+    }
   }
 
   a {

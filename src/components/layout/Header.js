@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'gatsby'
 import styled from 'styled-components'
 
@@ -13,32 +13,72 @@ import { Section } from './Section'
 // TODO: Favicon
 
 // TODO: Conditionally render footer element if in context of footer
+// TODO: Prevent scroll when mobile menu is open
+// TODO: render menu itemms programatically: DRY
+// TODO: Seperate footer component!
 
 export function Header({ footer }) {
+  // Only used on mobile
+  const [showNav, setShowNav] = useState(false)
+
   return (
-    <Section sectionMargin={footer ? '0' : '0 0 179px 0'}>
+    <HeaderSection footer={footer}>
       <StyledHeader>
         <Link to="/">
           <img src={footer ? LogoClose : Logo} alt="<MH>" />
         </Link>
 
-        <Nav footer={footer}>
+        <Nav footer={footer} showNav={showNav}>
+          <Burger
+            aria-label="show menu"
+            onClick={() => setShowNav((state) => !state)}
+          >
+            {showNav ? 'X' : '☰'}
+          </Burger>
           <ul>
             <li>
-              <Link to="/">Projects</Link>
+              <Link to="/" onClick={() => setShowNav(false)}>
+                Projects
+              </Link>
             </li>
             <li>
-              <Link to="/">Blog</Link>
+              <Link to="/" onClick={() => setShowNav(false)}>
+                Blog
+              </Link>
             </li>
             <li>
-              <Link to="/">Contact</Link>
+              <Link to="/" onClick={() => setShowNav(false)}>
+                Contact
+              </Link>
             </li>
           </ul>
         </Nav>
       </StyledHeader>
-    </Section>
+    </HeaderSection>
   )
 }
+
+const HeaderSection = styled(Section)`
+  margin: ${({ footer }) => (footer ? '0' : '0 0 179px 0')};
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    margin: 0;
+    position: ${({ footer }) => (footer ? undefined : 'fixed')};
+    width: 100%;
+    background: ${({ footer, theme }) =>
+      footer ? undefined : theme.colors.white};
+    height: ${({ footer }) => (footer ? undefined : '70px')};
+    top: 0;
+    left: 0;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    overflow: visible;
+    border-bottom: 1px solid ${({ theme }) => theme.colors.faint};
+  }
+
+  border-bottom: ${({ footer }) => (footer ? 'none !important' : undefined)};
+`
 
 // TODO: values from theme
 const StyledHeader = styled.header`
@@ -90,5 +130,44 @@ const Nav = styled.nav`
       opacity: 1;
       width: 100%;
     }
+  }
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    display: ${({ footer }) => (footer ? 'none' : 'block')};
+
+    ul {
+      transition: height 0.5s;
+      position: absolute;
+      top: 70px;
+      left: 0;
+      width: 100%;
+      height: ${({ showNav }) => (showNav ? 'calc(100vh - 70px)' : '0')};
+      overflow: hidden;
+      background: ${({ theme }) => theme.colors.white};
+      z-index: 9999;
+    }
+
+    li {
+      border-bottom: 1px solid ${({ theme }) => theme.colors.faint};
+      display: block;
+      margin: 0;
+    }
+
+    a {
+      padding: 30px 10px;
+      display: block;
+    }
+  }
+`
+
+const Burger = styled.button`
+  display: none;
+  background: none;
+  border: none;
+  font-size: ${({ theme }) => theme.fonts.sizes.xl};
+  outline: none;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    display: ${({ footer }) => (footer ? 'none' : 'block')};
   }
 `
