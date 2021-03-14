@@ -1,4 +1,10 @@
-import React, { useContext, useRef, useEffect, useState } from 'react'
+import React, {
+  useContext,
+  useRef,
+  useEffect,
+  useState,
+  useCallback,
+} from 'react'
 import { Link } from 'gatsby'
 import styled, { ThemeContext } from 'styled-components'
 
@@ -25,17 +31,14 @@ import { Section, Inner } from './layout/Section'
 // TODO: Get terminal lines from CMS
 // TODO: implement a more SEO friendly way of hiding bio by default
 
+const randRange = (min, max) =>
+  Math.floor(Math.random() * (max - min + 1) + min)
+
 export function Terminal() {
   const theme = useContext(ThemeContext)
   const inputRef = useRef()
   const innerRef = useRef()
 
-  const lines = [
-    ['~', 'cd sites/martinhunt'],
-    ['~/sites/martinhunt', 'cat bio.md'],
-    'bio',
-    'input',
-  ]
   const [terminalLines, setTerminalLines] = useState([])
   const [showBio, setShowBio] = useState(false)
   const [showInput, setShowInput] = useState(false)
@@ -43,9 +46,12 @@ export function Terminal() {
   const focusInput = () =>
     document.activeElement !== inputRef.current && inputRef.current.focus()
 
-  // TODO: Refactor recursive solution in to helper
-
-  const addChars = (lines, lineIndex = 0, charIndex = 0, init = true) => {
+  const addChars = useCallback(function (
+    lines,
+    lineIndex = 0,
+    charIndex = 0,
+    init = true
+  ) {
     if (lineIndex === lines.length) return
 
     if (lines[lineIndex] === 'bio') {
@@ -74,17 +80,16 @@ export function Terminal() {
 
     let nextCharIndex = charIndex
     let nextLineIndex = lineIndex
-    // TOTO: randRange helper function
-    let nextTimeout = Math.floor(Math.random() * (100 - 50 + 1) + 50)
+    let nextTimeout = randRange(50, 100)
     let nextInit = false
 
     if (init) {
-      nextTimeout = Math.floor(Math.random() * (2000 - 1000 + 1) + 1000)
+      nextTimeout = randRange(1000, 2000)
     } else if (charIndex === command.length - 1) {
       nextCharIndex = 0
       nextLineIndex++
       nextInit = true
-      nextTimeout = Math.floor(Math.random() * (500 - 300 + 1) + 300)
+      nextTimeout = randRange(300, 500)
     } else {
       nextCharIndex++
     }
@@ -93,13 +98,21 @@ export function Terminal() {
       () => addChars(lines, nextLineIndex, nextCharIndex, nextInit),
       nextTimeout
     )
-  }
+  },
+  [])
 
   useEffect(() => {
+    const lines = [
+      ['~', 'cd sites/martinhunt'],
+      ['~/sites/martinhunt', 'cat bio.md'],
+      'bio',
+      'input',
+    ]
+
     setShowBio(false)
     setShowInput(false)
     addChars(lines)
-  }, [])
+  }, [addChars])
 
   useEffect(() => {
     if (showInput) focusInput()

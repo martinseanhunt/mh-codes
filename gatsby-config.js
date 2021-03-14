@@ -6,6 +6,18 @@ module.exports = {
   },
   plugins: [
     {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `MartinHunt`,
+        short_name: `MartinHunt`,
+        start_url: `/`,
+        background_color: `#fff`,
+        theme_color: `#1D1335`,
+        display: `standalone`,
+        icon: `src/img/icon.png`,
+      },
+    },
+    {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `content`,
