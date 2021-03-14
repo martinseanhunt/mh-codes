@@ -10,10 +10,12 @@ import { Section } from './layout/Section'
 export function PageHeading({ title }) {
   const theme = useContext(ThemeContext)
 
+  // TODO: decide whether to maxwidth mini terminal maxWidth={'1008px'}
+
   return (
     <>
       <TitleSection title={title} />
-      <HeadingSection maxWidth={'1008px'}>
+      <HeadingSection>
         <MiniTerminal>
           <div>
             <User>marty@DESKTOP</User>:<Path>~/sites/martinhunt</Path>$ cd
