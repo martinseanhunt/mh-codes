@@ -83,7 +83,7 @@ const Title = styled.h3`
   }
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    line-height: 2rem;
-    margin-bottom: 30px;
+    line-height: 2.6rem;
+    margin-bottom: 22px;
   }
 `

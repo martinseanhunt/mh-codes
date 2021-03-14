@@ -18,14 +18,10 @@ export default function Projects({ data }) {
   return (
     <>
       <Helmet
-        title={`${page.htmlTitle} - ${site?.siteMetadata?.title}`}
+        title={`${page.frontmatter.htmlTitle} - ${site?.siteMetadata?.title}`}
         defer={false}
       />
-      <PageHeading
-        title={page.frontmatter.heading}
-        body={page.html}
-        tags={['React', 'Node', 'Javascript', 'NextJS', 'Gatsby', 'NetlifyCMS']}
-      />
+      <PageHeading title={page.frontmatter.heading} body={page.html} />
       <ProjectsSection>
         <ul>
           {projects.nodes.map((project) => (

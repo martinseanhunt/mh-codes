@@ -176,6 +176,11 @@ const Burger = styled.button`
   border: none;
   font-size: ${({ theme }) => theme.fonts.sizes.xl};
   outline: none;
+  padding: 0 !important;
+
+  &:hover:before {
+    opacity: 0 !important;
+  }
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     display: ${({ footer }) => (footer ? 'none' : 'block')};

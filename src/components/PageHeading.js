@@ -3,7 +3,7 @@ import styled, { ThemeContext } from 'styled-components'
 
 import { Section } from './layout/Section'
 
-// TODO: lines from CMS
+// TODO: lines from CMS - update CMS for new format
 // TODO: DRY - lots of borrowed styles here. Running out of time now and cutting corners
 // TODO: get platform dynamically
 
