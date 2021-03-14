@@ -227,7 +227,7 @@ const TerminalSection = styled(Section)`
   padding: ${({ theme }) => theme.layout.terminal.sectionPadding};
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    margin-bottom: 70px;
+    margin-bottom: 65px;
   }
 `
 

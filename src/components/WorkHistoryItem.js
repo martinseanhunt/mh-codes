@@ -80,6 +80,14 @@ const Item = styled.li`
   position: relative;
   line-height: 1;
 
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding-bottom: 25px;
+
+    & > div:first-of-type {
+      width: 100%;
+    }
+  }
+
   // see what animation values can live in theme
   &:before {
     content: '^';
@@ -90,6 +98,14 @@ const Item = styled.li`
     opacity: 0;
     transform: rotate(90deg) translateY(10px);
     transition: all cubic-bezier(0.19, 1, 0.22, 1) 0.65s;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      right: 0;
+      left: auto;
+      opacity: 1;
+      transform: rotate(180deg) translateY(0);
+      color: ${({ theme }) => theme.colors.faint};
+    }
   }
 
   &:hover:before {
@@ -142,6 +158,10 @@ const Item = styled.li`
     color: ${({ theme }) => theme.colors.slate};
     font-family: ${({ theme }) => theme.fonts.families.sansLight};
     letter-spacing: 0.03em;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.s};
+    }
   }
 
   span {
@@ -150,6 +170,14 @@ const Item = styled.li`
     color: ${({ theme }) => theme.colors.slate};
     text-transform: uppercase;
     line-height: 3.2rem;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      line-height: 1;
+      margin-top: 20px;
+      display: block;
+      letter-spacing: 0.03em;
+      text-transform: none;
+    }
   }
 `
 
@@ -173,6 +201,10 @@ const Content = styled.div`
     font-family: ${({ theme }) => theme.fonts.families.sansLight};
     letter-spacing: 0.03em;
     padding-bottom: 25px;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.s};
+    }
   }
 
   ul {
@@ -193,6 +225,10 @@ const Content = styled.div`
       position: absolute;
       left: 0;
     }
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.s};
+    }
   }
 `
 
@@ -206,6 +242,10 @@ const Quote = styled.figure`
     max-width: 600px;
     font-family: ${({ theme }) => theme.fonts.families.sansLight};
     margin-bottom: 20px;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.s};
+    }
   }
 
   figcaption {
@@ -215,6 +255,10 @@ const Quote = styled.figure`
     font-family: ${({ theme }) => theme.fonts.families.mono};
     font-size: ${({ theme }) => theme.fonts.sizes.s};
     margin-bottom: ${({ paddBottom }) => (paddBottom ? '50px' : '25px')};
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.xxs};
+    }
   }
 `
 
