@@ -1,33 +1,53 @@
 import React from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
+import styled from 'styled-components'
 
+import { Section } from '../components/layout/Section'
 import { PageHeading } from '../components/PageHeading'
+import { ProjectItem } from '../components/ProjectItem'
+import { BlogPostList } from '../components/BlogPostList'
 
-// TODO: Get page ititle and desc from CMS
 export default function Projects({ data }) {
   const { site, page, projects } = data
 
-  console.log(projects)
+  console.log(page)
+
+  // TODO build tags
 
   return (
     <>
-      <Helmet title={`${site?.siteMetadata?.title} - Projects`} defer={false} />
+      <Helmet
+        title={`${page.htmlTitle} - ${site?.siteMetadata?.title}`}
+        defer={false}
+      />
       <PageHeading
-        title="Adventures in Code"
-        body="Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum."
+        title={page.frontmatter.heading}
+        body={page.html}
         tags={['React', 'Node', 'Javascript', 'NextJS', 'Gatsby', 'NetlifyCMS']}
       />
+      <ProjectsSection>
+        <ul>
+          {projects.nodes.map((project) => (
+            <ProjectItem project={project} />
+          ))}
+        </ul>
+      </ProjectsSection>
+      <BlogPostList />
     </>
   )
 }
+
+const ProjectsSection = styled(Section)`
+  margin-bottom: 72px;
+`
 
 export const query = graphql`
   query {
     ...SiteMeta
     page: markdownRemark(fileAbsolutePath: { regex: "/pages/projects/" }) {
       frontmatter {
-        title
+        heading
         htmlTitle
       }
       html
@@ -44,8 +64,8 @@ export const query = graphql`
         html
         excerpt(truncate: false, pruneLength: 300)
         frontmatter {
-          title
           order
+          title
           excerpt
           tags
           github
