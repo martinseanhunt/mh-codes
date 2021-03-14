@@ -102,12 +102,12 @@ const FooterContainer = styled.footer`
 `
 
 const FooterSection = styled(Section)`
-  padding-top: 85px;
-  margin: ${({ sectionMargin }) => sectionMargin || '0 0 120px 0'};
+  padding-top: 108px;
+  margin: ${({ sectionMargin }) => sectionMargin || '0 0 108px 0'};
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     padding-top: 65px;
-    margin: ${({ sectionMargin }) => sectionMargin || '0 0 65px 0'};
+    margin: ${({ sectionMargin }) => sectionMargin || '0 0 72px 0'};
   }
 `
 
@@ -139,7 +139,7 @@ const Emoji = styled.div`
   align-items: center;
   justify-content: center;
   position: relative;
-  top: -10px;
+  top: -72px;
 
   span {
     position: relative;

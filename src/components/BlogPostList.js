@@ -61,7 +61,7 @@ export function BlogPostList() {
 
 const BlogSection = styled(Section)`
   padding-top: 72px;
-  padding-bottom: 120px;
+  padding-bottom: 108px;
   margin: 0;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
@@ -73,15 +73,15 @@ const BlogSection = styled(Section)`
 const Posts = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-gap: 38px;
+  grid-gap: 33px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxMedium} {
-    grid-gap: 20px;
+    grid-gap: 22px;
   }
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     grid-template-columns: 1fr;
-    grid-gap: 25px;
+    grid-gap: 33px;
   }
 `
 

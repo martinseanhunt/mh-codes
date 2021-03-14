@@ -223,7 +223,7 @@ const TitleSection = styled(Section)`
 `
 
 const TerminalSection = styled(Section)`
-  margin: 0 0 120px 0;
+  margin: 0 0 108px 0;
   // TODO: Remove from theme
   padding: ${({ theme }) => theme.layout.terminal.sectionPadding};
 
