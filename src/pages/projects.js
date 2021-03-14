@@ -40,6 +40,9 @@ export default function Projects({ data }) {
 
 const ProjectsSection = styled(Section)`
   margin-bottom: 72px;
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    margin-bottom: 65px;
+  }
 `
 
 export const query = graphql`

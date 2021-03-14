@@ -57,10 +57,6 @@ const Item = styled.li`
     border-bottom: 0;
   }
 
-  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    padding-bottom: 25px;
-  }
-
   article {
     max-width: 777px;
   }
