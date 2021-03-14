@@ -96,7 +96,8 @@ const Post = styled.li`
 const Content = styled.div`
   padding: 25px 30px 34px 30px;
   border: 1px solid ${({ theme }) => theme.colors.faint};
-  border-radius: 3px;
+  border-radius: 3px 3px 0 0;
+  flex: 1;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     padding: 25px 20px;
