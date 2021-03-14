@@ -79,6 +79,10 @@ const Item = styled.li`
     letter-spacing: 0.03em;
     line-height: 2.4rem;
     margin-bottom: 33px;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.s};
+    }
   }
 
   ul {

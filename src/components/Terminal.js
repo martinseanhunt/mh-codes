@@ -252,6 +252,10 @@ const Header = styled.div`
     0px 0px;
   box-shadow: 0px 1px 15px ${({ theme }) => theme.colors.shadow};
   display: flex;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding-left: 22px;
+  }
 `
 
 const Tab = styled.div`
@@ -324,6 +328,10 @@ const Content = styled.div`
   font-size: ${({ theme }) => theme.fonts.sizes.s};
   line-height: ${({ theme }) => theme.fonts.lineHeight.terminal};
   word-wrap: break-word;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding: 30px 22px;
+  }
 
   p {
     margin-bottom: 20px;

@@ -60,7 +60,7 @@ export const theme = {
     bodyPadding: '32px 0 0 0',
     mobileBodyPadding: '130px 0 0 0',
     sectionPadding: '0 50px 0 50px',
-    mobileSectionPadding: '10px',
+    mobileSectionPadding: '30px',
     sectionMargin: '0 0 108px 0',
     header: {
       navGap: '40px',
