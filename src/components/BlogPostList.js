@@ -7,7 +7,7 @@ import { AnimatedLink } from './AnimatedLink'
 
 // TODO: Semantic html
 
-export function BlogPostList() {
+export function BlogPostList({ title, fullList }) {
   const {
     allMarkdownRemark: { nodes: posts },
   } = useStaticQuery(graphql`
@@ -24,8 +24,12 @@ export function BlogPostList() {
   `)
 
   return (
-    <BlogSection title="From The Blog" dottedBackground>
-      <Posts>
+    <BlogSection
+      title={title ? title : 'From The Blog'}
+      fullList={fullList}
+      dottedBackground={fullList ? undefined : true}
+    >
+      <Posts fullList={fullList}>
         {posts?.map((post) => (
           <Post key={post.fields.slug}>
             <Content>
@@ -39,6 +43,10 @@ export function BlogPostList() {
                   <Link to={post.fields.slug}>{post.frontmatter.title}</Link>
                 )}
               </Title>
+
+              {fullList && (
+                <Excerpt>{post.frontmatter.excerpt || post.excerpt}</Excerpt>
+              )}
 
               <AnimatedLink
                 href={post.frontmatter.externalUrl}
@@ -60,20 +68,20 @@ export function BlogPostList() {
 }
 
 const BlogSection = styled(Section)`
-  padding-top: 72px;
+  padding-top: ${({ fullList }) => (fullList ? '0' : '72px')};
   padding-bottom: 108px;
   margin: 0;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    padding-top: 33px;
+    padding-top: ${({ fullList }) => (fullList ? '0' : '33px')};
     padding-bottom: 65px;
   }
 `
 
 const Posts = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-gap: 33px;
+  grid-template-columns: ${({ fullList }) => (fullList ? '1fr' : '1fr 1fr')};
+  grid-gap: ${({ fullList }) => (fullList ? '54px' : '33px')};
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxMedium} {
     grid-gap: 22px;
@@ -154,5 +162,19 @@ const Title = styled.h2`
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     // font-size: ${({ theme }) => theme.fonts.sizes.l};
+  }
+`
+
+const Excerpt = styled.p`
+  color: ${({ theme }) => theme.colors.slate};
+  font-size: ${({ theme }) => theme.fonts.sizes.m};
+  line-height: 2.4rem;
+  max-width: 663px;
+  font-family: ${({ theme }) => theme.fonts.families.sansLight};
+  letter-spacing: 0.03em;
+  padding-bottom: 25px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    font-size: ${({ theme }) => theme.fonts.sizes.s};
   }
 `

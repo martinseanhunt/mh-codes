@@ -34,7 +34,7 @@ const TitleSection = styled(Section)`
 `
 
 const HeadingSection = styled(Section)`
-  margin-bottom: 72px;
+  margin-bottom: 108px;
 
   padding: ${({ theme }) => theme.layout.terminal.sectionPadding};
 `
@@ -48,6 +48,7 @@ const Body = styled.div`
 `
 
 const MiniTerminal = styled.ul`
+  word-wrap: break-word;
   padding: 33px 22px 33px 22px;
   background: ${({ theme }) => theme.colors.terminalBlack};
   border-radius: 3px;

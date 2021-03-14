@@ -11,9 +11,7 @@ import { BlogPostList } from '../components/BlogPostList'
 export default function Projects({ data }) {
   const { site, page, projects } = data
 
-  console.log(page)
-
-  // TODO build tags
+  // TODO: get updated data format for page from CMS
 
   return (
     <>
@@ -21,8 +19,11 @@ export default function Projects({ data }) {
         title={`${page.frontmatter.htmlTitle} - ${site?.siteMetadata?.title}`}
         defer={false}
       />
-      <PageHeading title={page.frontmatter.heading} body={page.html} />
-      <ProjectsSection>
+      <PageHeading
+        title={`${site?.siteMetadata?.title} - Prolific tinkerer`}
+        body={page.html}
+      />
+      <ProjectsSection title={page.frontmatter.heading}>
         <ul>
           {projects.nodes.map((project) => (
             <ProjectItem project={project} />
