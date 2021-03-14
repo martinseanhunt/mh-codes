@@ -54,14 +54,17 @@ export function Header({ footer }) {
                   to={path}
                   onClick={() => setShowNav(false)}
                   activeClassName="active"
+                  partiallyActive={path === '/' ? undefined : true}
                 >
                   {linkName}
                 </Link>
               </li>
             ))}
-            <li>
-              <button onClick={scrollToBottom}>Contact</button>
-            </li>
+            {!footer && (
+              <li>
+                <button onClick={scrollToBottom}>Contact</button>
+              </li>
+            )}
           </ul>
         </Nav>
       </StyledHeader>

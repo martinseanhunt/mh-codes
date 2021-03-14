@@ -5,8 +5,6 @@ import styled from 'styled-components'
 import { Section } from './layout/Section'
 import { AnimatedLink } from './AnimatedLink'
 
-import GQL from '../img/gql.png'
-
 // TODO: Semantic html
 
 export function BlogPostList({ title, noTitle, fullList }) {

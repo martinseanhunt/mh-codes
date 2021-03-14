@@ -37,9 +37,16 @@ const TitleSection = styled(Section)`
 
 const HeadingSection = styled(Section)`
   margin-bottom: 88px;
-  padding: ${({ theme }) => theme.layout.terminal.sectionPadding};
+  padding-left: 48px;
+  padding-right: 48px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding-left: calc(
+      ${({ theme }) => theme.layout.mobileSectionPadding} - 2px
+    );
+    padding-right: calc(
+      ${({ theme }) => theme.layout.mobileSectionPadding} - 2px
+    );
     margin-bottom: 65px;
   }
 `

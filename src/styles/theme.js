@@ -45,6 +45,7 @@ export const theme = {
       m: '1.5rem',
       l: '1.8rem',
       xl: '2.2rem',
+      xxl: '2.8rem',
     },
     lineHeight: {
       terminal: '2.34rem',
@@ -60,7 +61,7 @@ export const theme = {
     bodyPadding: '32px 0 0 0',
     mobileBodyPadding: '130px 0 0 0',
     sectionPadding: '0 50px 0 50px',
-    mobileSectionPadding: '30px',
+    mobileSectionPadding: '22px',
     sectionMargin: '0 0 108px 0',
     header: {
       navGap: '40px',
