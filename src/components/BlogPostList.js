@@ -5,9 +5,11 @@ import styled from 'styled-components'
 import { Section } from './layout/Section'
 import { AnimatedLink } from './AnimatedLink'
 
+import GQL from '../img/gql.png'
+
 // TODO: Semantic html
 
-export function BlogPostList({ title, fullList }) {
+export function BlogPostList({ title, noTitle, fullList }) {
   const {
     allMarkdownRemark: { nodes: posts },
   } = useStaticQuery(graphql`
@@ -25,7 +27,7 @@ export function BlogPostList({ title, fullList }) {
 
   return (
     <BlogSection
-      title={title ? title : 'From The Blog'}
+      title={noTitle ? undefined : title ? title : 'From The Blog'}
       fullList={fullList}
       dottedBackground={fullList ? undefined : true}
     >
@@ -45,7 +47,13 @@ export function BlogPostList({ title, fullList }) {
               </Title>
 
               {fullList && (
-                <Excerpt>{post.frontmatter.excerpt || post.excerpt}</Excerpt>
+                <Excerpt>
+                  {post.frontmatter.excerpt || post.excerpt}
+                  {post.frontmatter.excerpt || post.excerpt}
+                  {post.frontmatter.excerpt || post.excerpt}
+                  {post.frontmatter.excerpt || post.excerpt}
+                  {post.frontmatter.excerpt || post.excerpt}
+                </Excerpt>
               )}
 
               <AnimatedLink

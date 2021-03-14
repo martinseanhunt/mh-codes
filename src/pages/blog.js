@@ -14,9 +14,9 @@ export default function Blog({ data }) {
     <>
       <Helmet title={`${site?.siteMetadata?.title} - Projects`} defer={false} />
       <PageHeading
-        title={`${site?.siteMetadata?.title} - sometimes likes to write`}
+        title={`${site?.siteMetadata?.title} - Technical ramblings`}
       />
-      <BlogPostList title={'Musings on tech and life'} fullList />
+      <BlogPostList noTitle fullList />
     </>
   )
 }

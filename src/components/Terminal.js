@@ -186,11 +186,12 @@ export function Terminal() {
                   <p>Hi, I’m *Martin Hunt*</p>
 
                   <p>
-                    I’m a **creative**, **passionate** software engineer and
-                    technical lead\ <br />
-                    with over a decades worth of experience building production
-                    websites\ <br />
-                    and applications...
+                    I’m a **creative**, **passionate** and **purpose oriented**
+                    software engineer\ <br />
+                    / technical lead. I've spent the last 11+ years mastering my
+                    craft, building\ <br />
+                    mission driven technical teams and developing production
+                    grade applications...
                   </p>
 
                   <p>

@@ -3,6 +3,8 @@ import styled from 'styled-components'
 
 import { AnimatedLink } from './AnimatedLink'
 
+import MicroServices from '../img/kubernetes.png'
+
 export function ProjectItem({ project: { frontmatter, ...project } }) {
   return (
     <Item>
@@ -39,6 +41,9 @@ export function ProjectItem({ project: { frontmatter, ...project } }) {
           )}
         </Links>
       </article>
+      <Image>
+        <img src={MicroServices} alt="Microservices image" />
+      </Image>
     </Item>
   )
 }
@@ -50,6 +55,9 @@ const Item = styled.li`
   padding-bottom: 54px;
   margin-bottom: 54px;
   -webkit-tap-highlight-color: rgba(255, 255, 255, 0);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
 
   &:last-of-type {
     margin-bottom: 0;
@@ -98,4 +106,26 @@ const Item = styled.li`
 
 const Links = styled.div`
   display: flex;
+`
+
+const Image = styled.div`
+  width: 72px;
+  height: 72px;
+  border: 1px solid ${({ theme }) => theme.colors.faint};
+  border-radius: 72px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  top: -10px;
+  right: 0;
+
+  img {
+    position: relative;
+    width: 35px;
+  }
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    display: none;
+  }
 `

@@ -34,9 +34,12 @@ const TitleSection = styled(Section)`
 `
 
 const HeadingSection = styled(Section)`
-  margin-bottom: 108px;
-
+  margin-bottom: 88px;
   padding: ${({ theme }) => theme.layout.terminal.sectionPadding};
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    margin-bottom: 65px;
+  }
 `
 
 const Body = styled.div`

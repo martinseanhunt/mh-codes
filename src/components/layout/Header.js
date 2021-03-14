@@ -27,6 +27,12 @@ export function Header({ footer }) {
     window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
   }
 
+  const links = [
+    ['/', 'History'],
+    ['/projects', 'Projects'],
+    ['/blog', 'Blog'],
+  ]
+
   return (
     <HeaderSection footer={footer}>
       <StyledHeader>
@@ -42,16 +48,17 @@ export function Header({ footer }) {
             {showNav ? 'X' : '☰'}
           </Burger>
           <ul>
-            <li>
-              <Link to="/projects" onClick={() => setShowNav(false)}>
-                Projects
-              </Link>
-            </li>
-            <li>
-              <Link to="/blog" onClick={() => setShowNav(false)}>
-                Blog
-              </Link>
-            </li>
+            {links.map(([path, linkName]) => (
+              <li>
+                <Link
+                  to={path}
+                  onClick={() => setShowNav(false)}
+                  activeClassName="active"
+                >
+                  {linkName}
+                </Link>
+              </li>
+            ))}
             <li>
               <button onClick={scrollToBottom}>Contact</button>
             </li>
@@ -120,6 +127,7 @@ const Nav = styled.nav`
     background: none;
     padding: 0;
     outline: none;
+    cursor: pointer;
 
     &:before {
       content: '';
@@ -135,7 +143,8 @@ const Nav = styled.nav`
         width cubic-bezier(0.19, 1, 0.22, 1) 1s;
     }
 
-    &:hover:before {
+    &:hover:before,
+    &.active:before {
       opacity: 1;
       width: 100%;
     }
@@ -166,6 +175,8 @@ const Nav = styled.nav`
     button {
       padding: 30px 10px;
       display: block;
+      width: 100%;
+      text-align: left;
     }
   }
 `

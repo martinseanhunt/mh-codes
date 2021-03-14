@@ -20,23 +20,22 @@ export default function Projects({ data }) {
         defer={false}
       />
       <PageHeading
-        title={`${site?.siteMetadata?.title} - Prolific tinkerer`}
+        title={`${site?.siteMetadata?.title} - ${page.frontmatter.heading}`}
         body={page.html}
       />
-      <ProjectsSection title={page.frontmatter.heading}>
+      <ProjectsSection>
         <ul>
           {projects.nodes.map((project) => (
             <ProjectItem project={project} />
           ))}
         </ul>
       </ProjectsSection>
-      <BlogPostList />
     </>
   )
 }
 
 const ProjectsSection = styled(Section)`
-  margin-bottom: 72px;
+  margin-bottom: 108px;
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     margin-bottom: 65px;
   }
