@@ -1,6 +1,7 @@
 import React from 'react'
 import { ThemeProvider } from 'styled-components'
 import Helmet from 'react-helmet'
+import styled from 'styled-components'
 
 import { theme } from '../../styles/theme'
 import { GlobalStyle } from '../../styles/GlobalStyle'
@@ -16,12 +17,17 @@ export function Layout({ children }) {
       </Helmet>
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <div>
+        <Container>
           <Header />
           <main>{children}</main>
           <Footer />
-        </div>
+        </Container>
       </ThemeProvider>
     </>
   )
 }
+
+const Container = styled.div`
+  max-width: 100vw;
+  overflow-x: hidden;
+`
