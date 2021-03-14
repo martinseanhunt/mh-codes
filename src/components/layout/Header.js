@@ -21,6 +21,12 @@ export function Header({ footer }) {
   // Only used on mobile
   const [showNav, setShowNav] = useState(false)
 
+  const scrollToBottom = (e) => {
+    e.preventDefault()
+    setShowNav(false)
+    window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' })
+  }
+
   return (
     <HeaderSection footer={footer}>
       <StyledHeader>
@@ -37,19 +43,17 @@ export function Header({ footer }) {
           </Burger>
           <ul>
             <li>
-              <Link to="/" onClick={() => setShowNav(false)}>
+              <Link to="/projects" onClick={() => setShowNav(false)}>
                 Projects
               </Link>
             </li>
             <li>
-              <Link to="/" onClick={() => setShowNav(false)}>
+              <Link to="/blog" onClick={() => setShowNav(false)}>
                 Blog
               </Link>
             </li>
             <li>
-              <Link to="/" onClick={() => setShowNav(false)}>
-                Contact
-              </Link>
+              <button onClick={scrollToBottom}>Contact</button>
             </li>
           </ul>
         </Nav>
@@ -104,13 +108,18 @@ const Nav = styled.nav`
   }
 
   // TODO: colors from theme and make animation global
-  a {
+  a,
+  button {
     text-decoration: none;
     text-transform: capitalize;
     font-size: ${({ theme }) => theme.fonts.sizes.m};
     color: ${({ theme, footer }) =>
       footer ? theme.colors.white : theme.colors.dark};
     position: relative;
+    border: none;
+    background: none;
+    padding: 0;
+    outline: none;
 
     &:before {
       content: '';
@@ -153,7 +162,8 @@ const Nav = styled.nav`
       margin: 0;
     }
 
-    a {
+    a,
+    button {
       padding: 30px 10px;
       display: block;
     }

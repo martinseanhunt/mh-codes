@@ -86,7 +86,6 @@ const Posts = styled.ul`
 `
 
 const Post = styled.li`
-  border: 1px solid ${({ theme }) => theme.colors.faint};
   border-radius: 3px;
   display: flex;
   flex-direction: column;
@@ -96,6 +95,8 @@ const Post = styled.li`
 `
 const Content = styled.div`
   padding: 25px 30px 34px 30px;
+  border: 1px solid ${({ theme }) => theme.colors.faint};
+  border-radius: 3px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     padding: 25px 20px;
@@ -108,7 +109,6 @@ const Content = styled.div`
 
 const Meta = styled.div`
   background: ${({ theme }) => theme.colors.terminalBlack};
-  border-top: 1px solid ${({ theme }) => theme.colors.faint};
   padding: 0 30px;
   display: flex;
   align-items: center;
