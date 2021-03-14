@@ -6,7 +6,9 @@ import { PageHeading } from '../components/PageHeading'
 
 // TODO: Get page ititle and desc from CMS
 export default function Projects({ data }) {
-  const { site, markdownRemark: page } = data
+  const { site, page, projects } = data
+
+  console.log(projects)
 
   return (
     <>
@@ -23,12 +25,34 @@ export default function Projects({ data }) {
 export const query = graphql`
   query {
     ...SiteMeta
-    markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
+    page: markdownRemark(fileAbsolutePath: { regex: "/pages/projects/" }) {
       frontmatter {
         title
         htmlTitle
       }
       html
+    }
+    projects: allMarkdownRemark(
+      filter: { frontmatter: { templateKey: { eq: "project" } } }
+    ) {
+      nodes {
+        fields {
+          slug
+        }
+        id
+        timeToRead
+        html
+        excerpt(truncate: false, pruneLength: 300)
+        frontmatter {
+          title
+          order
+          excerpt
+          tags
+          github
+          liveUrl
+          linkToDetails
+        }
+      }
     }
   }
 `

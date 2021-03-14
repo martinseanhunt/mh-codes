@@ -37,8 +37,6 @@ export function WorkHistory() {
     }
   `)
 
-  // TODO: Remove secitonpadding and margin as props... Extend the styles in the component
-
   return (
     <WorkSection title="The journey so far">
       <ul>
