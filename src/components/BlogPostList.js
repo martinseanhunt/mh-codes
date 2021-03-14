@@ -24,12 +24,7 @@ export function BlogPostList() {
   `)
 
   return (
-    <Section
-      title="From The Blog"
-      sectionPadding="72px 50px 120px 50px"
-      sectionMargin="0"
-      dottedBackground
-    >
+    <BlogSection title="From The Blog" dottedBackground>
       <Posts>
         {posts?.map((post) => (
           <Post key={post.fields.slug}>
@@ -60,15 +55,34 @@ export function BlogPostList() {
           </Post>
         ))}
       </Posts>
-    </Section>
+    </BlogSection>
   )
 }
 
-// TODO: Store grid gap in theme ?
+const BlogSection = styled(Section)`
+  padding-top: 72px;
+  padding-bottom: 120px;
+  margin: 0;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding-top: 33px;
+    padding-bottom: 65px;
+  }
+`
+
 const Posts = styled.ul`
   display: grid;
   grid-template-columns: 1fr 1fr;
   grid-gap: 38px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxMedium} {
+    grid-gap: 20px;
+  }
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    grid-template-columns: 1fr;
+    grid-gap: 25px;
+  }
 `
 
 const Post = styled.li`
@@ -82,6 +96,14 @@ const Post = styled.li`
 `
 const Content = styled.div`
   padding: 25px 30px 34px 30px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding: 25px 20px;
+
+    & > div a {
+      font-size: ${({ theme }) => theme.fonts.sizes.xxs} !important;
+    }
+  }
 `
 
 const Meta = styled.div`
@@ -93,6 +115,10 @@ const Meta = styled.div`
   height: 55px;
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.families.mono};
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    //font-size: ${({ theme }) => theme.fonts.sizes.xxs};
+  }
 
   a {
     color: ${({ theme }) => theme.colors.white};
@@ -111,6 +137,10 @@ const Date = styled.span`
   font-family: ${({ theme }) => theme.fonts.families.mono};
   display: block;
   margin-bottom: 15px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    // font-size: ${({ theme }) => theme.fonts.sizes.xxs};
+  }
 `
 
 // TODO: Heading component
@@ -119,4 +149,8 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.colors.slate};
   line-height: 3.1rem;
   margin-bottom: 27px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    // font-size: ${({ theme }) => theme.fonts.sizes.l};
+  }
 `

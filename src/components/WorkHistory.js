@@ -1,5 +1,6 @@
 import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
+import styled from 'styled-components'
 
 import { Section } from './layout/Section'
 import { AnimatedLink } from './AnimatedLink'
@@ -39,7 +40,7 @@ export function WorkHistory() {
   // TODO: Remove secitonpadding and margin as props... Extend the styles in the component
 
   return (
-    <Section title="The journey so far" sectionMargin="0 0 86px 0">
+    <WorkSection title="The journey so far">
       <ul>
         {history?.map((item) => (
           <WorkHistoryItem item={item} key={item.fields.slug} />
@@ -51,6 +52,14 @@ export function WorkHistory() {
       <AnimatedLink to="/projects">
         <span>&gt; View personal projects &amp; Code Samples</span>
       </AnimatedLink>
-    </Section>
+    </WorkSection>
   )
 }
+
+const WorkSection = styled(Section)`
+  margin-bottom: 86px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    margin-bottom: 65px;
+  }
+`

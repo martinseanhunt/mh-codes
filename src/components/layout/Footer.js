@@ -77,15 +77,12 @@ export function Footer() {
         </ContactDetails>
       </FooterSection>
 
-      <FooterSection
-        sectionMargin="0 0 120px 0"
-        title="Sign Up to The Mailing List"
-      >
+      <FooterSection title="Sign Up to The Mailing List">
         <SignUpForm onSubmit={(e) => e.preventDefault()}>
           <input type="email" placeholder="Email address" required={true} />
-          <AnimatedButton type="submit">
+          <SubmitButton type="submit">
             <span>&gt;</span> Sign Up
-          </AnimatedButton>
+          </SubmitButton>
         </SignUpForm>
       </FooterSection>
 
@@ -106,11 +103,18 @@ const FooterContainer = styled.footer`
 
 const FooterSection = styled(Section)`
   padding-top: 85px;
+  margin: ${({ sectionMargin }) => sectionMargin || '0 0 120px 0'};
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding-top: 65px;
+    margin: ${({ sectionMargin }) => sectionMargin || '0 0 65px 0'};
+  }
 `
 
 const ContactDetails = styled.div`
   display: flex;
   justify-content: space-between;
+  position: relative;
 `
 
 const wave = keyframes`
@@ -147,6 +151,12 @@ const Emoji = styled.div`
     transform-origin: 21px 7px;
     animation: ${wave} 2s 2;
   }
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    position: absolute;
+    top: -90px;
+    right: 0;
+  }
 `
 
 const ContactLinks = styled(LinkStyles)`
@@ -157,6 +167,10 @@ const ContactLinks = styled(LinkStyles)`
     text-transform: lowercase;
     line-height: 3.3rem;
     font-size: ${({ theme }) => theme.fonts.sizes.xl};
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.l};
+    }
   }
   span:last-of-type {
     margin-right: 9px;
@@ -168,6 +182,12 @@ const SignUpForm = styled.form`
   align-items: space-between;
   border-bottom: 1px solid ${({ theme }) => theme.colors.slateLight};
   padding-bottom: 12px;
+  position: relative;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding-bottom: 6px;
+    margin-bottom: 35px;
+  }
 
   input {
     color: ${({ theme }) => theme.colors.white};
@@ -178,9 +198,23 @@ const SignUpForm = styled.form`
     border: none;
     padding-bottom: 5px;
     flex: 1;
+    flex-shrink: 1;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      font-size: ${({ theme }) => theme.fonts.sizes.m};
+    }
 
     &::placeholder {
       color: ${({ theme }) => theme.colors.slateLight};
     }
+  }
+`
+
+const SubmitButton = styled(AnimatedButton)`
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    font-size: ${({ theme }) => theme.fonts.sizes.xxs};
+    position: absolute;
+    left: 0;
+    bottom: -35px;
   }
 `
