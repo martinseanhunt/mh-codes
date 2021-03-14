@@ -30,6 +30,7 @@ import { Section, Inner } from './layout/Section'
 // TODO: Decided on section margin for each element
 // TODO: Get terminal lines from CMS
 // TODO: implement a more SEO friendly way of hiding bio by default
+// TODO: DRY
 
 const randRange = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min)
@@ -38,10 +39,14 @@ export function Terminal() {
   const theme = useContext(ThemeContext)
   const inputRef = useRef()
   const innerRef = useRef()
+  // TODO: do this in layout and pass down via context
+  const [isMobile, setIsMobile] = useState(false)
 
   const [terminalLines, setTerminalLines] = useState([])
   const [showBio, setShowBio] = useState(false)
   const [showInput, setShowInput] = useState(false)
+
+  console.log(isMobile)
 
   const focusInput = () =>
     document.activeElement !== inputRef.current && inputRef.current.focus()
@@ -109,8 +114,9 @@ export function Terminal() {
       'input',
     ]
 
-    setShowBio(false)
     setShowInput(false)
+    setShowBio(false)
+    setTerminalLines([])
     addChars(lines)
   }, [addChars])
 
@@ -118,16 +124,28 @@ export function Terminal() {
     if (showInput) focusInput()
   }, [showInput])
 
+  const bp = theme.layout.breakPoints.small.replace('px', '')
+  useEffect(() => {
+    function checkWidth() {
+      if (window.innerWidth <= bp && !isMobile) setIsMobile(true)
+      if (window.innerWidth > bp && isMobile) setIsMobile(false)
+    }
+
+    window.addEventListener('resize', checkWidth)
+    checkWidth()
+
+    return () => {
+      window.removeEventListener('resize', checkWidth)
+    }
+  }, [isMobile, bp])
+
+  const platform = isMobile ? 'MOBILE' : 'DESKTOP'
+
   return (
     <>
-      <Section
-        title="Martin Hunt - Software Engineer & Technical Lead"
-        sectionMargin="0"
-      />
-      <Section
+      <TitleSection title="Martin Hunt - Software Engineer & Technical Lead" />
+      <TerminalSection
         maxWidth={theme.layout.terminal.maxWidth}
-        sectionPadding={theme.layout.terminal.sectionPadding}
-        sectionMargin="0 0 120px 0"
         onClick={() => inputRef.current && focusInput()}
       >
         <TerminalContainer>
@@ -135,7 +153,7 @@ export function Terminal() {
             <Tab>
               <span>
                 <img src={LinuxIcon} alt="Linux Penguin Icon" />
-                marty@DESKTOP: ~/
+                marty@{platform}: ~/
               </span>
               <Close src={CloseIcon} alt="Close Tab Icon" />
             </Tab>
@@ -153,13 +171,12 @@ export function Terminal() {
               {terminalLines.length ? (
                 terminalLines.map(([path, command], i) => (
                   <div key={i}>
-                    <User>marty@DESKTOP-COQ6V76</User>:<Path>{path}</Path>${' '}
-                    {command}
+                    <User>marty@{platform}</User>:<Path>{path}</Path>$ {command}
                   </div>
                 ))
               ) : (
                 <div>
-                  <User>marty@DESKTOP-COQ6V76</User>:<Path>~</Path>${' '}
+                  <User>marty@{platform}</User>:<Path>~</Path>${' '}
                 </div>
               )}
 
@@ -186,7 +203,7 @@ export function Terminal() {
               {showInput && (
                 <InputLine>
                   <div>
-                    <User>marty@DESKTOP-COQ6V76</User>:
+                    <User>marty@{platform}</User>:
                     <Path>~/sites/martinhunt</Path>$
                   </div>
                   <Input type="text" ref={inputRef}></Input>
@@ -195,10 +212,24 @@ export function Terminal() {
             </Inner>
           </Content>
         </TerminalContainer>
-      </Section>
+      </TerminalSection>
     </>
   )
 }
+
+const TitleSection = styled(Section)`
+  margin: 0;
+`
+
+const TerminalSection = styled(Section)`
+  margin: 0 0 120px 0;
+  // TODO: Remove from theme
+  padding: ${({ theme }) => theme.layout.terminal.sectionPadding};
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    margin-bottom: 70px;
+  }
+`
 
 const TerminalContainer = styled.div`
   ${({ theme }) => `
@@ -269,6 +300,10 @@ const Controls = styled.div`
   position: relative;
   top: -3px;
 
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    display: none;
+  }
+
   img {
     margin-right: 25px;
     cursor: pointer;
@@ -279,14 +314,15 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   font-family: ${({ theme }) => theme.fonts.families.mono};
-  padding: 30px 30px 0 30px;
-  height: 314px;
+  padding: 30px;
+  min-height: 314px;
   box-shadow: 0px 1px 15px ${({ theme }) => theme.colors.shadow};
   border-radius: 0px 0px
     ${({ theme }) => `${theme.layout.terminal.borderRadius} `.repeat(2)};
   cursor: auto;
   font-size: ${({ theme }) => theme.fonts.sizes.s};
   line-height: ${({ theme }) => theme.fonts.lineHeight.terminal};
+  word-wrap: break-word;
 
   p {
     margin-bottom: 20px;
@@ -334,9 +370,12 @@ const Bio = styled.div`
 
 const InputLine = styled.div`
   display: flex;
+  flex-wrap: wrap;
 
   div {
     flex-shrink: 0;
+    max-width: 100%;
+    word-wrap: break-word;
   }
 `
 

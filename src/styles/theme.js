@@ -58,7 +58,7 @@ export const theme = {
   layout: {
     maxWidth: '960px',
     bodyPadding: '32px 0 0 0',
-    mobileBodyPadding: '160px 0 0 0',
+    mobileBodyPadding: '130px 0 0 0',
     sectionPadding: '0 50px 0 50px',
     mobileSectionPadding: '10px',
     sectionMargin: '0 0 150px 0',
