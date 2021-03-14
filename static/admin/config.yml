@@ -38,6 +38,7 @@ collections:
           default: 'blog-post',
         }
       - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
       - {
           label: 'External Post URL',
           name: 'externalUrl',
@@ -47,7 +48,6 @@ collections:
         }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-      # TODO: Add tags to blog posts
 
   - name: 'history'
     label: 'History'
@@ -55,6 +55,8 @@ collections:
     create: true
     slug: 'index'
     path: '{{company}}/index'
+    media_folder: ''
+    public_folder: ''
     editor:
       preview: false
     fields:
@@ -89,6 +91,7 @@ collections:
           required: false,
           field: { label: Acheivement, name: 'acheivement', widget: 'string' },
         }
+      - { label: 'Tags', name: 'tags', widget: 'list' }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - {
           label: 'Link To Details Page',
@@ -104,6 +107,8 @@ collections:
     create: true
     slug: 'index'
     path: '{{title}}/index'
+    media_folder: ''
+    public_folder: ''
     editor:
       preview: false
     fields:
@@ -113,8 +118,40 @@ collections:
           widget: 'hidden',
           default: 'project',
         }
-      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Title', name: 'title', widget: 'string', required: false }
+      - {
+          label: 'Order',
+          name: 'order',
+          widget: 'number',
+          required: false,
+          value_type: 'int',
+          hint: 'Leave blank for auto ordering',
+        }
+      - {
+          label: 'Excerpt',
+          name: 'excerpt',
+          widget: 'text',
+          hint: 'auto generated if blank',
+          required: false,
+        }
+      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
       - { label: 'Body', name: 'body', widget: 'markdown' }
-      - { label: 'Github Url', name: 'github', widget: 'string' }
-      - { label: 'Live Url', name: 'liveUrl', widget: 'string' }
-      # TODO: Add tags to projects
+      - {
+          label: 'Github Url',
+          name: 'github',
+          widget: 'string',
+          required: false,
+        }
+      - {
+          label: 'Live Url',
+          name: 'liveUrl',
+          widget: 'string',
+          required: false,
+        }
+      - {
+          label: 'Link To Details Page',
+          name: 'linkToDetails',
+          widget: 'boolean',
+          default: false,
+          hint: 'If false, the history item will not link through to a details page',
+        }

@@ -30,7 +30,7 @@ export function Header({ footer }) {
   return (
     <HeaderSection footer={footer}>
       <StyledHeader>
-        <Link to="/">
+        <Link to="/" onClick={() => setShowNav(false)}>
           <img src={footer ? LogoClose : Logo} alt="<MH>" />
         </Link>
 
