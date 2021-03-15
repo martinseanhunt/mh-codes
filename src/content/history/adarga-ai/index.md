@@ -4,14 +4,14 @@ company: Adarga.ai
 order: 0
 role: Techical Lead & Development Manager
 dates: March 2020 - Present
-excerpt: Having, up unitl this point in my career, worked mostly within
+excerpt: Having, up until this point in my career, worked mostly within
   bootstrapped start ups I decided that I wanted to test myself within a larger
   organisation. I was immediately drawn to Adarga, as it offered an excellent
   environment in which to test my technical skills and gain exposure to  cutting
   edge technical disciplines like machine learning and AI. At Adarga we're
   working with a wide variety of technologies. Our front end is built in React
   and tested with react testing library and cypress. We use a micro service
-  archtechture comprising of various server side languages including Go, Python,
+  architecture comprising of various server side languages including Go, Python,
   Typescript and Java which are orchestrated by Kubernetes, Kafka and Kong
   gateway API.
 acheivements:
@@ -26,7 +26,7 @@ acheivements:
   - Rapid prototyping of experimental new functionality.
   - Maintaining and developing our React front end application and component
     library.
-  - Mentorship of junior developer and code reviews.
+  - Mentorship of junior developers and code reviews.
   - Working closely with QA to improve our front end automated testing
     strategies / standards.
   - "Defining a set of standards and best practices for end to end testing using
