@@ -11,6 +11,16 @@ acheivements:
   - Established and developed in house technical team
   - Complete fronte end rewrite
   - Worked closely with CEO
+tags:
+  - some
+  - tags
+testimonial: As Technical Direcor at Omstars, Martin helped us build the entire
+  technical foundation of our business. Martin took on every initiative with his
+  whole heart and soul and it was his overarching commitment to the task at hand
+  and his positive attitude that brought creative solutions in and helped us
+  succeed.
+testimonialAuthor: Kino MacGregor, CEO - Omstars
+testimonialAvatar: kino-1c56c688e90ba25aaec0fb90ac0da07c.png
 linkToDetails: true
 ---
 
