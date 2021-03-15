@@ -27,6 +27,7 @@ collections:
               name: 'historyTitle',
               widget: 'string',
             }
+          - { label: 'Blog Section Title', name: 'blogTitle', widget: 'string' }
       - file: 'src/content/pages/projects.md'
         label: 'Projects'
         name: 'projects'
@@ -181,6 +182,13 @@ collections:
           default: false,
           hint: 'If false, the history item will not link through to a details page',
         }
+      - {
+          label: 'External Url',
+          name: 'externalUrl',
+          widget: 'string',
+          required: false,
+          hint: 'The company website',
+        }
 
   - name: 'project'
     label: 'Project'
@@ -218,10 +226,11 @@ collections:
       - { label: 'Tags', name: 'tags', widget: 'list', required: false }
       - { label: 'Body', name: 'body', widget: 'markdown' }
       - {
-          label: 'Featured Logos',
-          name: 'logos',
+          label: 'Featured Logo',
+          name: 'logo',
           widget: 'image',
           required: false,
+          allow_multiple: false,
         }
       - {
           label: 'Github Url',

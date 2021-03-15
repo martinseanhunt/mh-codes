@@ -1,5 +1,5 @@
 import React from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { Link } from 'gatsby'
 import styled from 'styled-components'
 
 import { Section } from './layout/Section'
@@ -44,12 +44,24 @@ export function BlogPostList({ posts, title, noTitle, fullList }) {
                 to={post.fields.slug ? post.fields.slug : undefined}
                 className="rm-animated"
               >
-                &gt; Read More
+                &gt; Read More{' '}
+                {post.frontmatter.externalUrl && '(external link)'}
               </AnimatedLink>
             </Content>
             <Meta>
-              <span>~/tags</span>$ <a href="/todo">Tag1</a>,
-              <a href="/todo">Todo</a>
+              <div>
+                <span>~/tags</span>$
+              </div>
+              <div>
+                {post.frontmatter.tags
+                  ? post.frontmatter.tags.map(
+                      (t, i) =>
+                        `${t}${
+                          i < post.frontmatter.tags.length - 1 ? ', ' : ''
+                        }`
+                    )
+                  : 'no tags yet'}
+              </div>
             </Meta>
           </Post>
         ))}
@@ -110,15 +122,18 @@ const Content = styled.div`
 
 const Meta = styled.div`
   background: ${({ theme }) => theme.colors.terminalBlack};
-  padding: 0 30px;
+  padding: 20px 30px;
   display: flex;
-  align-items: center;
-  height: 55px;
+  min-height: 55px;
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.families.mono};
 
-  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    //font-size: ${({ theme }) => theme.fonts.sizes.xxs};
+  div:first-of-type {
+    flex-shrink: 0;
+  }
+
+  div:last-of-type {
+    padding-left: 7px;
   }
 
   a {

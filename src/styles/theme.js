@@ -14,7 +14,9 @@ const mediaQueries = Object.entries(breakPoints).reduce(
     const capitalizedKey = key.charAt(0).toUpperCase() + key.slice(1)
     return {
       ...queries,
-      [`min${capitalizedKey}`]: `(min-width: ${value + 1})`,
+      [`min${capitalizedKey}`]: `(min-width: ${
+        parseInt(value.replace('px', '')) + 1
+      }px)`,
       [`max${capitalizedKey}`]: `(max-width: ${value})`,
     }
   },

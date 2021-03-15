@@ -15,9 +15,13 @@ export default function Index({ data }) {
         title={`${site?.siteMetadata?.title} - ${page.frontmatter.htmlTitle}`}
         defer={false}
       />
-      <Terminal />
-      <WorkHistory />
-      <BlogPostList posts={blog.nodes} />
+      <Terminal
+        title={`${site?.siteMetadata?.title} - ${page.frontmatter.heading}`}
+        markdown={page.frontmatter.bio}
+        fullBio={page.html}
+      />
+      <WorkHistory title={page.frontmatter.historyTitle} />
+      <BlogPostList posts={blog.nodes} title={page.frontmatter.blogTitle} />
     </>
   )
 }
@@ -37,8 +41,11 @@ export const query = graphql`
     ...SiteMeta
     page: markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
       frontmatter {
-        title
+        heading
         htmlTitle
+        bio
+        historyTitle
+        blogTitle
       }
       html
     }

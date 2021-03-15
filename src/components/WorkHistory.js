@@ -7,7 +7,7 @@ import { AnimatedLink } from './AnimatedLink'
 import { WorkHistoryItem } from './WorkHistoryItem'
 
 // TODO: Use fragment for work history detail
-export function WorkHistory() {
+export function WorkHistory({ title }) {
   const {
     allMarkdownRemark: { nodes: history },
   } = useStaticQuery(graphql`
@@ -22,23 +22,30 @@ export function WorkHistory() {
           id
           timeToRead
           html
-          autoExcerpt: excerpt(truncate: false, pruneLength: 300)
+          excerpt(truncate: false, pruneLength: 300)
           frontmatter {
             company
+            externalUrl
             role
             dates
             excerpt
             acheivements
             linkToDetails
+            testimonial
+            testimonialAuthor
+            testimonialAvatar {
+              childImageSharp {
+                gatsbyImageData(width: 40)
+              }
+            }
           }
-          excerpt
         }
       }
     }
   `)
 
   return (
-    <WorkSection title="The journey so far">
+    <WorkSection title={title || 'the journey so far'}>
       <ul>
         {history?.map((item) => (
           <WorkHistoryItem item={item} key={item.fields.slug} />

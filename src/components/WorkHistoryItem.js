@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react'
 import styled from 'styled-components'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import { AnimatedLink } from './AnimatedLink'
-import Kino from '../img/kino.png'
 
 // TODO: compose component
 // TOOO: get testimonial from CMS
@@ -10,6 +10,7 @@ import Kino from '../img/kino.png'
 export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
   const [expanded, setExpanded] = useState(false)
   const detailRef = useRef()
+  const avatar = getImage(frontmatter.testimonialAvatar)
 
   useEffect(() => {
     detailRef.current.style.maxHeight = expanded
@@ -31,7 +32,7 @@ export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
 
       <ItemDetail ref={detailRef}>
         <Content paddBottom={frontmatter.linkToDetails}>
-          <p>{frontmatter.excerpt || item.autoExcerpt}</p>
+          <p>{frontmatter.excerpt || item.excerpt}</p>
 
           <ul>
             {frontmatter.acheivements.map((a) => (
@@ -39,28 +40,35 @@ export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
             ))}
           </ul>
 
-          <Quote paddBottom={frontmatter.linkToDetails}>
-            <blockquote>
-              &ldquo; As Technical Direcor at Omstars, Martin helped us build
-              the entire technical foundation of our business. Martin took on
-              every initiative with his whole heart and soul and it was his
-              overarching commitment to the task at hand and his positive
-              attitude that brought creative solutions in and helped us
-              succeed.&rdquo;
-            </blockquote>
-            <figcaption>
-              <Avatar>
-                <img src={Kino} alt="Kino Macgregor Profile" />
-              </Avatar>
-              Kino MacGregor, CEO - Omstars
-            </figcaption>
-          </Quote>
-
-          {frontmatter.linkToDetails && (
-            <AnimatedLink to={item.fields.slug}>
-              &gt; View case study
-            </AnimatedLink>
+          {frontmatter.testimonial && (
+            <Quote paddBottom={frontmatter.linkToDetails}>
+              <blockquote>&ldquo; {frontmatter.testimonial}&rdquo;</blockquote>
+              <figcaption>
+                {avatar && (
+                  <Avatar>
+                    <GatsbyImage
+                      image={avatar}
+                      alt={frontmatter.testimonialAuthor}
+                    />
+                  </Avatar>
+                )}
+                {frontmatter.testimonialAuthor}
+              </figcaption>
+            </Quote>
           )}
+
+          <Links>
+            {frontmatter.linkToDetails && (
+              <AnimatedLink to={item.fields.slug}>
+                &gt; View case study
+              </AnimatedLink>
+            )}
+            {frontmatter.externalUrl && (
+              <AnimatedLink target="__blank" href={frontmatter.externalUrl}>
+                &gt; {frontmatter.company}
+              </AnimatedLink>
+            )}
+          </Links>
         </Content>
       </ItemDetail>
     </Item>
@@ -205,7 +213,7 @@ const Content = styled.div`
     max-width: 663px;
     font-family: ${({ theme }) => theme.fonts.families.sansLight};
     letter-spacing: 0.03em;
-    padding-bottom: 25px;
+    padding-bottom: 33px;
 
     @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
       font-size: ${({ theme }) => theme.fonts.sizes.s};
@@ -213,7 +221,7 @@ const Content = styled.div`
   }
 
   ul {
-    padding-bottom: 25px;
+    padding-bottom: 33px;
   }
 
   li {
@@ -277,5 +285,16 @@ const Avatar = styled.div`
 
   img {
     width: 40px;
+  }
+`
+
+// TODO: compose and reuse
+const Links = styled.div`
+  div {
+    margin-bottom: 22px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
   }
 `

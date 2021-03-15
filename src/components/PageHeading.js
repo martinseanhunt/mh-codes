@@ -1,5 +1,8 @@
 import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
+import remark from 'remark'
+import recommended from 'remark-preset-lint-recommended'
+import remarkHtml from 'remark-html'
 
 import { Section } from './layout/Section'
 
@@ -7,10 +10,14 @@ import { Section } from './layout/Section'
 // TODO: DRY - lots of borrowed styles here. Running out of time now and cutting corners
 // TODO: get platform dynamically
 
-export function PageHeading({ title }) {
+export function PageHeading({ title, markdown, pageName }) {
   const theme = useContext(ThemeContext)
 
-  // TODO: decide whether to maxwidth mini terminal maxWidth={'1008px'}
+  const bodyHTML = remark()
+    .use(recommended)
+    .use(remarkHtml)
+    .processSync(markdown)
+    .toString()
 
   return (
     <>
@@ -18,12 +25,12 @@ export function PageHeading({ title }) {
       <HeadingSection>
         <MiniTerminal>
           <div>
-            <User>marty@DESKTOP</User>:<Path>~/sites/martinhunt</Path>$ cd
-            projects
+            <User>marty@DESKTOP</User>:<Path>~/sites/martinhunt</Path>$ cd{' '}
+            {pageName}
             <br />
             <User>marty@DESKTOP</User>
-            <Path>~/sites/martinhunt/projects</Path>$ cat projects.md
-            <p>Projects hand crafted with love...</p>
+            <Path>~/sites/martinhunt/{pageName}</Path>$ cat {pageName}.md
+            <div dangerouslySetInnerHTML={{ __html: bodyHTML }} />
           </div>
         </MiniTerminal>
       </HeadingSection>

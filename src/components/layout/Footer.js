@@ -4,7 +4,7 @@ import styled, { keyframes } from 'styled-components'
 import { Header } from './Header'
 import { Section } from './Section'
 import { LinkStyles } from '../AnimatedLink'
-import { AnimatedButton } from '../AnimatedButton'
+import { SignUpForm } from '../SignUpForm'
 
 // TODO: hook up sing up form
 // TODO: compose component
@@ -77,14 +77,7 @@ export function Footer() {
         </ContactDetails>
       </FooterSection>
 
-      <FooterSection title="Sign Up to The Mailing List">
-        <SignUpForm onSubmit={(e) => e.preventDefault()}>
-          <input type="email" placeholder="Email address" required={true} />
-          <SubmitButton type="submit">
-            <span>&gt;</span> Sign Up
-          </SubmitButton>
-        </SignUpForm>
-      </FooterSection>
+      <SignUpForm />
 
       <Header footer />
     </FooterContainer>
@@ -174,47 +167,5 @@ const ContactLinks = styled(LinkStyles)`
   }
   span:last-of-type {
     margin-right: 9px;
-  }
-`
-
-const SignUpForm = styled.form`
-  display: flex;
-  align-items: space-between;
-  border-bottom: 1px solid ${({ theme }) => theme.colors.slateLight};
-  padding-bottom: 12px;
-  position: relative;
-
-  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    padding-bottom: 6px;
-    margin-bottom: 35px;
-  }
-
-  input {
-    color: ${({ theme }) => theme.colors.white};
-    background: none;
-    outline: none;
-    font-family: ${({ theme }) => theme.fonts.families.sansLight};
-    font-size: ${({ theme }) => theme.fonts.sizes.l};
-    border: none;
-    padding-bottom: 5px;
-    flex: 1;
-    flex-shrink: 1;
-
-    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-      font-size: ${({ theme }) => theme.fonts.sizes.m};
-    }
-
-    &::placeholder {
-      color: ${({ theme }) => theme.colors.slateLight};
-    }
-  }
-`
-
-const SubmitButton = styled(AnimatedButton)`
-  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    font-size: ${({ theme }) => theme.fonts.sizes.xxs};
-    position: absolute;
-    left: 0;
-    bottom: -35px;
   }
 `

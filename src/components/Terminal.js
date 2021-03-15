@@ -5,8 +5,10 @@ import React, {
   useState,
   useCallback,
 } from 'react'
-import { Link } from 'gatsby'
 import styled, { ThemeContext } from 'styled-components'
+import remark from 'remark'
+import recommended from 'remark-preset-lint-recommended'
+import remarkHtml from 'remark-html'
 
 import CloseIcon from '../img/icon-close.svg'
 import PlusIcon from '../img/icon-plus.svg'
@@ -30,12 +32,12 @@ import { Section, Inner } from './layout/Section'
 // TODO: Decided on section margin for each element
 // TODO: Get terminal lines from CMS
 // TODO: implement a more SEO friendly way of hiding bio by default
-// TODO: DRY
+// TODO: Massively needs a refactor... DRY
 
 const randRange = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min)
 
-export function Terminal() {
+export function Terminal({ title, markdown, fullBio }) {
   const theme = useContext(ThemeContext)
   const inputRef = useRef()
   const innerRef = useRef()
@@ -43,35 +45,42 @@ export function Terminal() {
   const [isMobile, setIsMobile] = useState(false)
 
   const [terminalLines, setTerminalLines] = useState([])
+  const [terminalLines2, setTerminalLines2] = useState([])
   const [showBio, setShowBio] = useState(false)
+  const [showFullBio, setShowFullBio] = useState(false)
   const [showInput, setShowInput] = useState(false)
-
-  console.log(isMobile)
+  const [isAnimating, setIsAnimating] = useState(true)
 
   const focusInput = () =>
     document.activeElement !== inputRef.current && inputRef.current.focus()
 
   const addChars = useCallback(function (
     lines,
+    linesStateSetter,
     lineIndex = 0,
     charIndex = 0,
     init = true
   ) {
-    if (lineIndex === lines.length) return
+    if (lineIndex === lines.length) return setIsAnimating(false)
 
     if (lines[lineIndex] === 'bio') {
       setShowBio('true')
-      return addChars(lines, lineIndex + 1)
+      return addChars(lines, linesStateSetter, lineIndex + 1)
+    }
+
+    if (lines[lineIndex] === 'fullBio') {
+      setShowFullBio('true')
+      return addChars(lines, linesStateSetter, lineIndex + 1)
     }
 
     if (lines[lineIndex] === 'input') {
       setShowInput('true')
-      return addChars(lines, lineIndex + 1)
+      return addChars(lines, linesStateSetter, lineIndex + 1)
     }
 
     const [path, command] = lines[lineIndex]
 
-    setTerminalLines((lines) => {
+    linesStateSetter((lines) => {
       const line = lines[lineIndex]
 
       if (!line)
@@ -100,7 +109,14 @@ export function Terminal() {
     }
 
     setTimeout(
-      () => addChars(lines, nextLineIndex, nextCharIndex, nextInit),
+      () =>
+        addChars(
+          lines,
+          linesStateSetter,
+          nextLineIndex,
+          nextCharIndex,
+          nextInit
+        ),
       nextTimeout
     )
   },
@@ -114,16 +130,28 @@ export function Terminal() {
       'input',
     ]
 
+    setIsAnimating(true)
     setShowInput(false)
     setShowBio(false)
     setTerminalLines([])
-    addChars(lines)
+    setTerminalLines2([])
+    addChars(lines, setTerminalLines)
   }, [addChars])
 
-  useEffect(() => {
-    // turning this off for now, casuses a ux issue where the page can jump
-    // if (showInput) focusInput()
-  }, [showInput])
+  const onClickBio = (e) => {
+    e.preventDefault()
+    if (showFullBio || e.target.tagName !== 'A' || isAnimating) return false
+
+    const lines = [
+      ['~/sites/martinhunt', 'cat full-bio.md'],
+      'fullBio',
+      'input',
+    ]
+
+    setIsAnimating(true)
+    setShowInput(false)
+    addChars(lines, setTerminalLines2)
+  }
 
   const bp = theme.layout.breakPoints.small.replace('px', '')
   useEffect(() => {
@@ -142,9 +170,15 @@ export function Terminal() {
 
   const platform = isMobile ? 'MOBILE' : 'DESKTOP'
 
+  const bioHTML = remark()
+    .use(recommended)
+    .use(remarkHtml)
+    .processSync(markdown)
+    .toString()
+
   return (
     <>
-      <TitleSection title="Martin Hunt - Software Engineer & Technical Lead" />
+      <TitleSection title={title} />
       <TerminalSection
         maxWidth={theme.layout.terminal.maxWidth}
         onClick={() => inputRef.current && focusInput()}
@@ -182,24 +216,23 @@ export function Terminal() {
               )}
 
               {showBio && (
-                <Bio>
-                  <p>Hi, I’m *Martin Hunt*</p>
+                <Bio
+                  dangerouslySetInnerHTML={{ __html: bioHTML }}
+                  onClick={onClickBio}
+                />
+              )}
 
-                  <p>
-                    I’m a **creative**, **passionate** and **purpose oriented**
-                    software engineer\ <br />
-                    / technical lead. I've spent the last 11+ years mastering my
-                    craft, building\ <br />
-                    mission driven technical teams and developing production
-                    grade applications...
-                  </p>
+              {terminalLines2.length
+                ? terminalLines2.map(([path, command], i) => (
+                    <div key={i}>
+                      <User>marty@{platform}</User>:<Path>{path}</Path>${' '}
+                      {command}
+                    </div>
+                  ))
+                : undefined}
 
-                  <p>
-                    <Link to="/bio">
-                      [READ FULL BIO](/bio "Learn more about me")
-                    </Link>{' '}
-                  </p>
-                </Bio>
+              {showFullBio && (
+                <Bio dangerouslySetInnerHTML={{ __html: fullBio }} />
               )}
 
               {showInput && (
@@ -320,7 +353,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   font-family: ${({ theme }) => theme.fonts.families.mono};
-  padding: 30px;
+  padding: 30px 30px 45px 30px;
   min-height: 314px;
   box-shadow: 0px 1px 15px ${({ theme }) => theme.colors.shadow};
   border-radius: 0px 0px
@@ -329,9 +362,10 @@ const Content = styled.div`
   font-size: ${({ theme }) => theme.fonts.sizes.s};
   line-height: ${({ theme }) => theme.fonts.lineHeight.terminal};
   word-wrap: break-word;
+  max-width: 777px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    padding: 30px 22px;
+    padding: 30px 22px 45px 22px;
   }
 
   p {
@@ -400,4 +434,8 @@ const Input = styled.input`
   padding: 0;
   flex: 1;
   margin-left: 8px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    display: none;
+  }
 `

@@ -3,18 +3,25 @@ import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 import styled from 'styled-components'
 import { defineCustomElements as deckDeckGoHighlightElement } from '@deckdeckgo/highlight-code/dist/loader'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import { Section } from '../components/layout/Section'
 
-import GQL from '../img/gql.png'
+import { AnimatedLink } from '../components/AnimatedLink'
 
 deckDeckGoHighlightElement()
 
-export default function BlogPost({ data }) {
-  const { markdownRemark, site } = data
-  const { frontmatter, html } = markdownRemark
+export default function BlogPost({ data, pageContext }) {
+  const {
+    post: { frontmatter, html },
+    site,
+  } = data
+  const { next, prev } = pageContext
 
-  // TODO: Featured image from CMS
+  const featuredImage = getImage(frontmatter.image)
+
+  const nextPost = prev || next
+
   // TODO: Ability to add image captions to netlify
 
   return (
@@ -24,25 +31,63 @@ export default function BlogPost({ data }) {
         defer={false}
       />
 
-      <Section maxWidth="800px">
+      <PostSection maxWidth="800px">
         <Post>
           <Title>{frontmatter.title}</Title>
           <Date>{frontmatter.date}</Date>
-          <FeaturedImage>
-            <img src={GQL} alt="TODO: featured image from CMS" />
-          </FeaturedImage>
+          {featuredImage && (
+            <FeaturedImage>
+              <GatsbyImage
+                image={featuredImage}
+                alt={`${frontmatter.title} featured image`}
+              />
+            </FeaturedImage>
+          )}
           <Content
             className="blog-post-content"
             dangerouslySetInnerHTML={{ __html: html }}
           />
+
+          <Meta>
+            <div>
+              <span>~/tags</span>${' '}
+            </div>
+            <div>
+              {frontmatter.tags
+                ? frontmatter.tags.map(
+                    (t, i) =>
+                      `${t}${i < frontmatter.tags.length - 1 ? ', ' : ''}`
+                  )
+                : 'no tags yet'}
+            </div>
+          </Meta>
         </Post>
-      </Section>
+      </PostSection>
+
+      {nextPost && (
+        <NextPost maxWidth="680px" title={prev ? 'Previous Post' : 'Next Post'}>
+          <h2>{nextPost.frontmatter.title}</h2>
+          <AnimatedLink to={nextPost.fields.slug}>&gt; Read More</AnimatedLink>
+        </NextPost>
+      )}
     </>
   )
 }
 
+const PostSection = styled(Section)`
+  margin-bottom: 72px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    margin-bottom: 65px;
+  }
+`
+
 const Post = styled.article`
   padding: 0 60px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding: 0;
+  }
 `
 
 const Title = styled.h1`
@@ -63,10 +108,18 @@ const Date = styled.span`
 `
 
 const FeaturedImage = styled.div`
-  width: 800px;
   position: relative;
-  left: -60px;
   margin-bottom: 42px;
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    left: -22px;
+    width: 100vw;
+  }
+
+  @media ${({ theme }) => theme.layout.mediaQueries.minFull} {
+    width: 800px;
+    left: -60px;
+  }
 `
 
 const Content = styled.div`
@@ -107,6 +160,55 @@ const Content = styled.div`
   }
 `
 
+const NextPost = styled(Section)`
+  h3 {
+    margin-bottom: 22px;
+
+    @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+      margin-bottom: 18px;
+    }
+  }
+
+  h2 {
+    line-height: 3.1rem;
+    font-size: ${({ theme }) => theme.fonts.sizes.xl};
+    color: ${({ theme }) => theme.fonts.families.terminalBlack};
+    font-family: ${({ theme }) => theme.fonts.families.sans};
+    max-width: 600px;
+    margin-bottom: 33px;
+  }
+`
+
+// TODO: Reusable component
+const Meta = styled.div`
+  background: ${({ theme }) => theme.colors.terminalBlack};
+  padding: 20px 30px;
+  display: flex;
+  min-height: 55px;
+  color: ${({ theme }) => theme.colors.white};
+  font-family: ${({ theme }) => theme.fonts.families.mono};
+
+  div:first-of-type {
+    flex-shrink: 0;
+  }
+
+  div:last-of-type {
+    padding-left: 7px;
+  }
+
+  a {
+    color: ${({ theme }) => theme.colors.white};
+    margin-left: 5px;
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+
+  span {
+    color: ${({ theme }) => theme.colors.terminalBlue};
+  }
+`
+
 export const PostDetail = graphql`
   fragment PostDetail on MarkdownRemark {
     fields {
@@ -120,6 +222,12 @@ export const PostDetail = graphql`
       date(formatString: "Do MMMM, YYYY")
       title
       externalUrl
+      tags
+      image {
+        childImageSharp {
+          gatsbyImageData(width: 800)
+        }
+      }
     }
     excerpt
   }
@@ -128,7 +236,7 @@ export const PostDetail = graphql`
 export const query = graphql`
   query($slug: String!) {
     ...SiteMeta
-    markdownRemark(fields: { slug: { eq: $slug } }) {
+    post: markdownRemark(fields: { slug: { eq: $slug } }) {
       ...PostDetail
     }
   }

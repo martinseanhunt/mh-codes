@@ -1,11 +1,12 @@
 import React from 'react'
 import styled from 'styled-components'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 import { AnimatedLink } from './AnimatedLink'
 
-import MicroServices from '../img/kubernetes.png'
-
 export function ProjectItem({ project: { frontmatter, ...project } }) {
+  const logo = getImage(frontmatter.logo)
+
   return (
     <Item>
       <article>
@@ -36,14 +37,17 @@ export function ProjectItem({ project: { frontmatter, ...project } }) {
           )}
           {frontmatter.liveUrl && (
             <AnimatedLink href={frontmatter.liveUrl}>
-              &gt; source code on github
+              &gt; Live demo
             </AnimatedLink>
           )}
         </Links>
       </article>
-      <Image>
-        <img src={MicroServices} alt="Microservices image" />
-      </Image>
+
+      {logo && (
+        <Image>
+          <GatsbyImage image={logo} alt="technology logo" />
+        </Image>
+      )}
     </Item>
   )
 }
@@ -105,7 +109,13 @@ const Item = styled.li`
 `
 
 const Links = styled.div`
-  display: flex;
+  div {
+    margin-bottom: 22px;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
 `
 
 const Image = styled.div`
@@ -121,7 +131,6 @@ const Image = styled.div`
   right: 0;
 
   img {
-    position: relative;
     width: 35px;
   }
 

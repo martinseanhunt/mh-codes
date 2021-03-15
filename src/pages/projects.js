@@ -21,7 +21,8 @@ export default function Projects({ data }) {
       />
       <PageHeading
         title={`${site?.siteMetadata?.title} - ${page.frontmatter.heading}`}
-        body={page.html}
+        markdown={page.frontmatter.intro}
+        pageName="projects"
       />
       <ProjectsSection>
         <ul>
@@ -48,8 +49,8 @@ export const query = graphql`
       frontmatter {
         heading
         htmlTitle
+        intro
       }
-      html
     }
     projects: allMarkdownRemark(
       filter: { frontmatter: { templateKey: { eq: "project" } } }
@@ -70,6 +71,11 @@ export const query = graphql`
           github
           liveUrl
           linkToDetails
+          logo {
+            childImageSharp {
+              gatsbyImageData(width: 35)
+            }
+          }
         }
       }
     }
