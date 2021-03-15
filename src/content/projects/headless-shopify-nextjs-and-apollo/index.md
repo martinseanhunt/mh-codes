@@ -23,7 +23,7 @@ tags:
   - SSG
   - Apollo
   - Headless
-logo: next-js.svg
+logo: apple-touch-icon.png
 github: https://github.com/martinseanhunt/next-shopify
 liveUrl: https://next-shopify-goodery.vercel.app/
 linkToDetails: false
