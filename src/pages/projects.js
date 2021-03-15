@@ -54,6 +54,7 @@ export const query = graphql`
     }
     projects: allMarkdownRemark(
       filter: { frontmatter: { templateKey: { eq: "project" } } }
+      sort: { fields: [frontmatter___order], order: [ASC] }
     ) {
       nodes {
         fields {

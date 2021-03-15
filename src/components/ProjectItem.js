@@ -31,12 +31,12 @@ export function ProjectItem({ project: { frontmatter, ...project } }) {
             </AnimatedLink>
           )}
           {frontmatter.github && (
-            <AnimatedLink href={frontmatter.github}>
+            <AnimatedLink href={frontmatter.github} target="__blank">
               &gt; source code on github
             </AnimatedLink>
           )}
           {frontmatter.liveUrl && (
-            <AnimatedLink href={frontmatter.liveUrl}>
+            <AnimatedLink href={frontmatter.liveUrl} target="__blank">
               &gt; Live demo
             </AnimatedLink>
           )}
