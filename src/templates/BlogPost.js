@@ -229,7 +229,7 @@ export const PostDetail = graphql`
         }
       }
     }
-    excerpt
+    excerpt(truncate: false, pruneLength: 350)
   }
 `
 

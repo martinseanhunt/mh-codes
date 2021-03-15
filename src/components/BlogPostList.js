@@ -30,13 +30,7 @@ export function BlogPostList({ posts, title, noTitle, fullList }) {
               </Title>
 
               {fullList && (
-                <Excerpt>
-                  {post.frontmatter.excerpt || post.excerpt}
-                  {post.frontmatter.excerpt || post.excerpt}
-                  {post.frontmatter.excerpt || post.excerpt}
-                  {post.frontmatter.excerpt || post.excerpt}
-                  {post.frontmatter.excerpt || post.excerpt}
-                </Excerpt>
+                <Excerpt>{post.frontmatter.excerpt || post.excerpt}</Excerpt>
               )}
 
               <AnimatedLink
