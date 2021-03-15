@@ -17,11 +17,20 @@ excerpt: Having, up unitl this point in my career, worked mostly within
 acheivements:
   - Providing technical leadership for a cross fuctional, agile product delivery
     team comprising of front end, back end, data science and QA engineers.
-  - Making criticial architechtural decisions and leading a re-architecture of
-    the monolithic React front end to utilise micro front ends.
+  - Making criticial architechtural decisions and leading a complete re
+    architecture of the monolithic React front end. Exploring micro front end
+    architecture to allow product delivery teams to take ownership of entire
+    parts of the product.
   - Line management of front end engineers across the entire organisation.
   - Taking ownership of various internal process and their improvement.
   - Rapid prototyping of experimental new functionality.
+  - Maintaining and developing our React front end application and component
+    library.
+  - Mentorship of junior developer and code reviews.
+  - Working closely with QA to improve our front end automated testing
+    strategies / standards.
+  - "Defining a set of standards and best practices for end to end testing using
+    cypress "
 linkToDetails: false
 externalUrl: https://adarga.ai
 ---
