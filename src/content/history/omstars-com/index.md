@@ -9,10 +9,10 @@ excerpt: >+
   took a varied and engaging remote position as Technical Director for the
   online Yoga education platform Omstars.com. When I first joined Omstars, they
   had recently completed version 1 of their yoga on demand streaming service
-  which was funded by a successful crowdfunding campain. The application, whilst
-  functional as an MVP, had a number of architechtural challenges and I spent
-  the next 3 years maturing the platform, helping omstars grow in to a major
-  player in the online Yoga and wellness space.
+  which was funded by a successful crowdfunding campaign. The application,
+  whilst functional as an MVP, had a number of architechtural challenges and I
+  spent the next 3 years maturing the platform, helping Omstars grow in to a
+  major player in the online Yoga and wellness space.
 
 acheivements:
   - Responsible for techncial strategy and mission critical architechtural
