@@ -18,10 +18,10 @@ tags:
   - nats
   - node
   - microservices
+logo: kubernetes.png
 github: https://github.com/martinseanhunt/microservices-voting
-liveUrl: https://github.com/martinseanhunt/microservices-voting
-linkToDetails: true
-logo: kino-1c56c688e90ba25aaec0fb90ac0da07c.png
+liveUrl: ""
+linkToDetails: false
 ---
 
 This project was the culmination of a dedicated period of personal study and development in order to learn more about back end microservice architecture. Each service uses its own database, and data is shared between services asynchronously using NATS streaming server. This raises lots of interesting considerations around data synchronization and concurrency. No service has a direct dependency on any other, so downtime for any given service is handled and recovered from gracefully. The project uses Kubernetes for container orchestration and Github Actions for CI/CD. It is deployed to an EKS Kubernetes cluster in AWS.\
