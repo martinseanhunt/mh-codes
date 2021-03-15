@@ -6,7 +6,6 @@ import { Section } from './layout/Section'
 import { AnimatedLink } from './AnimatedLink'
 import { WorkHistoryItem } from './WorkHistoryItem'
 
-// TODO: Use fragment for work history detail
 export function WorkHistory({ title }) {
   const {
     allMarkdownRemark: { nodes: history },
@@ -14,6 +13,7 @@ export function WorkHistory({ title }) {
     query WorkHistory {
       allMarkdownRemark(
         filter: { frontmatter: { templateKey: { eq: "history-item" } } }
+        sort: { fields: frontmatter___order, order: [ASC] }
       ) {
         nodes {
           fields {
@@ -47,9 +47,6 @@ export function WorkHistory({ title }) {
   return (
     <WorkSection title={title || 'the journey so far'}>
       <ul>
-        {history?.map((item) => (
-          <WorkHistoryItem item={item} key={item.fields.slug} />
-        ))}
         {history?.map((item) => (
           <WorkHistoryItem item={item} key={item.fields.slug} />
         ))}

@@ -66,7 +66,7 @@ export function SignUpForm() {
         </SubmitButton>
       </Form>
 
-      {error && <Error>{error}</Error>}
+      {error && <Error dangerouslySetInnerHTML={{ __html: error }} />}
       {success && <Success>Thank you! You have been added to the list</Success>}
     </SignUpSection>
   )
@@ -134,4 +134,8 @@ const Success = styled.span`
 
 const Error = styled(Success)`
   color: ${({ theme }) => theme.colors.terminalBlue};
+
+  * {
+    color: ${({ theme }) => theme.colors.terminalBlue};
+  }
 `

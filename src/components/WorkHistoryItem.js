@@ -5,7 +5,6 @@ import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 import { AnimatedLink } from './AnimatedLink'
 
 // TODO: compose component
-// TOOO: get testimonial from CMS
 
 export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
   const [expanded, setExpanded] = useState(false)
@@ -31,7 +30,9 @@ export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
       <span>{frontmatter.dates}</span>
 
       <ItemDetail ref={detailRef}>
-        <Content paddBottom={frontmatter.linkToDetails}>
+        <Content
+          paddBottom={frontmatter.linkToDetails || frontmatter.externalUrl}
+        >
           <p>{frontmatter.excerpt || item.excerpt}</p>
 
           <ul>
@@ -65,7 +66,7 @@ export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
             )}
             {frontmatter.externalUrl && (
               <AnimatedLink target="__blank" href={frontmatter.externalUrl}>
-                &gt; {frontmatter.company}
+                &gt; learn more at {frontmatter.company}
               </AnimatedLink>
             )}
           </Links>
@@ -267,7 +268,7 @@ const Quote = styled.figure`
     margin-left: 27px;
     font-family: ${({ theme }) => theme.fonts.families.mono};
     font-size: ${({ theme }) => theme.fonts.sizes.s};
-    margin-bottom: ${({ paddBottom }) => (paddBottom ? '50px' : '25px')};
+    margin-bottom: 50px;
 
     @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
       font-size: ${({ theme }) => theme.fonts.sizes.xxs};
@@ -295,6 +296,10 @@ const Links = styled.div`
 
     &:last-child {
       margin-bottom: 0;
+    }
+
+    &:first-child {
+      margin-bottom: 22px;
     }
   }
 `

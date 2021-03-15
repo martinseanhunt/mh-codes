@@ -21,3 +21,7 @@ compose / reusable componets
 add "clear" before fullbio animation
 
 add domain to deployment!
+
+set up netlify cms permissions on live sitegit
+
+make default wait speed -0 when clicking fullBio link
