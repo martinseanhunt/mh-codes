@@ -166,6 +166,7 @@ const Title = styled.h2`
   color: ${({ theme }) => theme.colors.slate};
   line-height: 3.1rem;
   margin-bottom: 27px;
+  max-width: 670px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     // font-size: ${({ theme }) => theme.fonts.sizes.l};

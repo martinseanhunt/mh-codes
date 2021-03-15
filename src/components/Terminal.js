@@ -57,6 +57,7 @@ export function Terminal({ title, markdown, fullBio }) {
   const addChars = useCallback(function (
     lines,
     linesStateSetter,
+    initialDelay = null,
     lineIndex = 0,
     charIndex = 0,
     init = true
@@ -65,17 +66,17 @@ export function Terminal({ title, markdown, fullBio }) {
 
     if (lines[lineIndex] === 'bio') {
       setShowBio('true')
-      return addChars(lines, linesStateSetter, lineIndex + 1)
+      return addChars(lines, linesStateSetter, initialDelay, lineIndex + 1)
     }
 
     if (lines[lineIndex] === 'fullBio') {
       setShowFullBio('true')
-      return addChars(lines, linesStateSetter, lineIndex + 1)
+      return addChars(lines, linesStateSetter, initialDelay, lineIndex + 1)
     }
 
     if (lines[lineIndex] === 'input') {
       setShowInput('true')
-      return addChars(lines, linesStateSetter, lineIndex + 1)
+      return addChars(lines, linesStateSetter, initialDelay, lineIndex + 1)
     }
 
     const [path, command] = lines[lineIndex]
@@ -98,7 +99,7 @@ export function Terminal({ title, markdown, fullBio }) {
     let nextInit = false
 
     if (init) {
-      nextTimeout = randRange(1000, 2000)
+      nextTimeout = initialDelay || randRange(1000, 2000)
     } else if (charIndex === command.length - 1) {
       nextCharIndex = 0
       nextLineIndex++
@@ -113,6 +114,7 @@ export function Terminal({ title, markdown, fullBio }) {
         addChars(
           lines,
           linesStateSetter,
+          initialDelay,
           nextLineIndex,
           nextCharIndex,
           nextInit
@@ -150,7 +152,7 @@ export function Terminal({ title, markdown, fullBio }) {
 
     setIsAnimating(true)
     setShowInput(false)
-    addChars(lines, setTerminalLines2)
+    addChars(lines, setTerminalLines2, 50)
   }
 
   const bp = theme.layout.breakPoints.small.replace('px', '')
