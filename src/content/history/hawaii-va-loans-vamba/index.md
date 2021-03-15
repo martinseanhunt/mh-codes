@@ -2,7 +2,7 @@
 templateKey: history-item
 company: Hawaii VA Loans / Vamba
 order: 2
-role: Lead Engineer
+role: Lead Developer
 dates: AUGUST 2010 - FEBRUARY 2016
 excerpt: After running my own business for 2 years, I was offered a full time,
   remote,  high responsibility position by an existing client with whom I
