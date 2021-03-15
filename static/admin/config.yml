@@ -13,21 +13,54 @@ collections:
       - file: 'src/content/pages/home.md'
         label: 'Home Page'
         name: 'home'
+        media_folder: ''
+        public_folder: ''
         editor:
           preview: false
         fields:
           - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
           - { label: 'Headline', name: 'heading', widget: 'string' }
-          - { label: 'Intro Text', name: 'body', widget: 'markdown' }
+          - { label: 'Bio', name: 'bio', widget: 'markdown' }
+          - { label: 'FullBio', name: 'body', widget: 'markdown' }
+          - {
+              label: 'History Section Title',
+              name: 'historyTitle',
+              widget: 'string',
+            }
       - file: 'src/content/pages/projects.md'
         label: 'Projects'
         name: 'projects'
+        media_folder: ''
+        public_folder: ''
         editor:
           preview: false
         fields:
           - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
           - { label: 'Headline', name: 'heading', widget: 'string' }
-          - { label: 'Intro Text', name: 'body', widget: 'text' }
+          - { label: 'Intro Text', name: 'intro', widget: 'markdown' }
+      - file: 'src/content/pages/blog.md'
+        label: 'Blog'
+        name: 'blog'
+        media_folder: ''
+        public_folder: ''
+        editor:
+          preview: false
+        fields:
+          - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
+          - { label: 'Headline', name: 'heading', widget: 'string' }
+          - { label: 'Intro Text', name: 'intro', widget: 'markdown' }
+      - file: 'src/content/pages/bio.md'
+        label: 'Bio'
+        name: 'bio'
+        media_folder: ''
+        public_folder: ''
+        editor:
+          preview: false
+        fields:
+          - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
+          - { label: 'Headline', name: 'heading', widget: 'string' }
+          - { label: 'Intro Text', name: 'intro', widget: 'markdown' }
+          - { label: 'Bio', name: 'body', widget: 'markdown' }
 
   - name: 'blog'
     label: 'Blog'
@@ -56,7 +89,20 @@ collections:
           hint: 'Leave blank for an internal post',
         }
       - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - {
+          label: 'Featured Image',
+          name: 'image',
+          widget: 'image',
+          allow_multiple: false,
+          required: false,
+        }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {
+          label: 'Linked Post',
+          name: 'linkedPost',
+          widget: 'string',
+          required: false,
+        }
 
   - name: 'history'
     label: 'History'
@@ -100,8 +146,34 @@ collections:
           required: false,
           field: { label: Acheivement, name: 'acheivement', widget: 'string' },
         }
-      - { label: 'Tags', name: 'tags', widget: 'list' }
+      - { label: 'Tags', name: 'tags', widget: 'list', required: false }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {
+          label: 'Featured Image',
+          name: 'image',
+          widget: 'image',
+          allow_multiple: false,
+          required: false,
+        }
+      - {
+          label: 'Testimonial',
+          name: 'testimonial',
+          widget: 'text',
+          required: false,
+        }
+      - {
+          label: 'Testimonial Author',
+          name: 'testimonialAuthor',
+          widget: 'string',
+          required: false,
+        }
+      - {
+          label: 'Testimonial Avatar',
+          name: 'testimonialAvatar',
+          widget: 'image',
+          allow_multiple: false,
+          required: false,
+        }
       - {
           label: 'Link To Details Page',
           name: 'linkToDetails',
@@ -145,6 +217,12 @@ collections:
         }
       - { label: 'Tags', name: 'tags', widget: 'list', required: false }
       - { label: 'Body', name: 'body', widget: 'markdown' }
+      - {
+          label: 'Featured Logos',
+          name: 'logos',
+          widget: 'image',
+          required: false,
+        }
       - {
           label: 'Github Url',
           name: 'github',
