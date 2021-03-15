@@ -1,7 +1,6 @@
 ---
 templateKey: blog-post
-title: Introducing [NEURO] pool - A Cardano stake pool funding neruodegenerative
-  disease research
+title: Introducing [NEURO] pool - Funding neruodegenerative disease research
 tags:
   - Cardano
   - Blockchain
