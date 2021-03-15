@@ -127,6 +127,7 @@ const Meta = styled.div`
   min-height: 55px;
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.families.mono};
+  text-transform: lowercase;
 
   div:first-of-type {
     flex-shrink: 0;

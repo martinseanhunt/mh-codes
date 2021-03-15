@@ -38,8 +38,6 @@ export function SignUpForm() {
     )
   }
 
-  console.log(error, loading)
-
   return (
     <SignUpSection title="Sign Up to The Mailing List">
       <Form

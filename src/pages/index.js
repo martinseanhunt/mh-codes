@@ -51,7 +51,7 @@ export const query = graphql`
     }
     blog: allMarkdownRemark(
       filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
-      sort: { fields: [frontmatter___date], order: [ASC] }
+      sort: { fields: [frontmatter___date], order: [DESC] }
       limit: 2
     ) {
       nodes {

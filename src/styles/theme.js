@@ -23,8 +23,6 @@ const mediaQueries = Object.entries(breakPoints).reduce(
   {}
 )
 
-console.log(mediaQueries)
-
 export const theme = {
   colors: {
     dark: '#1D1335',
