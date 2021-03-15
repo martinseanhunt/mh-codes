@@ -1,6 +1,6 @@
 ---
 templateKey: blog-post
-title: A guide to NFT's on the Cardano blockchain
+title: "This is a test post with lots of different content. Delete soon. "
 tags:
   - cardano
   - blockchain
