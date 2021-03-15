@@ -58,8 +58,8 @@ exports.createPages = async ({ actions, graphql, reporter }) => {
 
   const { edges: posts } = result.data.allMarkdownRemark
   posts.forEach(({ node }, i) => {
-    const prev = i === 0 ? false : posts[i - 1].node
-    const next = i === posts.length - 1 ? false : posts[i + 1].node
+    const prev = i === 0 ? null : posts[i - 1].node
+    const next = i === posts.length - 1 ? null : posts[i + 1].node
 
     createPage({
       path: node.fields.slug,

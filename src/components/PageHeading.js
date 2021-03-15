@@ -1,18 +1,15 @@
-import React, { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import React from 'react'
+import styled from 'styled-components'
 import remark from 'remark'
 import recommended from 'remark-preset-lint-recommended'
 import remarkHtml from 'remark-html'
 
 import { Section } from './layout/Section'
 
-// TODO: lines from CMS - update CMS for new format
 // TODO: DRY - lots of borrowed styles here. Running out of time now and cutting corners
 // TODO: get platform dynamically
 
 export function PageHeading({ title, markdown, pageName }) {
-  const theme = useContext(ThemeContext)
-
   const bodyHTML = remark()
     .use(recommended)
     .use(remarkHtml)
@@ -56,14 +53,6 @@ const HeadingSection = styled(Section)`
     );
     margin-bottom: 65px;
   }
-`
-
-const Body = styled.div`
-  font-size: ${({ theme }) => theme.fonts.sizes.m};
-  font-family: ${({ theme }) => theme.fonts.families.sansLight};
-  color: ${({ theme }) => theme.colors.slate};
-  letter-spacing: 0.03em;
-  line-height: 2.4rem;
 `
 
 const MiniTerminal = styled.ul`

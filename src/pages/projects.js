@@ -6,12 +6,9 @@ import styled from 'styled-components'
 import { Section } from '../components/layout/Section'
 import { PageHeading } from '../components/PageHeading'
 import { ProjectItem } from '../components/ProjectItem'
-import { BlogPostList } from '../components/BlogPostList'
 
 export default function Projects({ data }) {
   const { site, page, projects } = data
-
-  // TODO: get updated data format for page from CMS
 
   return (
     <>
@@ -74,7 +71,7 @@ export const query = graphql`
           linkToDetails
           logo {
             childImageSharp {
-              gatsbyImageData(width: 35)
+              gatsbyImageData(width: 35, placeholder: TRACED_SVG)
             }
           }
         }

@@ -1,8 +1,4 @@
-important TODOs:
-
-add real info for blog pots, bio, full bio, history and projects
-
-work history detail page or remove any case studies for now
+TODOs:
 
 get platform in to mini terminal via context
 hide sites from path on mobile
@@ -24,4 +20,4 @@ add domain to deployment!
 
 set up netlify cms permissions on live sitegit
 
-make default wait speed -0 when clicking fullBio link
+cyce through multiple technology logos on projects page
