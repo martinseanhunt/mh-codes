@@ -7,7 +7,7 @@ import { BlogPostList } from '../components/BlogPostList'
 import { WorkHistory } from '../components/WorkHistory'
 
 export default function Index({ data }) {
-  const { site, markdownRemark: page } = data
+  const { site, page, blog } = data
 
   return (
     <>
@@ -17,7 +17,7 @@ export default function Index({ data }) {
       />
       <Terminal />
       <WorkHistory />
-      <BlogPostList />
+      <BlogPostList posts={blog.nodes} />
     </>
   )
 }
@@ -35,12 +35,21 @@ export const SiteMetaQuery = graphql`
 export const query = graphql`
   query {
     ...SiteMeta
-    markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
+    page: markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
       frontmatter {
         title
         htmlTitle
       }
       html
+    }
+    blog: allMarkdownRemark(
+      filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+      sort: { fields: [frontmatter___date], order: [ASC] }
+      limit: 2
+    ) {
+      nodes {
+        ...PostDetail
+      }
     }
   }
 `

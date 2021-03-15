@@ -7,22 +7,7 @@ import { AnimatedLink } from './AnimatedLink'
 
 // TODO: Semantic html
 
-export function BlogPostList({ title, noTitle, fullList }) {
-  const {
-    allMarkdownRemark: { nodes: posts },
-  } = useStaticQuery(graphql`
-    query BlogPosts {
-      allMarkdownRemark(
-        filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
-        limit: 2
-      ) {
-        nodes {
-          ...PostDetail
-        }
-      }
-    }
-  `)
-
+export function BlogPostList({ posts, title, noTitle, fullList }) {
   return (
     <BlogSection
       title={noTitle ? undefined : title ? title : 'From The Blog'}

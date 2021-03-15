@@ -7,16 +7,14 @@ import { BlogPostList } from '../components/BlogPostList'
 
 // TODO: Get page ititle and desc from CMS
 
-export default function Blog({ data }) {
-  const { site, markdownRemark: page } = data
-
+export default function Blog({ data: { site, blog } }) {
   return (
     <>
       <Helmet title={`${site?.siteMetadata?.title} - Projects`} defer={false} />
       <PageHeading
         title={`${site?.siteMetadata?.title} - Technical ramblings`}
       />
-      <BlogPostList noTitle fullList />
+      <BlogPostList posts={blog.nodes} noTitle fullList />
     </>
   )
 }
@@ -24,12 +22,21 @@ export default function Blog({ data }) {
 export const query = graphql`
   query {
     ...SiteMeta
-    markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
+    page: markdownRemark(fileAbsolutePath: { regex: "/pages/blog/" }) {
       frontmatter {
         title
         htmlTitle
       }
       html
+    }
+    blog: allMarkdownRemark(
+      filter: { frontmatter: { templateKey: { eq: "blog-post" } } }
+      sort: { fields: [frontmatter___date], order: [ASC] }
+      limit: 9999
+    ) {
+      nodes {
+        ...PostDetail
+      }
     }
   }
 `
