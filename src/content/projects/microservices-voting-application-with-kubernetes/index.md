@@ -18,7 +18,7 @@ tags:
   - nats
   - node
   - microservices
-logo: kubernetes.png
+logo: promo-image.1580659076.png
 github: https://github.com/martinseanhunt/microservices-voting
 liveUrl: ""
 linkToDetails: false
