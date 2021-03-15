@@ -4,11 +4,9 @@ title: Introducing [NEURO] pool - Funding neruodegenerative disease research
 tags:
   - Cardano
   - Blockchain
-  - ADA
-  - Staking
   - charity
   - Neurodegenerative
-  - disease
+  - research
 date: 2021-03-15T21:09:38.008Z
 image: z4yyv8irjfl61.webp
 ---
