@@ -16,7 +16,7 @@ tags:
   - NetlifyCMS
   - SSG
   - GraphQL
-logo: download.png
+logo: gatsby-logo.png
 github: https://github.com/martinseanhunt/mh-codes
 linkToDetails: false
 ---
