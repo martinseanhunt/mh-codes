@@ -8,7 +8,7 @@ excerpt: After running my own business for 2 years, I was offered a full time,
   remote,  high responsibility position by an existing client with whom I
   greatly enjoyed working and I jumped at the opportunity. As well as building
   and maintaining a number of client facing websites for various arms of the
-  Hawaii VA Loans business I was responsible for building a B2B Saas application
+  Hawaii VA Loans business I was responsible for building a B2B SaaS application
   for the mortgage lending industry from the ground up using PHP and the
   codeigniter framework. Whilst I'm sure the technology has moved on since then,
   Vamba is still in business today and doing better than ever!
