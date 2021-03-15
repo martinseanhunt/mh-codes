@@ -18,7 +18,7 @@ acheivements:
   - Implemented "pixel perfect" ie6 compatible UI designs (those were the days -
     dues paid in full 😉).
   - Wordpress development.
-  - Ecommerce development with Magento / Shopify
+  - E-commerce development with Magento / Shopify
   - Started to build my knowledge of Javascript (and distaste for jQuery).
   - Web application development with PHP and Codeigniter.
 linkToDetails: false
