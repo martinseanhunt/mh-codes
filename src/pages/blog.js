@@ -19,6 +19,7 @@ export default function Blog({ data: { site, blog } }) {
   )
 }
 
+// TODO: Change blog posts in to fragment with varaible limit
 export const query = graphql`
   query {
     ...SiteMeta
