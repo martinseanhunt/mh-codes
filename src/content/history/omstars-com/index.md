@@ -1,6 +1,7 @@
 ---
 templateKey: history-item
 company: Omstars.com
+order: 1
 role: Technical Director
 dates: June 2017 - March 2020
 excerpt: Some description, use placeholders for content for these. Whatever kind
