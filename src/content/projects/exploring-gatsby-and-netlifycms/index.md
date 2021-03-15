@@ -5,8 +5,8 @@ order: 2
 excerpt: "This website (the one you're on right now) was built over a weekend
   and a couple of weekday evenings as an exploration in to using Gatsby and
   NetlifyCMS. I really enjoyed putting this one together (although the time
-  constraints, not to mention the process much designing in the browser, led to
-  quite a few instances of choosing development speed over best practice /
+  constraints, not to mention lots of designing in the browser, led to quite a
+  few instances of choosing development speed over best practice /
   extensibility) and I think NetlifyCMS will be my new go-to when a more
   comprehensive headless API based CMS like Sanity or Contentful would be
   overkill. "
