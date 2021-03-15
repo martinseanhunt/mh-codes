@@ -5,7 +5,7 @@ tags:
   - cardano
   - blockchain
   - nft
-date: 2021-03-09T20:56:53.804Z
+date: 2018-01-01T20:56:53.804Z
 image: gql-b11c25531e6437d931c9eaa917487e1c.png
 ---
 After spending some time diving in to understanding and implementing a graphQL based stack *I’m blown away by how easy it is to rapidly develop complex applications.* I’m particularly impressed by how graphQL queries empower front end developers to access the data they need across multiple related data types without needing a *specific* endpoint for each query.
