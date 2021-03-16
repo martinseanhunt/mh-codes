@@ -1,7 +1,5 @@
 TODOs:
 
-FIX KEY PROP ERRORS ETC
-
 get platform in to mini terminal via context
 hide sites from path on mobile
 

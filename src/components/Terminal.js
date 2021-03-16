@@ -126,8 +126,8 @@ export function Terminal({ title, markdown, fullBio }) {
 
   useEffect(() => {
     const lines = [
-      ['~', 'cd sites/martinhunt'],
-      ['~/sites/martinhunt', 'cat bio.md'],
+      ['~', 'cd mh-codes'],
+      ['~/mh-codes', 'cat bio.md'],
       'bio',
       'input',
     ]
@@ -144,11 +144,7 @@ export function Terminal({ title, markdown, fullBio }) {
     e.preventDefault()
     if (showFullBio || e.target.tagName !== 'A' || isAnimating) return false
 
-    const lines = [
-      ['~/sites/martinhunt', 'cat full-bio.md'],
-      'fullBio',
-      'input',
-    ]
+    const lines = [['~/mh-codes', 'cat full-bio.md'], 'fullBio', 'input']
 
     setIsAnimating(true)
     setShowInput(false)
@@ -240,8 +236,7 @@ export function Terminal({ title, markdown, fullBio }) {
               {showInput && (
                 <InputLine>
                   <div>
-                    <User>marty@{platform}</User>:
-                    <Path>~/sites/martinhunt</Path>$
+                    <User>marty@{platform}</User>:<Path>~/mh-codes</Path>$
                   </div>
                   <Input type="text" ref={inputRef}></Input>
                 </InputLine>

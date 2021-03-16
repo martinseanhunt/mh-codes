@@ -22,11 +22,10 @@ export function PageHeading({ title, markdown, pageName }) {
       <HeadingSection>
         <MiniTerminal>
           <div>
-            <User>marty@DESKTOP</User>:<Path>~/sites/martinhunt</Path>$ cd{' '}
-            {pageName}
+            <User>marty@DESKTOP</User>:<Path>~/mh-codes</Path>$ cd {pageName}
             <br />
             <User>marty@DESKTOP</User>
-            <Path>~/sites/martinhunt/{pageName}</Path>$ cat {pageName}.md
+            <Path>~/mh-codes/{pageName}</Path>$ cat {pageName}.md
             <div dangerouslySetInnerHTML={{ __html: bodyHTML }} />
           </div>
         </MiniTerminal>
