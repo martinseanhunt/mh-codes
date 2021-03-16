@@ -65,7 +65,11 @@ export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
               </AnimatedLink>
             )}
             {frontmatter.externalUrl && (
-              <AnimatedLink target="__blank" href={frontmatter.externalUrl}>
+              <AnimatedLink
+                target="_blank"
+                rel="noreferrer"
+                href={frontmatter.externalUrl}
+              >
                 &gt; learn more at {frontmatter.company}
               </AnimatedLink>
             )}

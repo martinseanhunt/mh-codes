@@ -1,8 +1,5 @@
 TODOs:
 
-get platform in to mini terminal via context
-hide sites from path on mobile
-
 add // to start of every line in a h3
 
 refactor / theme

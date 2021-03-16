@@ -21,7 +21,11 @@ export function BlogPostList({ posts, title, noTitle, fullList }) {
               <Date>{post.frontmatter.date}</Date>
               <Title>
                 {post.frontmatter.externalUrl ? (
-                  <a href={post.frontmatter.externalUrl} target="__blank">
+                  <a
+                    href={post.frontmatter.externalUrl}
+                    target="_blank"
+                    rel="noreferrer"
+                  >
                     {post.frontmatter.title}
                   </a>
                 ) : (
@@ -37,6 +41,8 @@ export function BlogPostList({ posts, title, noTitle, fullList }) {
                 href={post.frontmatter.externalUrl}
                 to={post.fields.slug ? post.fields.slug : undefined}
                 className="rm-animated"
+                target={post.frontmatter.externalUrl ? '_blank' : undefined}
+                rel={post.frontmatter.externalUrl ? 'noreferrer' : undefined}
               >
                 &gt; Read More{' '}
                 {post.frontmatter.externalUrl && '(external link)'}

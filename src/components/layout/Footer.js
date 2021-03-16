@@ -60,7 +60,11 @@ export function Footer() {
           <ul>
             <li>
               <ContactLinks>
-                <a href="https://github.com/martinseanhunt" target="__blank">
+                <a
+                  href="https://github.com/martinseanhunt"
+                  target="_blank"
+                  rel="noreferrer"
+                >
                   <span>&gt;</span> github.com/martinseanhunt
                 </a>
                 <a href="mailto:martin@mh.codes">
