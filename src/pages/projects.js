@@ -24,7 +24,7 @@ export default function Projects({ data }) {
       <ProjectsSection>
         <ul>
           {projects.nodes.map((project) => (
-            <ProjectItem project={project} />
+            <ProjectItem key={project.id} project={project} />
           ))}
         </ul>
       </ProjectsSection>

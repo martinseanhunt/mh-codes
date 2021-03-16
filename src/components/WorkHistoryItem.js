@@ -37,7 +37,7 @@ export function WorkHistoryItem({ item: { frontmatter, ...item } }) {
 
           <ul>
             {frontmatter.acheivements.map((a) => (
-              <li key={a.slice(0, 10).replace(' ', '-')}>{a}</li>
+              <li key={a.slice(20, 40).replace(' ', '-')}>{a}</li>
             ))}
           </ul>
 

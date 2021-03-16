@@ -7,15 +7,7 @@ import LogoClose from '../../img/logo-close.svg'
 
 import { Section } from './Section'
 
-// TODO: Build menu from pages in gql query
-// TODO: Style active links etc (simple underline)
-// TODO: Hover effects / animations
-// TODO: Favicon
-
-// TODO: Conditionally render footer element if in context of footer
-// TODO: Prevent scroll when mobile menu is open
-// TODO: render menu itemms programatically: DRY
-// TODO: Seperate footer component!
+// TODO: Seperate footer component or tidy up this dual implementation
 
 export function Header({ footer }) {
   // Only used on mobile
@@ -49,7 +41,7 @@ export function Header({ footer }) {
           </Burger>
           <ul>
             {links.map(([path, linkName]) => (
-              <li>
+              <li key={path}>
                 <Link
                   to={path}
                   onClick={() => setShowNav(false)}
