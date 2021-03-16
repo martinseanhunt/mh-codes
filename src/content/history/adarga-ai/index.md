@@ -2,7 +2,7 @@
 templateKey: history-item
 company: Adarga.ai
 order: 0
-role: Techical Lead & Development Manager
+role: Technical Lead & Development Manager
 dates: March 2020 - Present
 excerpt: Having, up until this point in my career, worked mostly within
   bootstrapped start ups I decided that I wanted to test myself within a larger
