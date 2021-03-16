@@ -1,5 +1,5 @@
 ---
 htmlTitle: Technical Ramblings
-heading: Techncial ramblings
+heading: Technical Ramblings
 intro: More writing coming soon... I **promise**!
 ---
