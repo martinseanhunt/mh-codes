@@ -37,7 +37,7 @@ Over the 2020/2021 holiday period I started working on creating a stake pool and
 
 ![](f658f433-9bae-493e-a7e7-78e8ec21cb54.jpg)
 
-As I was gearing up to start marketing the pool, I came across a [post on reddit](https://www.reddit.com/r/cardano/comments/lqlcoy/how_cardano_could_help_cure_degenerative_brain/). I was so blown away by the sincerity, passion and purpose with which he appeared to be communicating that I reached out and we set up a call. By the end of that same week we were committed to working together, I had repurposed my pool, had **committed to giving 80% of the pools margins to funding nerodegenrative disease research**, and NEURO was live. In the short time I’ve known Ben, he has continued to surprise me every day and it’s safe to say that his passion, purpose and clarity of vision are infectious. In hindsight, I don’t think that DANA would have worked in the way I’d hoped without someone like Ben on board.
+As I was gearing up to start marketing the pool, I came across a **[post on reddit](https://www.reddit.com/r/cardano/comments/lqlcoy/how_cardano_could_help_cure_degenerative_brain/)**. I was so blown away by the sincerity, passion and purpose with which he appeared to be communicating that I reached out and we set up a call. By the end of that same week we were committed to working together, I had repurposed my pool, had **committed to giving 80% of the pools margins to funding nerodegenrative disease research**, and NEURO was live. In the short time I’ve known Ben, he has continued to surprise me every day and it’s safe to say that his passion, purpose and clarity of vision are infectious. In hindsight, I don’t think that DANA would have worked in the way I’d hoped without someone like Ben on board.
 
 ## Progress to date
 
