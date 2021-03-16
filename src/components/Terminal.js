@@ -17,6 +17,7 @@ import MinimiseTerminalIcon from '../img/icon-minimise-terminal.svg'
 import MaximiseTerminalIcon from '../img/icon-maximise-terminal.svg'
 import LinuxIcon from '../img/icon-linux.svg'
 
+import { DeviceContext } from './layout/Layout'
 import { Section, Inner } from './layout/Section'
 
 // TODO: compose this component
@@ -38,11 +39,10 @@ const randRange = (min, max) =>
   Math.floor(Math.random() * (max - min + 1) + min)
 
 export function Terminal({ title, markdown, fullBio }) {
+  const { deviceName } = useContext(DeviceContext)
   const theme = useContext(ThemeContext)
   const inputRef = useRef()
   const innerRef = useRef()
-  // TODO: do this in layout and pass down via context
-  const [isMobile, setIsMobile] = useState(false)
 
   const [terminalLines, setTerminalLines] = useState([])
   const [terminalLines2, setTerminalLines2] = useState([])
@@ -151,23 +151,6 @@ export function Terminal({ title, markdown, fullBio }) {
     addChars(lines, setTerminalLines2, 50)
   }
 
-  const bp = theme.layout.breakPoints.small.replace('px', '')
-  useEffect(() => {
-    function checkWidth() {
-      if (window.innerWidth <= bp && !isMobile) setIsMobile(true)
-      if (window.innerWidth > bp && isMobile) setIsMobile(false)
-    }
-
-    window.addEventListener('resize', checkWidth)
-    checkWidth()
-
-    return () => {
-      window.removeEventListener('resize', checkWidth)
-    }
-  }, [isMobile, bp])
-
-  const platform = isMobile ? 'MOBILE' : 'DESKTOP'
-
   const bioHTML = remark()
     .use(recommended)
     .use(remarkHtml)
@@ -186,7 +169,7 @@ export function Terminal({ title, markdown, fullBio }) {
             <Tab>
               <span>
                 <img src={LinuxIcon} alt="Linux Penguin Icon" />
-                marty@{platform}: ~/
+                marty@{deviceName}: ~/
               </span>
               <Close src={CloseIcon} alt="Close Tab Icon" />
             </Tab>
@@ -204,12 +187,13 @@ export function Terminal({ title, markdown, fullBio }) {
               {terminalLines.length ? (
                 terminalLines.map(([path, command], i) => (
                   <div key={i}>
-                    <User>marty@{platform}</User>:<Path>{path}</Path>$ {command}
+                    <User>marty@{deviceName}</User>:<Path>{path}</Path>${' '}
+                    {command}
                   </div>
                 ))
               ) : (
                 <div>
-                  <User>marty@{platform}</User>:<Path>~</Path>${' '}
+                  <User>marty@{deviceName}</User>:<Path>~</Path>${' '}
                 </div>
               )}
 
@@ -223,7 +207,7 @@ export function Terminal({ title, markdown, fullBio }) {
               {terminalLines2.length
                 ? terminalLines2.map(([path, command], i) => (
                     <div key={i}>
-                      <User>marty@{platform}</User>:<Path>{path}</Path>${' '}
+                      <User>marty@{deviceName}</User>:<Path>{path}</Path>${' '}
                       {command}
                     </div>
                   ))
@@ -236,7 +220,7 @@ export function Terminal({ title, markdown, fullBio }) {
               {showInput && (
                 <InputLine>
                   <div>
-                    <User>marty@{platform}</User>:<Path>~/mh-codes</Path>$
+                    <User>marty@{deviceName}</User>:<Path>~/mh-codes</Path>$
                   </div>
                   <Input type="text" ref={inputRef}></Input>
                 </InputLine>

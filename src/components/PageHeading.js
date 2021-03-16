@@ -1,15 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import styled from 'styled-components'
 import remark from 'remark'
 import recommended from 'remark-preset-lint-recommended'
 import remarkHtml from 'remark-html'
 
 import { Section } from './layout/Section'
+import { DeviceContext } from './layout/Layout'
 
 // TODO: DRY - lots of borrowed styles here. Running out of time now and cutting corners
-// TODO: get platform dynamically
 
 export function PageHeading({ title, markdown, pageName }) {
+  const { deviceName } = useContext(DeviceContext)
   const bodyHTML = remark()
     .use(recommended)
     .use(remarkHtml)
@@ -22,9 +23,10 @@ export function PageHeading({ title, markdown, pageName }) {
       <HeadingSection>
         <MiniTerminal>
           <div>
-            <User>marty@DESKTOP</User>:<Path>~/mh-codes</Path>$ cd {pageName}
+            <User>marty@{deviceName}</User>:<Path>~/mh-codes</Path>$ cd{' '}
+            {pageName}
             <br />
-            <User>marty@DESKTOP</User>
+            <User>marty@{deviceName}</User>
             <Path>~/mh-codes/{pageName}</Path>$ cat {pageName}.md
             <div dangerouslySetInnerHTML={{ __html: bodyHTML }} />
           </div>
