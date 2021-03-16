@@ -129,6 +129,10 @@ const Meta = styled.div`
   font-family: ${({ theme }) => theme.fonts.families.mono};
   text-transform: lowercase;
 
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding: 20px;
+  }
+
   div:first-of-type {
     flex-shrink: 0;
   }

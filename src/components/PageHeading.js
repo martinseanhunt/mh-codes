@@ -52,7 +52,7 @@ const HeadingSection = styled(Section)`
     padding-right: calc(
       ${({ theme }) => theme.layout.mobileSectionPadding} - 2px
     );
-    margin-bottom: 65px;
+    margin-bottom: 54px;
   }
 `
 

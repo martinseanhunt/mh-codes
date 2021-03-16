@@ -1,13 +1,16 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
 
-import { Terminal } from '../components/Terminal'
+import { DeviceContext } from '../components/layout/Layout'
+
+import { TerminalTyper } from '../components/TerminalTyper'
 import { BlogPostList } from '../components/BlogPostList'
 import { WorkHistory } from '../components/WorkHistory'
 
 export default function Index({ data }) {
   const { site, page, blog } = data
+  const { isMobile } = useContext(DeviceContext)
 
   return (
     <>
@@ -15,8 +18,12 @@ export default function Index({ data }) {
         title={`${site?.siteMetadata?.title} - ${page.frontmatter.htmlTitle}`}
         defer={false}
       />
-      <Terminal
-        title={`${site?.siteMetadata?.title} - ${page.frontmatter.heading}`}
+      <TerminalTyper
+        title={
+          isMobile
+            ? [site?.siteMetadata?.title, page.frontmatter.mobileHeading]
+            : `${site?.siteMetadata?.title} - ${page.frontmatter.heading}`
+        }
         markdown={page.frontmatter.bio}
         fullBio={page.html}
       />
@@ -42,6 +49,7 @@ export const query = graphql`
     page: markdownRemark(fileAbsolutePath: { regex: "/pages/home/" }) {
       frontmatter {
         heading
+        mobileHeading
         htmlTitle
         bio
         historyTitle

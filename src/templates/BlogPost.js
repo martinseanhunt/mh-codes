@@ -65,7 +65,7 @@ export default function BlogPost({ data, pageContext }) {
       </PostSection>
 
       {nextPost && (
-        <NextPost maxWidth="680px" title={prev ? 'Previous Post' : 'Next Post'}>
+        <NextPost maxWidth="680px" title="Suggested Reading">
           <h2>{nextPost.frontmatter.title}</h2>
           <AnimatedLink to={nextPost.fields.slug}>&gt; Read More</AnimatedLink>
         </NextPost>
@@ -153,6 +153,15 @@ const Content = styled.div`
     max-width: 100%;
   }
 
+  a {
+    text-decoration: underline;
+    color: ${({ theme }) => theme.colors.terminalBlue};
+
+    &:hover {
+      color: ${({ theme }) => theme.colors.terminalGreen};
+    }
+  }
+
   .deckgo-highlight-code-carbon {
     margin-bottom: 33px !important;
     font-size: ${({ theme }) => theme.fonts.sizes.s} !important;
@@ -187,6 +196,10 @@ const Meta = styled.div`
   min-height: 55px;
   color: ${({ theme }) => theme.colors.white};
   font-family: ${({ theme }) => theme.fonts.families.mono};
+
+  @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
+    padding: 20px;
+  }
 
   div:first-of-type {
     flex-shrink: 0;

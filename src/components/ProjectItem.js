@@ -86,6 +86,7 @@ const Item = styled.li`
     font-size: ${({ theme }) => theme.fonts.sizes.xl};
     letter-spacing: 0.01em;
     margin-bottom: 12px;
+    position: relative;
   }
 
   p {

@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import { graphql } from 'gatsby'
 import { Helmet } from 'react-helmet'
+
+import { DeviceContext } from '../components/layout/Layout'
 
 import { PageHeading } from '../components/PageHeading'
 import { BlogPostList } from '../components/BlogPostList'
 
 export default function Blog({ data: { site, blog, page } }) {
+  const { isMobile } = useContext(DeviceContext)
+
   return (
     <>
       <Helmet
@@ -13,7 +17,11 @@ export default function Blog({ data: { site, blog, page } }) {
         defer={false}
       />
       <PageHeading
-        title={`${site?.siteMetadata?.title} - ${page.frontmatter.heading}`}
+        title={
+          isMobile
+            ? [site?.siteMetadata?.title, page.frontmatter.heading]
+            : `${site?.siteMetadata?.title} - ${page.frontmatter.heading}`
+        }
         markdown={page.frontmatter.intro}
         pageName="blog"
       />

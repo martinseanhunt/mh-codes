@@ -1,10 +1,4 @@
-import React, {
-  useContext,
-  useRef,
-  useEffect,
-  useState,
-  useCallback,
-} from 'react'
+import React, { useContext } from 'react'
 import styled, { ThemeContext } from 'styled-components'
 import remark from 'remark'
 import recommended from 'remark-preset-lint-recommended'
@@ -22,7 +16,7 @@ import { Section, Inner } from './layout/Section'
 
 // TODO: compose this component
 // TODO: Add cursor animation to lines where typing
-// TODO: cat fullbio.md on bio click
+
 // STRETCH TODO: Make the terminal interactive
 //   - close / new tab
 //   - minimise terminal
@@ -30,126 +24,22 @@ import { Section, Inner } from './layout/Section'
 //   - close terminal
 //   - basic commands
 
-// TODO: Decided on section margin for each element
-// TODO: Get terminal lines from CMS
 // TODO: implement a more SEO friendly way of hiding bio by default
-// TODO: Massively needs a refactor... DRY
 
-const randRange = (min, max) =>
-  Math.floor(Math.random() * (max - min + 1) + min)
-
-export function Terminal({ title, markdown, fullBio }) {
+export function Terminal({
+  title,
+  markdown,
+  fullBio,
+  terminalLines,
+  clearTerminalLine,
+  showBio,
+  showFullBio,
+  showInput,
+  onClickBio,
+  onClickFullBio,
+}) {
   const { deviceName } = useContext(DeviceContext)
   const theme = useContext(ThemeContext)
-  const inputRef = useRef()
-  const innerRef = useRef()
-
-  const [terminalLines, setTerminalLines] = useState([])
-  const [terminalLines2, setTerminalLines2] = useState([])
-  const [showBio, setShowBio] = useState(false)
-  const [showFullBio, setShowFullBio] = useState(false)
-  const [showInput, setShowInput] = useState(false)
-  const [isAnimating, setIsAnimating] = useState(true)
-
-  const focusInput = () =>
-    document.activeElement !== inputRef.current && inputRef.current.focus()
-
-  const addChars = useCallback(function (
-    lines,
-    linesStateSetter,
-    initialDelay = null,
-    lineIndex = 0,
-    charIndex = 0,
-    init = true
-  ) {
-    if (lineIndex === lines.length) return setIsAnimating(false)
-
-    if (lines[lineIndex] === 'bio') {
-      setShowBio('true')
-      return addChars(lines, linesStateSetter, initialDelay, lineIndex + 1)
-    }
-
-    if (lines[lineIndex] === 'fullBio') {
-      setShowFullBio('true')
-      return addChars(lines, linesStateSetter, initialDelay, lineIndex + 1)
-    }
-
-    if (lines[lineIndex] === 'input') {
-      setShowInput('true')
-      return addChars(lines, linesStateSetter, initialDelay, lineIndex + 1)
-    }
-
-    const [path, command] = lines[lineIndex]
-
-    linesStateSetter((lines) => {
-      const line = lines[lineIndex]
-
-      if (!line)
-        return [...lines.filter((_, index) => index !== lineIndex), [path, '']]
-
-      return [
-        ...lines.filter((_, index) => index !== lineIndex),
-        [line[0], line[1] + command.charAt(charIndex)],
-      ]
-    })
-
-    let nextCharIndex = charIndex
-    let nextLineIndex = lineIndex
-    let nextTimeout = randRange(50, 100)
-    let nextInit = false
-
-    if (init) {
-      nextTimeout = initialDelay || randRange(1000, 2000)
-    } else if (charIndex === command.length - 1) {
-      nextCharIndex = 0
-      nextLineIndex++
-      nextInit = true
-      nextTimeout = randRange(300, 500)
-    } else {
-      nextCharIndex++
-    }
-
-    setTimeout(
-      () =>
-        addChars(
-          lines,
-          linesStateSetter,
-          initialDelay,
-          nextLineIndex,
-          nextCharIndex,
-          nextInit
-        ),
-      nextTimeout
-    )
-  },
-  [])
-
-  useEffect(() => {
-    const lines = [
-      ['~', 'cd mh-codes'],
-      ['~/mh-codes', 'cat bio.md'],
-      'bio',
-      'input',
-    ]
-
-    setIsAnimating(true)
-    setShowInput(false)
-    setShowBio(false)
-    setTerminalLines([])
-    setTerminalLines2([])
-    addChars(lines, setTerminalLines)
-  }, [addChars])
-
-  const onClickBio = (e) => {
-    e.preventDefault()
-    if (showFullBio || e.target.tagName !== 'A' || isAnimating) return false
-
-    const lines = [['~/mh-codes', 'cat full-bio.md'], 'fullBio', 'input']
-
-    setIsAnimating(true)
-    setShowInput(false)
-    addChars(lines, setTerminalLines2, 50)
-  }
 
   const bioHTML = remark()
     .use(recommended)
@@ -160,10 +50,7 @@ export function Terminal({ title, markdown, fullBio }) {
   return (
     <>
       <TitleSection title={title} />
-      <TerminalSection
-        maxWidth={theme.layout.terminal.maxWidth}
-        onClick={() => inputRef.current && focusInput()}
-      >
+      <TerminalSection maxWidth="1033px">
         <TerminalContainer>
           <Header>
             <Tab>
@@ -183,7 +70,7 @@ export function Terminal({ title, markdown, fullBio }) {
             </Controls>
           </Header>
           <Content>
-            <Inner ref={innerRef}>
+            <Inner>
               {terminalLines.length ? (
                 terminalLines.map(([path, command], i) => (
                   <div key={i}>
@@ -204,17 +91,11 @@ export function Terminal({ title, markdown, fullBio }) {
                 />
               )}
 
-              {terminalLines2.length
-                ? terminalLines2.map(([path, command], i) => (
-                    <div key={i}>
-                      <User>marty@{deviceName}</User>:<Path>{path}</Path>${' '}
-                      {command}
-                    </div>
-                  ))
-                : undefined}
-
               {showFullBio && (
-                <Bio dangerouslySetInnerHTML={{ __html: fullBio }} />
+                <Bio
+                  dangerouslySetInnerHTML={{ __html: fullBio }}
+                  onClick={onClickFullBio}
+                />
               )}
 
               {showInput && (
@@ -222,7 +103,11 @@ export function Terminal({ title, markdown, fullBio }) {
                   <div>
                     <User>marty@{deviceName}</User>:<Path>~/mh-codes</Path>$
                   </div>
-                  <Input type="text" ref={inputRef}></Input>
+                  {clearTerminalLine.length ? (
+                    clearTerminalLine[0][1]
+                  ) : (
+                    <Input type="text" />
+                  )}
                 </InputLine>
               )}
             </Inner>
@@ -269,7 +154,7 @@ const Header = styled.div`
   display: flex;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
-    padding-left: 22px;
+    padding-left: 20px;
   }
 `
 
@@ -334,7 +219,7 @@ const Content = styled.div`
   display: flex;
   justify-content: center;
   font-family: ${({ theme }) => theme.fonts.families.mono};
-  padding: 30px 30px 45px 30px;
+  padding: 30px 39px 45px 39px;
   min-height: 314px;
   box-shadow: 0px 1px 15px ${({ theme }) => theme.colors.shadow};
   border-radius: 0px 0px
@@ -343,7 +228,6 @@ const Content = styled.div`
   font-size: ${({ theme }) => theme.fonts.sizes.s};
   line-height: ${({ theme }) => theme.fonts.lineHeight.terminal};
   word-wrap: break-word;
-  max-width: 777px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     padding: 30px 22px 45px 22px;
@@ -351,6 +235,7 @@ const Content = styled.div`
 
   p {
     margin-bottom: 20px;
+    max-width: 777px;
 
     &:last-of-type {
       margin-bottom: 0;
@@ -401,6 +286,7 @@ const InputLine = styled.div`
     flex-shrink: 0;
     max-width: 100%;
     word-wrap: break-word;
+    margin-right: 8px;
   }
 `
 
@@ -414,7 +300,6 @@ const Input = styled.input`
   font-family: ${({ theme }) => theme.fonts.families.mono};
   padding: 0;
   flex: 1;
-  margin-left: 8px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     display: none;

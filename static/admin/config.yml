@@ -20,6 +20,11 @@ collections:
         fields:
           - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
           - { label: 'Headline', name: 'heading', widget: 'string' }
+          - {
+              label: 'Mobile Headline',
+              name: 'mobileHeading',
+              widget: 'string',
+            }
           - { label: 'Bio', name: 'bio', widget: 'markdown' }
           - { label: 'FullBio', name: 'body', widget: 'markdown' }
           - {
@@ -50,18 +55,6 @@ collections:
           - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
           - { label: 'Headline', name: 'heading', widget: 'string' }
           - { label: 'Intro Text', name: 'intro', widget: 'markdown' }
-      - file: 'src/content/pages/bio.md'
-        label: 'Bio'
-        name: 'bio'
-        media_folder: ''
-        public_folder: ''
-        editor:
-          preview: false
-        fields:
-          - { label: 'HTML Title Suffix', name: 'htmlTitle', widget: 'string' }
-          - { label: 'Headline', name: 'heading', widget: 'string' }
-          - { label: 'Intro Text', name: 'intro', widget: 'markdown' }
-          - { label: 'Bio', name: 'body', widget: 'markdown' }
 
   - name: 'blog'
     label: 'Blog'

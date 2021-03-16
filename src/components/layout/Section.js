@@ -21,10 +21,24 @@ export function Section({
     >
       <Inner maxWidth={maxWidth}>
         {title && (
-          <Title>
-            <span>&#47;&#47; </span>
-            {title}
-          </Title>
+          <>
+            {typeof title === 'object' ? (
+              <Title>
+                {title.map((t) => (
+                  <Line key={t.replace(' ', '')}>
+                    <LineIntro>&#47;&#47; </LineIntro>
+                    {t}
+                    <br />
+                  </Line>
+                ))}
+              </Title>
+            ) : (
+              <Title>
+                <LineIntro>&#47;&#47; </LineIntro>
+                {title}
+              </Title>
+            )}
+          </>
         )}
         {children}
       </Inner>
@@ -75,15 +89,21 @@ const Title = styled.h3`
   //24
   padding-left: 27px;
 
-  span:first-of-type {
-    position: absolute;
-    top: 0;
-    left: 0;
-    font-weight: bold;
+  span {
   }
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     line-height: 2.6rem;
     margin-bottom: 22px;
   }
+`
+
+const Line = styled.span`
+  display: block;
+`
+
+const LineIntro = styled.span`
+  position: absolute;
+  left: 0;
+  font-weight: bold;
 `
