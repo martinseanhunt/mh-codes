@@ -9,9 +9,6 @@ tags:
 date: 2021-03-15T21:09:38.008Z
 image: z4yyv8irjfl61.webp
 ---
-
-## Getting started
-
 Like many others my immersion into the world of blockchain has been a gradual, evolving process. I’ve been fascinated by blockchain since around 2014 when I first heard of Bitcoin. It spoke to my frustrations with the financial status quo and I recognized the potential for blockchains to help us reclaim individual financial sovereignty. Despite my excitement, I was still hesitant and in hindsight perhaps a little over cautious! But over the years spent listening to people far smarter than myself, and starting to get hands on with the technology, my excitement turned into a deeply rooted conviction. I’m now fully committed to learning everything I can about the blockchain and exploring how it can be used to make the world, a better, fairer and more decentralised place.
 
 ![](6749aca0-f4bc-467d-8b45-4f4c8899e709.jpg)
