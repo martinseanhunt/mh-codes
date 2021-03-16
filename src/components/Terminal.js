@@ -1,5 +1,5 @@
 import React, { useContext } from 'react'
-import styled, { ThemeContext } from 'styled-components'
+import styled from 'styled-components'
 import remark from 'remark'
 import recommended from 'remark-preset-lint-recommended'
 import remarkHtml from 'remark-html'
@@ -39,7 +39,6 @@ export function Terminal({
   onClickFullBio,
 }) {
   const { deviceName } = useContext(DeviceContext)
-  const theme = useContext(ThemeContext)
 
   const bioHTML = remark()
     .use(recommended)
@@ -123,7 +122,7 @@ const TitleSection = styled(Section)`
 `
 
 const TerminalSection = styled(Section)`
-  margin: 0 0 108px 0;
+  margin: 0 0 89px 0;
   // TODO: Remove from theme
   padding: ${({ theme }) => theme.layout.terminal.sectionPadding};
 

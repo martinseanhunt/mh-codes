@@ -41,7 +41,7 @@ const TitleSection = styled(Section)`
 `
 
 const HeadingSection = styled(Section)`
-  margin-bottom: 88px;
+  margin-bottom: 72px;
   padding-left: 48px;
   padding-right: 48px;
 

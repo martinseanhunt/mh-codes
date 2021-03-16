@@ -65,7 +65,7 @@ export function Header({ footer }) {
 }
 
 const HeaderSection = styled(Section)`
-  margin: ${({ footer }) => (footer ? '0' : '0 0 144px 0')};
+  margin: ${({ footer }) => (footer ? '0' : '0 0 133px 0')};
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     margin: 0;

@@ -59,7 +59,7 @@ export function WorkHistory({ title }) {
 }
 
 const WorkSection = styled(Section)`
-  margin-bottom: 72px;
+  margin-bottom: 54px;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     margin-bottom: 65px;

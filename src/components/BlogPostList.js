@@ -71,7 +71,7 @@ export function BlogPostList({ posts, title, noTitle, fullList }) {
 }
 
 const BlogSection = styled(Section)`
-  padding-top: ${({ fullList }) => (fullList ? '0' : '72px')};
+  padding-top: ${({ fullList }) => (fullList ? '0' : '54px')};
   padding-bottom: 108px;
   margin: 0;
 
