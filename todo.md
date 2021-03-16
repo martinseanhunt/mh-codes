@@ -21,3 +21,5 @@ add domain to deployment!
 set up netlify cms permissions on live sitegit
 
 cyce through multiple technology logos on projects page
+
+add manual excerpt field to blog posts
