@@ -203,14 +203,18 @@ const Controls = styled.div`
   margin-left: auto;
   position: relative;
   top: -3px;
+  align-items: center;
 
   @media ${({ theme }) => theme.layout.mediaQueries.maxSmall} {
     display: none;
   }
 
   img {
+    height: 10px;
+    width: 10px;
     margin-right: 25px;
     cursor: pointer;
+    opacity: 0.8;
   }
 `
 
